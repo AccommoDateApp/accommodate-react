@@ -1,0 +1,12 @@
+{
+  "name": "accommodate-react",
+  "version": "0.0.1",
+  "description": "React frontend to the AccommoDate matchmaking platform.",
+  "authors": [
+    "Michael Neu <git@michaeln.eu>"
+  ],
+  "main": "index.js",
+  "repository": "https://github.com/accommodateapp/accommodate-react",
+  "license": "MIT",
+  "private": true
+}
