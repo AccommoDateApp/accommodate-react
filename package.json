@@ -9,8 +9,12 @@
   "repository": "https://github.com/accommodateapp/accommodate-react",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "lint": "tslint --project ."
+  },
   "devDependencies": {
     "tslib": "^1.9.1",
+    "tslint": "^5.10.0",
     "typescript": "^2.8.3"
   }
 }
