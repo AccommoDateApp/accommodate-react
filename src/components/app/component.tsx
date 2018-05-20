@@ -1,5 +1,9 @@
 import * as React from "react";
+import MatchingCockpit from "./matching/MatchingCockpit";
 
 export const AppComponent = () => (
-  <h1>AccommoDate</h1>
+  <div>
+    <h1>AccommoDate</h1>
+    <MatchingCockpit />
+  </div>
 );
