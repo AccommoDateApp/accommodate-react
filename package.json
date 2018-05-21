@@ -14,7 +14,8 @@
     "build": "webpack --mode production",
     "clean": "rimraf dist/ coverage/",
     "lint": "tslint --project .",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "coverage": "codecov -f coverage/*.json"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-enzyme",
@@ -41,6 +42,7 @@
     "@types/react-redux": "^6.0.0",
     "@types/sinon": "^4.3.3",
     "awesome-typescript-loader": "^5.0.0",
+    "codecov": "^3.0.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "html-webpack-plugin": "^3.2.0",
