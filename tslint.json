@@ -1,13 +1,15 @@
 {
     "defaultSeverity": "error",
     "extends": [
-        "tslint:recommended"
+        "tslint:recommended",
+        "tslint-react"
     ],
     "jsRules": {},
     "rules": {
       "interface-name": false,
       "max-line-length": false,
       "no-console": false,
+      "array-type": true,
       "typedef-whitespace": [
         true,
         {
@@ -17,7 +19,8 @@
           "property-declaration": "nospace",
           "variable-declaration": "nospace"
         }
-      ]
+      ],
+      "jsx-space-before-trailing-slash": true
     },
     "rulesDirectory": []
 }
