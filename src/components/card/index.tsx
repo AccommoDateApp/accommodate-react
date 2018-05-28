@@ -1,3 +1,3 @@
-import { CardComponent }  from "./CardComponent";
+import { CardComponent } from "./CardComponent";
 
 export const Card = CardComponent;
