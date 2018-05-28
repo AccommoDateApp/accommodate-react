@@ -7,11 +7,9 @@ export interface MatchesListProps {
 
 export const MatchesList = (props: MatchesListProps) => {
 
-  function renderMatch(match: MatchProps, listIdx: number) {
-    return <Match key={listIdx} {...props.matches[listIdx]} />;
-  }
-
-  return (
-    <div>{props.matches.map(renderMatch)}</div>
+  const matches = props.matches.map(
+    (match, id) => <Match key={id} {...match} />,
   );
+
+  return <div>{matches}</div>;
 };

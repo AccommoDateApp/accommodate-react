@@ -1,5 +1,5 @@
 import * as React from "react";
-import MatchingCockpit from "./matching/MatchingCockpit";
+import { MatchingCockpit } from "./matching/MatchingCockpit";
 
 export const AppComponent = () => (
   <div>

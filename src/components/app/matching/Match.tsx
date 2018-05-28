@@ -7,13 +7,11 @@ export interface MatchProps {
   chatStatusIcon: string;
 }
 
-export const Match = (props: MatchProps) => {
-  return (
+export const Match = (props: MatchProps) => (
     <div>
       <div>Pic: {props.matchPicture}</div>
       <h3>Name: {props.matchName}</h3>
       <div>Starred: {props.matchIsStarred}</div>
       <div>Chat: {props.chatStatusIcon}</div>
     </div>
-  );
-};
+);

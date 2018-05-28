@@ -17,7 +17,7 @@ const MATCHES_PLACEHOLDER = {
   ],
 } as MatchingCockpitState;
 
-class MatchingCockpit extends React.Component<any, MatchingCockpitState> {
+export class MatchingCockpit extends React.PureComponent<any, MatchingCockpitState> {
 
   public state = MATCHES_PLACEHOLDER;
 
@@ -32,5 +32,3 @@ class MatchingCockpit extends React.Component<any, MatchingCockpitState> {
     );
   }
 }
-
-export default MatchingCockpit;
