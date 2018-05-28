@@ -9,7 +9,7 @@
       "interface-name": false,
       "max-line-length": false,
       "no-console": false,
-      "array-type": true,
+      "array-type": [true, "array-simple"],
       "typedef-whitespace": [
         true,
         {

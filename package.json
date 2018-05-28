@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "React frontend to the AccommoDate matchmaking platform.",
   "authors": [
-    "Michael Neu <git@michaeln.eu>"
+    "Michael Neu <git@michaeln.eu>",
+    "tomasruizt <tomas.ruiz.te@gmail.com>"
   ],
   "main": "index.js",
   "repository": "https://github.com/accommodateapp/accommodate-react",
