@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import { AppComponent } from "../../../src/components/app/component";
+import { AppComponent } from "../../../src/components/app";
 
 describe("HomeComponent", () => {
   it("renders the component", () => {

@@ -7,3 +7,5 @@ export const AppComponent = () => (
     <MatchingCockpit />
   </div>
 );
+
+export const App = AppComponent;
