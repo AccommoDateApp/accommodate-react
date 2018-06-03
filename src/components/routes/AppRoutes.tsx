@@ -2,7 +2,7 @@ import * as React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { App } from "../app";
-import { Card } from "../card/Card";
+import { Profile } from "../profile/Profile";
 
 export const AppRoutes = () => {
  return (
@@ -11,7 +11,7 @@ export const AppRoutes = () => {
    <BrowserRouter>
     <Switch>
       <Route exact={true} path="/" component={App} />
-      <Route exact={true} path="/profile" component={Card} />
+      <Route exact={true} path="/profile" component={Profile} />
     </Switch>
    </BrowserRouter>
    </div>
