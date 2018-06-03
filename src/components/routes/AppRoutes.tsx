@@ -2,7 +2,7 @@ import * as React from "react";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 
 import { App } from "../app";
-import { Card } from "../card";
+import { Card } from "../card/Card";
 
 export const AppRoutes = () => {
  return (
