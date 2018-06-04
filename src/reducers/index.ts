@@ -1,5 +1,8 @@
-import { AccommoDateState } from "../state";
+import { combineReducers } from "redux";
+import ProfileReducer from "../reducers/profileReducer";
 
-export const rootReducer = (state: AccommoDateState) => {
-  return state;
-};
+const rootReducer = combineReducers({
+  profile : ProfileReducer,
+});
+
+export {rootReducer};
