@@ -1,20 +1,10 @@
 import { Col, Row } from "antd";
-import * as React from "react";
+import React = require("react");
 
-class Card extends React.Component<any, any> {
-    constructor(props: any) {
-        super(props);
-    }
-
-    public render() {
-        return (
-            <Row>
-                <Col>
-                <h3>this is a card</h3>
-                </Col>
-            </Row>
-        );
-    }
-}
-
-export { Card };
+export const Card = (props: any) => (
+  <Row>
+    <Col>
+      <h3>this is a card {props.name}</h3>
+    </Col>
+  </Row>
+);
