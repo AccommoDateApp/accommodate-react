@@ -10,6 +10,7 @@
       "max-line-length": false,
       "no-console": false,
       "array-type": [true, "array-simple"],
+      "jsx-no-lambda": false,
       "typedef-whitespace": [
         true,
         {
