@@ -1,5 +1,21 @@
+import { Col, Row } from "antd";
+import * as React from "react";
 import { Card } from "../card/Card";
 
-const Profile = Card;   // temporary shit
+class Profile extends React.Component {
+    constructor(props: any) {
+        super(props);
+    }
 
-export {Profile};
+    public render() {
+        return (
+            <Row>
+                <Col>
+                    <Card />
+                </Col>
+            </Row>
+        );
+    }
+}
+
+export { Profile };
