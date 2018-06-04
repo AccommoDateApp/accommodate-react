@@ -11,5 +11,10 @@ export const MatchesList = (props: MatchesListProps) => {
     (match, id) => <Match key={id} {...match} />,
   );
 
-  return <div>{matches}</div>;
+  return (
+    <div>
+      <h1>Matches</h1>
+      {matches}
+    </div>
+  );
 };
