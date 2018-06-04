@@ -1,8 +1,8 @@
+import { Col, Row } from "antd";
 import * as React from "react";
 import { CandidatesStack } from "./CandidatesStack";
 import { MatchProps } from "./Match";
 import { MatchesList } from "./MatchesList";
-import { Col, Row } from "antd";
 
 interface MatchingCockpitState {
   matches: MatchProps[];
@@ -16,7 +16,7 @@ const MATCHES_PLACEHOLDER = {
       matchName: "Tomas",
       matchPicture: "awesome",
     } as MatchProps,
-  )
+  ),
 } as MatchingCockpitState;
 
 export class MatchingCockpit extends React.PureComponent<any, MatchingCockpitState> {
