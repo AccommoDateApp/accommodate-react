@@ -4,7 +4,8 @@ module.exports = {
   entry: "./src/index.tsx",
 
   output: {
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
+    chunkFilename: "[name].[hash].bundle.js",
     path: __dirname + "/dist",
   },
 
@@ -15,6 +16,12 @@ module.exports = {
       ".js",
       ".json",
     ],
+  },
+
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
   },
 
   module: {
