@@ -11,6 +11,11 @@
       "no-console": false,
       "array-type": [true, "array-simple"],
       "jsx-no-lambda": false,
+      "indent": [
+        true,
+        "spaces",
+        2
+      ],
       "typedef-whitespace": [
         true,
         {
