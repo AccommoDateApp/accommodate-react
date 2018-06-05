@@ -4,7 +4,8 @@ module.exports = {
   entry: "./src/index.tsx",
 
   output: {
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
+    chunkFilename: "[name].[hash].bundle.js",
     path: __dirname + "/dist",
   },
 
@@ -17,6 +18,12 @@ module.exports = {
     ],
   },
 
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
+
   module: {
     rules: [
       {
@@ -25,12 +32,19 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']  
-      }
+        use: ["style-loader", "css-loader", "sass-loader"]
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: "file-loader",
+        options: {
+          outputPath: "assets/",
+        },
+      },
     ],
   },
 
