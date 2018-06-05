@@ -3,10 +3,6 @@ import * as React from "react";
 import { Card } from "../card/Card";
 
 class Profile extends React.Component {
-  constructor(props: any) {
-    super(props);
-  }
-
   public render() {
     return (
       <Row>
