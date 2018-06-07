@@ -2,7 +2,7 @@ import * as React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { App } from "../app";
-import { Profile } from "../profile/Profile";
+import Profile from "../profile/Profile";
 
 export const AppRoutes = () => {
  return (

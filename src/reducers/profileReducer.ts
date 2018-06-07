@@ -1,19 +1,19 @@
-import { Action } from "../actions";
+import { IAction } from "../actions";
 import { ProfileActions } from "../actions/profileActions";
 
-interface ProfileData {
+export interface IProfile {
     basicDetails: string;
     mode: string;               // tenant or landlord
 }
 
-const defaultState: ProfileData = {
+const defaultState: IProfile = {
     basicDetails: "",
     mode: "tenant",
 };
 
-export default function(state = defaultState, action: Action) {
+export default function(state = defaultState, action: IAction) {
     switch (action.type) {
-        case ProfileActions.SET_MODE:
+        case ProfileActions.SET_USER_MODE:
         if (action.value === "tenant") {
             return {
                 ...state,

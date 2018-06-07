@@ -1,10 +1,12 @@
+import { IAction } from ".";
+
 export enum ProfileActions {
-    SET_MODE = "set_mode",
+    SET_USER_MODE = "set_user_mode",
 }
 
-export function setMode(flag: string) {
+export function setUserMode(flag: string) : IAction {
     return {
-        type: ProfileActions.SET_MODE,
+        type: ProfileActions.SET_USER_MODE,
         value: flag,
     };
 }

@@ -1,14 +1,19 @@
 import { rootReducer } from "../../src/reducers";
+import { RootState } from "../../src/state";
 
 describe("root reducer", () => {
   it("returns the same state as provided", () => {
-    // const state = {};
+    const state: RootState = {
+      profile: {
+        basicDetails : "",
+        mode : "",
+      },
+    };
     const action = {
       type: "none",
       value: {},
     };
-    const state = rootReducer({}, action);
 
-    expect(rootReducer({}, action)).toEqual(state);
+    expect(rootReducer(state, action)).toEqual(state);
   });
 });
