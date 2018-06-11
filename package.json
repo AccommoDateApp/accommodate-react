@@ -28,6 +28,10 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "/test/.*\\.spec\\.tsx?$",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|scss)$": "identity-obj-proxy"
+    },
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -51,6 +55,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.4",
     "jest-environment-enzyme": "^6.0.0",
     "jest-enzyme": "^6.0.0",
