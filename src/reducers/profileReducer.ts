@@ -1,22 +1,15 @@
-import { IAction } from "../actions";
+import { Action } from "../actions";
 import { ProfileActions } from "../actions/profileActions";
+import { ProfileState , UserMode } from "../components/profile/ProfileTypes";
 
-export interface IProfile {
-  basicDetails: string;
-  mode: UserMode;               // tenant or landlord
-}
+console.log("this is profile state and user mode", UserMode);
 
-export enum UserMode {
-  tenant,
-  landlord,
-}
-
-const defaultState: IProfile = {
+const defaultState: ProfileState = {
   basicDetails: "",
   mode: UserMode.tenant,
 };
 
-export function ProfileReducer(state = defaultState, action: IAction<ProfileActions>) {
+export function ProfileReducer(state = defaultState, action: Action<UserMode>) {
   switch (action.type) {
     case ProfileActions.SET_USER_MODE:
     if (action.value === UserMode.tenant) {

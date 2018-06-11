@@ -1,5 +1,5 @@
-import { IProfile } from "../reducers/profileReducer";
+import { ProfileState } from "../components/profile/ProfileTypes";
 
 export interface RootState {
-  profile: IProfile;
+  profile: ProfileState;
 }

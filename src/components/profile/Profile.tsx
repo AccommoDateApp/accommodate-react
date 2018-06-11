@@ -3,38 +3,50 @@ import * as React from "react";
 import { connect, Dispatch } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
+import { Action } from "../../actions";
 import { setUserMode } from "../../actions/profileActions";
-import { IProfile } from "../../reducers/profileReducer";
 import { RootState } from "../../state";
 import { Card } from "../card/Card";
+import { ProfileState, UserMode } from "./ProfileTypes";
 
 interface StateProps {
-  profile: IProfile;
+  profile: ProfileState;
 }
 
 interface DispatchProps {
-  setUserMode: (userMode: string) => any;
+  setUserMode: (userMode: UserMode) => Action<UserMode>;
 }
 
 interface Props extends StateProps, DispatchProps, RouteComponentProps<any> {}
 
-class Profile extends React.Component<Props> {
+// class Profile extends React.Component<Props> {
 
-  constructor(props: Props) {
-    super(props);
-  }
+//   constructor(props: Props) {
+//     super(props);
+//   }
 
-  public render() {
-    return (
-      <Row>
-        <Col>
-          <Card />
-          {this.props.profile.mode}
-        </Col>
-      </Row>
-    );
-  }
-}
+//   public render() {
+//     return (
+//       <Row>
+//         <Col>
+//           <Card />
+//           {this.props.profile.mode}
+//         </Col>
+//       </Row>
+//     );
+//   }
+// }
+
+const ProfileComponent = (props: Props) => {
+  return (
+    <Row>
+      <Col>
+        <Card />
+        {props.profile.mode}
+      </Col>
+    </Row>
+  );
+};
 
 const mapStateToProps = (state: RootState) => {
   return {
@@ -48,4 +60,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
   }, dispatch);
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile));
+export const Profile = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfileComponent));

@@ -1,8 +1,8 @@
-export interface IEmptyAction {
-    type: number;
+export interface EmptyAction {
+    type: string;
 }
 
-export interface IAction<T = any> {
+export interface Action<T = any> {
     type: string;
     value: T;
 }

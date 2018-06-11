@@ -1,11 +1,11 @@
 import { ProfileActions } from "../../src/actions/profileActions";
+import { ProfileState, UserMode } from "../../src/components/profile/ProfileTypes";
 import { rootReducer } from "../../src/reducers";
-import { IProfile, UserMode } from "../../src/reducers/profileReducer";
 import { RootState } from "../../src/state";
 
 describe("root reducer", () => {
-  it("returns the same state as provided", () => {
-    const profileData: IProfile = {
+  it("State returned by the action should be equal to the provided state", () => {
+    const profileData: ProfileState = {
       basicDetails : "",
       mode : UserMode.tenant,
     };
