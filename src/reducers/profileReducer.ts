@@ -2,30 +2,35 @@ import { IAction } from "../actions";
 import { ProfileActions } from "../actions/profileActions";
 
 export interface IProfile {
-    basicDetails: string;
-    mode: string;               // tenant or landlord
+  basicDetails: string;
+  mode: UserMode;               // tenant or landlord
+}
+
+export enum UserMode {
+  tenant,
+  landlord,
 }
 
 const defaultState: IProfile = {
-    basicDetails: "",
-    mode: "tenant",
+  basicDetails: "",
+  mode: UserMode.tenant,
 };
 
-export default function(state = defaultState, action: IAction) {
-    switch (action.type) {
-        case ProfileActions.SET_USER_MODE:
-        if (action.value === "tenant") {
-            return {
-                ...state,
-                mode: "tenant",
-            };
-        } else {
-            return {
-                ...state,
-                mode: "landlord",
-            };
-        }
-        default:
-        return state;
+export function ProfileReducer(state = defaultState, action: IAction<ProfileActions>) {
+  switch (action.type) {
+    case ProfileActions.SET_USER_MODE:
+    if (action.value === UserMode.tenant) {
+      return {
+        ...state,
+        mode: UserMode.tenant,
+      };
+    } else {
+      return {
+        ...state,
+        mode: UserMode.landlord,
+      };
     }
+    default:
+    return state;
+  }
 }

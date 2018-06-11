@@ -1,5 +1,5 @@
 export interface IEmptyAction {
-    type: string;
+    type: number;
 }
 
 export interface IAction<T = any> {
