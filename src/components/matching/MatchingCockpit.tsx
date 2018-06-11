@@ -1,14 +1,16 @@
 import { Col, Row } from "antd";
 import * as React from "react";
+import { connect } from "react-redux";
+import { AccommoDateState } from "../../state";
 import { CandidatesStack } from "./CandidatesStack";
 import { MatchProps } from "./Match";
 import { MatchesList } from "./MatchesList";
 
-interface MatchingCockpitProps {
+export interface MatchingCockpitProps {
   matches: MatchProps[];
 }
 
-export const MatchingCockpit = (props: MatchingCockpitProps) => (
+export const MatchingCockpitComponent = (props: MatchingCockpitProps) => (
   <Row>
     <Col span={8}>
       <MatchesList matches={props.matches} />
@@ -18,3 +20,8 @@ export const MatchingCockpit = (props: MatchingCockpitProps) => (
     </Col>
   </Row>
 );
+
+const mapStateToProps = (state: AccommoDateState) => ({
+  matches: state.matches,
+});
+export const MatchingCockpit = connect(mapStateToProps)(MatchingCockpitComponent);
