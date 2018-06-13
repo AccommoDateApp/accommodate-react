@@ -19,24 +19,6 @@ interface DispatchProps {
 
 interface Props extends StateProps, DispatchProps, RouteComponentProps<any> {}
 
-// class Profile extends React.Component<Props> {
-
-//   constructor(props: Props) {
-//     super(props);
-//   }
-
-//   public render() {
-//     return (
-//       <Row>
-//         <Col>
-//           <Card />
-//           {this.props.profile.mode}
-//         </Col>
-//       </Row>
-//     );
-//   }
-// }
-
 const ProfileComponent = (props: Props) => {
   return (
     <Row>
