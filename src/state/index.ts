@@ -1,5 +1,5 @@
 import { Profile } from "./profile";
 
-export interface RootState {
+export interface AccommoDateState {
   profile: Profile;
 }
