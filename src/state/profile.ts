@@ -4,6 +4,6 @@ export interface Profile {
 }
 
 export enum UserMode {
-  tenant,
-  landlord,
+  Tenant,
+  Landlord,
 }

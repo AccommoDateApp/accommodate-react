@@ -4,7 +4,7 @@ import { Profile, UserMode } from "../state/profile";
 
 const defaultState: Profile = {
   basicDetails: "",
-  mode: UserMode.tenant,
+  mode: UserMode.Tenant,
 };
 
 export const profileReducer = (state = defaultState, action: Action<UserMode>) => {
