@@ -1,8 +1,8 @@
 import { Action } from "../actions";
 import { ProfileActions } from "../actions/profileActions";
-import { ProfileState , UserMode } from "../components/profile/ProfileTypes";
+import { Profile, UserMode } from "../state/profile";
 
-const defaultState: ProfileState = {
+const defaultState: Profile = {
   basicDetails: "",
   mode: UserMode.tenant,
 };

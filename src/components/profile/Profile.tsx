@@ -6,8 +6,8 @@ import { bindActionCreators } from "redux";
 import { Action } from "../../actions";
 import { setUserMode } from "../../actions/profileActions";
 import { RootState } from "../../state";
+import { Profile as ProfileState, UserMode } from "../../state/profile";
 import { Card } from "../card/Card";
-import { ProfileState, UserMode } from "./ProfileTypes";
 
 interface StateProps {
   profile: ProfileState;

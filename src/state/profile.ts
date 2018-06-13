@@ -1,4 +1,4 @@
-export interface ProfileState {
+export interface Profile {
   basicDetails: string;
   mode: UserMode;
 }

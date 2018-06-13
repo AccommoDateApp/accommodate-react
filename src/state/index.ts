@@ -1,5 +1,5 @@
-import { ProfileState } from "../components/profile/ProfileTypes";
+import { Profile } from "./profile";
 
 export interface RootState {
-  profile: ProfileState;
+  profile: Profile;
 }
