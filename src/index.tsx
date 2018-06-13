@@ -8,7 +8,7 @@ import { rootReducer } from "./reducers";
 // css import
 import "antd/dist/antd.css";
 
-const store = createStore(rootReducer);
+const store: any = createStore(rootReducer);
 
 const app = (
   <Provider store={store}>
