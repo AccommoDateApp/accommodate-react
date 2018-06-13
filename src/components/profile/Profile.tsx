@@ -5,9 +5,9 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { Action } from "../../actions";
 import { setUserMode } from "../../actions/profileActions";
-import { RootState } from "../../state";
+import { AccommoDateState } from "../../state";
+import { Profile as ProfileState, UserMode } from "../../state/profile";
 import { Card } from "../card/Card";
-import { ProfileState, UserMode } from "./ProfileTypes";
 
 interface StateProps {
   profile: ProfileState;
@@ -18,24 +18,6 @@ interface DispatchProps {
 }
 
 interface Props extends StateProps, DispatchProps, RouteComponentProps<any> {}
-
-// class Profile extends React.Component<Props> {
-
-//   constructor(props: Props) {
-//     super(props);
-//   }
-
-//   public render() {
-//     return (
-//       <Row>
-//         <Col>
-//           <Card />
-//           {this.props.profile.mode}
-//         </Col>
-//       </Row>
-//     );
-//   }
-// }
 
 const ProfileComponent = (props: Props) => {
   return (
@@ -48,7 +30,7 @@ const ProfileComponent = (props: Props) => {
   );
 };
 
-const mapStateToProps = (state: RootState) => {
+const mapStateToProps = (state: AccommoDateState) => {
   return {
     profile: state.profile,
   };

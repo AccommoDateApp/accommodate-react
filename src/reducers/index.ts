@@ -1,8 +1,6 @@
-import { combineReducers, Reducer } from "redux";
-import { Action } from "../actions";
-import { ProfileReducer } from "../reducers/profileReducer";
-import { RootState } from "../state";
+import { combineReducers } from "redux";
+import { profileReducer } from "../reducers/profileReducer";
 
-export const rootReducer: Reducer<RootState, Action<any>> = combineReducers({
-  profile : ProfileReducer,
+export const rootReducer = combineReducers({
+  profile : profileReducer,
 });

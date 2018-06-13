@@ -1,5 +1,5 @@
 import { Action } from ".";
-import { UserMode } from "../components/profile/ProfileTypes";
+import { UserMode } from "../state/profile";
 
 export enum ProfileActions {
     SET_USER_MODE = "set_user_mode",

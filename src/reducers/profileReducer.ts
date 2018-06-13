@@ -1,29 +1,21 @@
 import { Action } from "../actions";
 import { ProfileActions } from "../actions/profileActions";
-import { ProfileState , UserMode } from "../components/profile/ProfileTypes";
+import { Profile, UserMode } from "../state/profile";
 
-console.log("this is profile state and user mode", UserMode);
-
-const defaultState: ProfileState = {
+const defaultState: Profile = {
   basicDetails: "",
-  mode: UserMode.tenant,
+  mode: UserMode.Tenant,
 };
 
-export function ProfileReducer(state = defaultState, action: Action<UserMode>) {
+export const profileReducer = (state = defaultState, action: Action<UserMode>) => {
   switch (action.type) {
     case ProfileActions.SET_USER_MODE:
-    if (action.value === UserMode.tenant) {
       return {
         ...state,
-        mode: UserMode.tenant,
+        mode: action.value,
       };
-    } else {
-      return {
-        ...state,
-        mode: UserMode.landlord,
-      };
-    }
+
     default:
-    return state;
+      return state;
   }
-}
+};
