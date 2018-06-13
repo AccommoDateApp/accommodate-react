@@ -1,20 +1,20 @@
-import { ProfileActions } from "../../src/actions/profileActions";
-import { ProfileState, UserMode } from "../../src/components/profile/ProfileTypes";
 import { rootReducer } from "../../src/reducers";
 import { RootState } from "../../src/state";
+import { Profile, UserMode } from "../../src/state/profile";
 
 describe("root reducer", () => {
-  it("State returned by the action should be equal to the provided state", () => {
-    const profileData: ProfileState = {
+  it("shouldn't alter the state if the action is unknown", () => {
+    const profileData: Profile = {
       basicDetails : "",
-      mode : UserMode.tenant,
+      mode : UserMode.Tenant,
     };
+
     const state: RootState = {
       profile: profileData,
     };
+
     const action = {
-      type: ProfileActions.SET_USER_MODE,
-      value: UserMode.tenant,
+      type: "unknown action that won't match any reducer",
     };
 
     expect(rootReducer(state, action)).toEqual(state);
