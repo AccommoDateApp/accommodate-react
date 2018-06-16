@@ -26,7 +26,7 @@ const patchKeyPropForLinkItemChildren = (children: React.ReactNode) => {
   return children;
 };
 
-const RoutedMenuComponent = (props: RoutedMenuProps) => {
+export const RoutedMenuComponent = (props: RoutedMenuProps) => {
   const children = patchKeyPropForLinkItemChildren(props.children);
 
   return (
