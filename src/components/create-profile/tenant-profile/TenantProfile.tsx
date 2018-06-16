@@ -3,7 +3,7 @@ import { AboutMe } from "./../AboutMe";
 import { ProfilePicture } from "./../ProfilePicture";
 import { Preferences } from "./Preferences";
 
-export const LandlordProfile = () => (
+export const TenantProfile = () => (
     <div>
         <div>
             <ProfilePicture />
@@ -12,7 +12,7 @@ export const LandlordProfile = () => (
             <AboutMe />
         </div>
         <div>
-            <ForRent />
+            <Preferences />
         </div>
 
     </div>
