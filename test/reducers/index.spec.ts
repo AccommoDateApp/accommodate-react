@@ -9,6 +9,10 @@ describe("root reducer", () => {
         basicDetails : "",
         mode : UserMode.Tenant,
       },
+      user: {
+        isLoggedIn: false,
+        isLoggingIn: false,
+      },
     };
 
     const action = {
