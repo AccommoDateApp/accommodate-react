@@ -1,0 +1,42 @@
+@import "../mixins/clearfix";
+
+.navbar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+
+  background-color: white;
+  box-shadow: 0px 0px 5px fade-out($color: black, $amount: 0.75);
+
+  .logo {
+    display: inline-block;
+    overflow-x: hidden;
+
+    &:hover img {
+      left: 10px;
+    }
+
+    & img {
+      position: relative;
+      left: -45px;
+
+      height: 45px;
+      padding-right: 15px;
+
+      cursor: pointer;
+
+      transition-property: left;
+      transition-duration: 0.2s;
+    }
+  }
+
+  .menu {
+    @include clearfix;
+    float: right;
+  }
+
+  & + * {
+    padding-top: 100px;
+  }
+}
