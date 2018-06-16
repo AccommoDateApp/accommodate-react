@@ -1,11 +1,29 @@
 import * as React from "react";
-import { MatchingCockpit } from "./matching/MatchingCockpit";
+import { connect } from "react-redux";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AccommoDateState } from "../state";
+import { User } from "../state/user";
+import { Dashboard } from "./Dashboard";
+import { Landing } from "./Landing";
 
-export const AppComponent = () => (
-  <div>
-    <h1>AccommoDate</h1>
-    <MatchingCockpit matches={[]} />
-  </div>
-);
+interface AppProps extends RouteComponentProps<any> {
+  user: User;
+}
 
-export const App = AppComponent;
+export const AppComponent = (props: AppProps) => {
+  if (props.user.isLoggedIn) {
+    return (
+      <Dashboard />
+    );
+  }
+
+  return (
+    <Landing />
+  );
+};
+
+const mapStateToProps = (state: AccommoDateState) => ({
+  user: state.user,
+});
+
+export const App = withRouter(connect(mapStateToProps)(AppComponent));
