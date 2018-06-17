@@ -11,6 +11,7 @@
       "no-console": false,
       "array-type": [true, "array-simple"],
       "jsx-no-lambda": false,
+      "object-literal-sort-keys": false,
       "indent": [
         true,
         "spaces",
