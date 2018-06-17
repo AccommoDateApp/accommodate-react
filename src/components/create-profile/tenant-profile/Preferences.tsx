@@ -1,4 +1,4 @@
-import { Checkbox } from "antd";
+import { Checkbox, Input } from "antd";
 import * as React from "react";
 
 export const Preferences = () => (
@@ -6,20 +6,26 @@ export const Preferences = () => (
         <div>
             <h4>Looking For</h4>
             <div>
-                <li>
-                    <ul><label>WG</label> <Checkbox /></ul>
-                    <ul><label>Apartment</label> <Checkbox /></ul>
-                    <ul><label>House</label> <Checkbox /></ul>
-                </li>
+                <ul>
+                    <li><label>WG</label> <Checkbox /></li>
+                    <li><label>Apartment</label> <Checkbox /></li>
+                    <li><label>House</label> <Checkbox /></li>
+                </ul>
             </div>
         </div>
         <div>
             <h4>Preferences</h4>
             <div>
-                <label>Budget Limitation</label>
-                <label>Length of Lease</label>
-                <label>On-site Parking</label>
-                <label>On-site Storage</label>
+        <label>Budget Limitation</label> <Input type="range" min="0" max="2500" step="20" />
+        <label>Length of Lease</label> <Input type="range" min="6" max="36" step="6" />
+        <label>
+          <span>On-site Parking</span>
+          <input type="checkbox" value="checked" />
+        </label>
+        <label>
+          <span>On-site Storage</span>
+          <input type="checkbox" value="checked" />
+        </label>
             </div>
         </div>
     </div>
