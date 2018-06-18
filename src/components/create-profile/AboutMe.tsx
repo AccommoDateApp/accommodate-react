@@ -1,5 +1,6 @@
 import { Checkbox, Input } from "antd";
 import * as React from "react";
+const {TextArea} = Input;
 
 export const AboutMe = () => (
     <div>
@@ -7,7 +8,7 @@ export const AboutMe = () => (
             <picture><Input type="image" src="" alt="" /></picture>
         </div>
         <h1>About me</h1>
-        <textarea />
+    <TextArea />
         <div>
             <h4>Basic Information</h4>
             <div>

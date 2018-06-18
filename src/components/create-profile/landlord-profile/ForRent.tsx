@@ -6,11 +6,10 @@ export class ForRent extends React.Component {
   public state = {
     previewVisible: false,
     previewImage: "",
-    fileList: [{
+    propertiesList: [{
       uid: -1,
       name: "xxx.png",
       status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
     }],
   };
 
@@ -23,10 +22,10 @@ export class ForRent extends React.Component {
     });
   }
 
-  public handleChange = (fileList: UploadChangeParam) => this.setState(fileList);
+  public handleChange = (propertiesList: UploadChangeParam) => this.setState(propertiesList);
 
   public render() {
-    const { previewVisible, previewImage, fileList } = this.state;
+    const { previewVisible, previewImage, propertiesList } = this.state;
     const uploadButton = (
       <div>
         <Icon type="plus" />
@@ -34,7 +33,7 @@ export class ForRent extends React.Component {
       </div>
     );
     return (
-      <div className="forRentProperties">
+      <div className="clearfix">
         <Upload
           action="//jsonplaceholder.typicode.com/posts/"
           listType="picture-card"
@@ -42,7 +41,7 @@ export class ForRent extends React.Component {
           onPreview={this.handlePreview}
           onChange={this.handleChange}
         >
-          {fileList.length >= 3 ? null : uploadButton}
+          {propertiesList.length >= 3 ? null : uploadButton}
         </Upload>
         <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
           <img alt="example" style={{ width: "100%" }} src={previewImage} />
