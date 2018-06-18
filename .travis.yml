@@ -17,5 +17,5 @@ deploy:
   token: $FIREBASE_TOKEN
   project: $FIREBASE_PROJECT
   local_dir: dist/
-  # on:
-  #   branch: master
+  on:
+    branch: master
