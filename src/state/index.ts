@@ -1,7 +1,7 @@
-import { Profile } from "./profile";
+import { ProfileProps } from "./profile";
 import { User } from "./user";
 
 export interface AccommoDateState {
-  profile: Profile;
+  profile: ProfileProps;
   user: User;
 }

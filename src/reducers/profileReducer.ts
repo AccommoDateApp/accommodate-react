@@ -1,19 +1,19 @@
 import { Action } from "../actions";
 import { ProfileActions } from "../actions/profileActions";
-import { ApartmentType, Profile, UserRole } from "../state/profile";
+import { ApartmentType, GenderType, ProfileProps, UserRole } from "../state/profile";
 
-const defaultState: Profile = {
+const defaultState: ProfileProps = {
   basicDetails: "",
-  bio: [
-    {key: "fname", label: "First name", value: "Shoaib", type: "string"},
-    {key: "lname", label: "Last name", value: "khan", type: "string"},
-    {key: "age", label: "Age", value: "27", type: "calendar"},
-    {key: "gender", label: "Gender", value: "male", type: "selection"},
-    {key: "education", label: "Education", value: "Master of Computer Science", type: "string"},
-    {key: "languages", label: "Languages", value: "English, German", type: "string"},
-    {key: "email", label: "E-mail Address", value: "khan.shoaib@tum.de", type: "email"},
-    {key: "phoneNumber", label: "Telephone number", value: "123456", type: "string"},
-  ],
+  bio: {
+    age: 27,
+    education: "Masters",
+    email: "hello.world@tum.de",
+    fname: "Shoaib",
+    gender: GenderType.Male,
+    language: "English, German",
+    lname: "Khan",
+    phoneNumber: "1232312134",
+  },
   description: "hello I am searching for an accommodation",
   editMode: false,
   realState: [
@@ -32,15 +32,15 @@ const defaultState: Profile = {
     },
   ],
   role: UserRole.Tenant,
-  specs: [
-    {key: "searchingfor", label: "Searching For", value: ["apartment", "WG", "house"], type: "selection"},
-    {key: "budget", label: "Budget Limitation", value: 50, type: "range"},
-    {key: "leaseLength", label: "Length of Lease", value: "", type: "string"},
-    {key: "onSiteParking", label: "On-Site Parking", value: true, type: "boolean"},
-    {key: "onSiteStorage", label: "On-Site Storage", value: false, type: "boolean"},
-    {key: "petFriendly", label: "Pet Frindly", value: true, type: "boolean"},
-    {key: "smoking", label: "Smoking Allowed", value: false, type: "boolean"},
-  ],
+  specs: {
+    budget: "100-500",
+    leaseLength: 5,
+    onsightParking: true,
+    onsightStorage: true,
+    petFriendly: false,
+    searchingFor: ApartmentType.House,
+    smokeFriendly: false,
+  },
 };
 
 export const profileReducer = (state = defaultState, action: Action<UserRole>) => {

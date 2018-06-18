@@ -6,11 +6,11 @@ import { bindActionCreators } from "redux";
 import { Action } from "../../actions";
 import { setUserMode } from "../../actions/profileActions";
 import { AccommoDateState } from "../../state";
-import { Profile as ProfileState, UserRole } from "../../state/profile";
+import { ProfileProps, UserRole } from "../../state/profile";
 import { CardComponent } from "../card/Card";
 
 interface StateProps {
-  profile: ProfileState;
+  profile: ProfileProps;
 }
 
 interface DispatchProps {

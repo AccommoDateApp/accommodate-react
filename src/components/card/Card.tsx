@@ -1,22 +1,12 @@
-import { Col, Divider, Row, Table } from "antd";
+import { Col, Divider, Row } from "antd";
 import { Carousel } from "antd";
-import React = require("react");
+import * as React from "react";
 import {Card, UserRole} from "../../state/profile";
+import {BioData} from "./BioData";
 
 import "./Card.scss";
 
 export const CardComponent = (props: Card) => {
-  const dataSource = props.bio;
-  const title = () => <b>Personal Data:</b>;
-  const columns = [{
-    className: "table-col",
-    dataIndex: "label",
-    key: "label",
-  }, {
-    className: "table-col",
-    dataIndex: "value",
-    key: "value",
-  }];
   return (
     <div className="card">
         <Row>
@@ -49,7 +39,7 @@ export const CardComponent = (props: Card) => {
           <Col span={10} offset={2}>
             <Row>
               <Col>
-                <Table size="small" pagination={false} showHeader={false} title={title} dataSource={dataSource} columns={columns} />
+                <BioData bio={props.bio} editMode={props.editMode} />
               </Col>
             </Row>
           </Col>

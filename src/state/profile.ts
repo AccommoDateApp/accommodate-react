@@ -1,18 +1,32 @@
-export interface Profile {
+export interface ProfileProps {
   basicDetails: string;
-  bio: DataSpecs[];
+  bio: BioData;
   description: string;
   editMode: boolean;
   role: UserRole;
-  specs: DataSpecs[];
+  specs: TenantSpecs;
   realState: RealstateType[];
 }
 
-interface DataSpecs {
-  key: string;
-  value: string|string[]|boolean|number;
-  label: string;
-  type: string;
+export interface BioData {
+  fname: string;
+  lname: string;
+  age: number;
+  gender: GenderType;
+  education: string;
+  language: string;
+  email: string;
+  phoneNumber: string;
+}
+
+interface TenantSpecs {
+  searchingFor: ApartmentType;
+  budget: string;
+  leaseLength: number;
+  onsightParking: boolean;
+  onsightStorage: boolean;
+  petFriendly: boolean;
+  smokeFriendly: boolean;
 }
 
 interface RealstateType {
@@ -29,6 +43,14 @@ interface RealstateType {
   type: ApartmentType;
 }
 
+export interface Card {
+  bio: BioData;
+  description: string;
+  specs: TenantSpecs;
+  role: UserRole;
+  editMode: boolean;
+}
+
 export enum UserRole {
   Tenant,
   Landlord,
@@ -40,9 +62,7 @@ export enum ApartmentType {
   House,
 }
 
-export interface Card {
-  bio: DataSpecs[];
-  description: string;
-  specs: DataSpecs[];
-  role: UserRole;
+export enum GenderType {
+  Male,
+  Female,
 }
