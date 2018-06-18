@@ -1,3 +1,4 @@
+const { EnvironmentPlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -49,6 +50,9 @@ module.exports = {
   },
 
   plugins: [
+    new EnvironmentPlugin({
+      API_BASE_URL: "/api",
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
