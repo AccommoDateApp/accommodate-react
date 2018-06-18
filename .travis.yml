@@ -11,6 +11,9 @@ before_script:
 after_script:
   - yarn coverage
 
+before_deploy:
+  - yarn build
+
 deploy:
   provider: firebase
   skip_cleanup: true
