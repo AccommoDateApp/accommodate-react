@@ -6,25 +6,25 @@ import { bindActionCreators } from "redux";
 import { Action } from "../../actions";
 import { setUserMode } from "../../actions/profileActions";
 import { AccommoDateState } from "../../state";
-import { Profile as ProfileState, UserMode } from "../../state/profile";
-import { Card } from "../card/Card";
+import { Profile as ProfileState, UserRole } from "../../state/profile";
+import { CardComponent } from "../card/Card";
 
 interface StateProps {
   profile: ProfileState;
 }
 
 interface DispatchProps {
-  setUserMode: (userMode: UserMode) => Action<UserMode>;
+  setUserMode: (userMode: UserRole) => Action<UserRole>;
 }
 
 interface Props extends StateProps, DispatchProps, RouteComponentProps<any> {}
 
 const ProfileComponent = (props: Props) => {
   return (
-    <Row>
-      <Col>
-        <Card />
-        {props.profile.mode}
+    <Row type="flex" justify="center" style={{marginLeft: "auto", marginRight: "auto"}}>
+      <Col span={18}>
+        {/* <CardComponent bio={props.profile.bio} realState={props.profile.realState} specs={props.profile.specs} description={props.profile.description} /> */}
+        <CardComponent {...props.profile} />
       </Col>
     </Row>
   );

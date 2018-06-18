@@ -4,6 +4,6 @@ export interface User {
 }
 
 export const defaultUserState: User = {
-  isLoggedIn: false,
+  isLoggedIn: true,
   isLoggingIn: false,
 };
