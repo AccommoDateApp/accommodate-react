@@ -19,7 +19,7 @@ export interface BioData {
   phoneNumber: string;
 }
 
-interface TenantSpecs {
+export interface TenantSpecs {
   searchingFor: ApartmentType;
   budget: string;
   leaseLength: number;

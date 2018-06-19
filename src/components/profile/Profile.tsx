@@ -23,7 +23,6 @@ const ProfileComponent = (props: Props) => {
   return (
     <Row type="flex" justify="center" style={{marginLeft: "auto", marginRight: "auto"}}>
       <Col span={18}>
-        {/* <CardComponent bio={props.profile.bio} realState={props.profile.realState} specs={props.profile.specs} description={props.profile.description} /> */}
         <CardComponent {...props.profile} />
       </Col>
     </Row>
