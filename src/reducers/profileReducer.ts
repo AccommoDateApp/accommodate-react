@@ -35,8 +35,8 @@ const defaultState: ProfileProps = {
   specs: {
     budget: "100-500",
     leaseLength: 5,
-    onsightParking: true,
-    onsightStorage: true,
+    onsiteParking: true,
+    onsiteStorage: true,
     petFriendly: false,
     searchingFor: ApartmentType.House,
     smokeFriendly: false,

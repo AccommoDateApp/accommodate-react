@@ -27,5 +27,27 @@
   .ant-table-small {
     border: none;
   }
+
+  .looking-for {
+    margin-left: 20px;
+    table {
+      width: 100%;
+    }
+
+    tbody {
+      line-height: 25px;
+    }
+  }
+
+  .preferences {
+    table {
+      width: 100%;
+    }
+
+    tbody {
+      line-height: 25px;
+    }
+
+  }
 }
 

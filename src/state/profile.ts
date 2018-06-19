@@ -23,8 +23,8 @@ interface TenantSpecs {
   searchingFor: ApartmentType;
   budget: string;
   leaseLength: number;
-  onsightParking: boolean;
-  onsightStorage: boolean;
+  onsiteParking: boolean;
+  onsiteStorage: boolean;
   petFriendly: boolean;
   smokeFriendly: boolean;
 }
@@ -58,7 +58,7 @@ export enum UserRole {
 
 export enum ApartmentType {
   WG,
-  Shared_flat,
+  Apartment,
   House,
 }
 
