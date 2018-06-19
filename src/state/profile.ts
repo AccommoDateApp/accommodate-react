@@ -29,7 +29,7 @@ export interface TenantSpecs {
   smokeFriendly: boolean;
 }
 
-interface RealstateType {
+export interface RealstateType {
   key: string;
   name: string;
   address: string;
@@ -49,6 +49,7 @@ export interface Card {
   specs: TenantSpecs;
   role: UserRole;
   editMode: boolean;
+  realState: RealstateType[];
 }
 
 export enum UserRole {
