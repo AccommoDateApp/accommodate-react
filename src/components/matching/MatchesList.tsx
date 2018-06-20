@@ -1,11 +1,10 @@
 import * as React from "react";
-import { Match, MatchProps } from "./Match";
+import { connect } from "react-redux";
+import { AccommoDateState } from "../../state";
+import { MatchState } from "../../state/match";
+import { Match } from "./Match";
 
-export interface MatchesListProps {
-  matches: MatchProps[];
-}
-
-export const MatchesList = (props: MatchesListProps) => {
+const MatchesListComponent = (props: MatchesListProps) => {
 
   const matches = props.matches.map(
     (match, id) => <Match key={id} {...match} />,
@@ -18,3 +17,13 @@ export const MatchesList = (props: MatchesListProps) => {
     </div>
   );
 };
+
+const mapStateToProps = (state: AccommoDateState) : MatchesListProps => ({
+  matches: state.matches,
+});
+
+export interface MatchesListProps {
+  matches: MatchState[];
+}
+
+export const MatchesList = connect(mapStateToProps)(MatchesListComponent);

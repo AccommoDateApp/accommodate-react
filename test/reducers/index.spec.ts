@@ -1,20 +1,9 @@
 import { rootReducer } from "../../src/reducers";
-import { AccommoDateState } from "../../src/state";
-import { UserMode } from "../../src/state/profile";
+import { defaultState } from "../../src/state";
 
 describe("root reducer", () => {
   it("shouldn't alter the state if the action is unknown", () => {
-    const state: AccommoDateState = {
-      profile: {
-        basicDetails : "",
-        mode : UserMode.Tenant,
-      },
-      user: {
-        isLoggedIn: false,
-        isLoggingIn: false,
-      },
-    };
-
+    const state = defaultState;
     const action = {
       type: "unknown action that won't match any reducer",
     };
