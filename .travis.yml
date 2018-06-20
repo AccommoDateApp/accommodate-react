@@ -5,7 +5,20 @@ node_js:
 cache: yarn
 
 before_script:
+  - yarn typecheck
   - yarn lint
 
 after_script:
   - yarn coverage
+
+before_deploy:
+  - yarn build
+
+deploy:
+  provider: firebase
+  skip_cleanup: true
+  token: $FIREBASE_TOKEN
+  project: $FIREBASE_PROJECT
+  local_dir: dist/
+  on:
+    branch: master
