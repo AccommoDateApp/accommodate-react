@@ -1,7 +1,7 @@
 import { Action } from "../actions";
-import { MatchProps } from "../components/matching/Match";
+import { MatchState } from "../state/match";
 
-export const matchesReducer = (state: MatchProps[] = [], action: Action<any>) => {
+export const matchesReducer = (state: MatchState[] = [], action: Action<any>) => {
   switch (action.type) {
     default:
       return state;

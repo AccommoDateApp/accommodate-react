@@ -1,24 +1,13 @@
 import * as React from "react";
+import { connect } from "react-redux";
+import { AccommoDateState } from "../../state";
 import { MatchState } from "../../state/match";
 import { Match } from "./Match";
 
-export interface MatchesListProps {
-  matches: MatchState[];
-}
+const MatchesListComponent = (props: MatchesListProps) => {
 
-export const MatchesList = (props: MatchesListProps) => {
-
-  const imagePlaceholder = "imagePlaceholder";
-
-  const matches = props.matches.map((match, id) => (
-      <Match
-        key={id}
-        chatStatusIcon={imagePlaceholder}
-        matchIsStarred={match.matchIsStarred}
-        matchName={match.firstName}
-        matchPicture={imagePlaceholder}
-      />
-    ),
+  const matches = props.matches.map(
+    (match, id) => <Match key={id} {...match} />,
   );
 
   return (
@@ -28,3 +17,13 @@ export const MatchesList = (props: MatchesListProps) => {
     </div>
   );
 };
+
+const mapStateToProps = (state: AccommoDateState) : MatchesListProps => ({
+  matches: state.matches,
+});
+
+export interface MatchesListProps {
+  matches: MatchState[];
+}
+
+export const MatchesList = connect(mapStateToProps)(MatchesListComponent);
