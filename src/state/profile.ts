@@ -35,12 +35,14 @@ export interface RealEstateType {
   address: string;
   area: number;
   UTMCords: number[];
+  images: string[];
   description: string;
   distanceToUni: number;
   onSiteParking: boolean;
   onSiteStorage: boolean;
   petFriendly: boolean;
   type: ApartmentType;
+  cost: number;
 }
 
 export interface Card {
