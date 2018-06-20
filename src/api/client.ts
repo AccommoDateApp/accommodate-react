@@ -1,4 +1,5 @@
 import { apiBaseUrl } from "../config";
+import { Profile } from "../state/profile";
 import { HttpClient } from "./http";
 
 export class ApiClient extends HttpClient {
@@ -53,6 +54,23 @@ export class ApiClient extends HttpClient {
 
   public async logout() : Promise<void> {
     this.token = "";
+  }
+
+  public async signup(email: string, password: string) : Promise<boolean> {
+    try {
+      this.token = await this.post<string>(`${this.baseUrl}/users/signup`, {
+        email,
+        password,
+      });
+
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async updateBio(bio: Profile) {
+    return await this.put<Profile>(`${this.baseUrl}/users/me`, bio);
   }
 }
 
