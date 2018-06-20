@@ -1,31 +1,14 @@
 import * as React from "react";
 import { MatchState } from "../../state/match";
 
-export const Match = (state: MatchState) => {
-  const props = mapStateToProps(state);
+export const Match = (matchState: MatchState) => {
+  const picturePlaceholder = "picturePlaceholder";
   return (
     <div>
-      <div>Pic: {props.matchPicture}</div>
-      <h3>Name: {props.matchName}</h3>
-      <div>Starred: {props.matchIsStarred}</div>
-      <div>Chat: {props.chatStatusIcon}</div>
+      <div>Pic: {picturePlaceholder}</div>
+      <h3>Name: {matchState.firstName}</h3>
+      <div>Starred: {matchState.matchIsStarred}</div>
+      <div>Chat: {picturePlaceholder}</div>
     </div>
   );
 };
-
-const mapStateToProps = (match: MatchState) : MatchProps  => {
-  const picturePlaceholder = "picturePlaceholder";
-  return {
-    chatStatusIcon: picturePlaceholder,
-    matchIsStarred: match.matchIsStarred,
-    matchName: match.firstName,
-    matchPicture: picturePlaceholder,
-  };
-};
-
-interface MatchProps {
-  matchName: string;
-  matchPicture: string;
-  matchIsStarred: boolean;
-  chatStatusIcon: string;
-}
