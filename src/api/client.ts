@@ -1,15 +1,34 @@
 import { apiBaseUrl } from "../config";
+import { Profile } from "../state/profile";
 import { HttpClient } from "./http";
 
 export class ApiClient extends HttpClient {
-  private token?: string;
+  private readonly tokenLocalStorageKey = "api_token";
+
+  private get token() : string {
+    const token = localStorage.getItem(this.tokenLocalStorageKey);
+
+    if (!token) {
+      return "";
+    }
+
+    return token;
+  }
+
+  private set token(value: string) {
+    localStorage.setItem(this.tokenLocalStorageKey, value);
+  }
+
+  public get isLoggedIn() : boolean {
+    return !!this.token;
+  }
 
   constructor(private readonly baseUrl: string) {
     super();
   }
 
   protected get headers() : Headers {
-    const headers = new Headers();
+    const headers = super.headers;
 
     if (this.token) {
       headers.set("Authorization", `Bearer ${this.token}`);
@@ -18,13 +37,38 @@ export class ApiClient extends HttpClient {
     return headers;
   }
 
-  public async login(username: string, password: string) : Promise<string> {
-    const response = await this.post<string>(`${this.baseUrl}/login`, {
-      password,
-      username,
-    });
+  public async login(email: string, password: string) : Promise<boolean> {
+    try {
+      this.token = await this.post<string>(`${this.baseUrl}/users/login`, {
+        email,
+        password,
+      });
 
-    return response;
+      return true;
+    } catch {
+      // ignore the login error
+    }
+
+    return false;
+  }
+
+  public async logout() : Promise<void> {
+    this.token = "";
+  }
+
+  public async signup(email: string, password: string) : Promise<boolean> {
+    try {
+      return await this.post<boolean>(`${this.baseUrl}/users/signup`, {
+        email,
+        password,
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async updateBio(bio: Profile) {
+    return await this.put<Profile>(`${this.baseUrl}/users/me`, bio);
   }
 }
 

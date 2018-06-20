@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { AccommoDateState } from "../state";
 import { User } from "../state/user";
 import { Dashboard } from "./Dashboard";
-import { Landing } from "./Landing";
+import { Landing } from "./landing/Landing";
 
 interface AppProps extends RouteComponentProps<any> {
   user: User;

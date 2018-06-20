@@ -2,7 +2,7 @@ import { shallow } from "enzyme";
 import * as React from "react";
 import { AppComponent } from "../../src/components/App";
 import { Dashboard } from "../../src/components/Dashboard";
-import { Landing } from "../../src/components/Landing";
+import { Landing } from "../../src/components/landing/Landing";
 import { User } from "../../src/state/user";
 
 describe("AppComponent", () => {

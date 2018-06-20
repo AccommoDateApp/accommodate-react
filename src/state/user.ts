@@ -1,9 +1,12 @@
+import { api } from "../api/client";
+
 export interface User {
   isLoggedIn: boolean;
   isLoggingIn: boolean;
+  loginSuccess?: boolean;
 }
 
 export const defaultUserState: User = {
-  isLoggedIn: false,
+  isLoggedIn: api.isLoggedIn || false,
   isLoggingIn: false,
 };
