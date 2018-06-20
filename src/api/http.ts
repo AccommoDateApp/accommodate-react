@@ -32,6 +32,13 @@ export class HttpClient {
       method,
     });
 
-    return await response.json();
+    const json = await response.json();
+    const isErrorMessage = typeof json === "object" && json.message && json.name;
+
+    if (!response.ok || isErrorMessage) {
+      throw json;
+    }
+
+    return json;
   }
 }
