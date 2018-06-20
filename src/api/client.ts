@@ -58,12 +58,10 @@ export class ApiClient extends HttpClient {
 
   public async signup(email: string, password: string) : Promise<boolean> {
     try {
-      this.token = await this.post<string>(`${this.baseUrl}/users/signup`, {
+      return await this.post<boolean>(`${this.baseUrl}/users/signup`, {
         email,
         password,
       });
-
-      return true;
     } catch (error) {
       throw error;
     }
