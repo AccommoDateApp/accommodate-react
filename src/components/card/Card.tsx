@@ -4,7 +4,7 @@ import * as React from "react";
 import { Card, UserRole} from "../../state/profile";
 import {BioData} from "./BioData";
 import {PreferenceComponent} from "./PreferenceSec";
-import {RealStateComponent} from "./RealStateSec";
+import {RealEstateComponent} from "./RealEstateSec";
 
 import "./Card.scss";
 
@@ -49,7 +49,7 @@ export const CardComponent = (props: Card) => {
             </Col>
           </Row>
           <Divider style={{margin: "20px 0"}} orientation="left">{props.role === UserRole.Tenant ? "Preferences" : "Real States"}</Divider>
-          {props.role === UserRole.Tenant ? <PreferenceComponent specs={props.specs} /> : <RealStateComponent realState={props.realState} />}
+          {props.role === UserRole.Tenant ? <PreferenceComponent specs={props.specs} /> : <RealEstateComponent realEstate={props.realEstate} />}
         </div>
       </Col>
     </Row>

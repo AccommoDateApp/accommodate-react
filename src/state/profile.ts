@@ -5,12 +5,12 @@ export interface ProfileProps {
   editMode: boolean;
   role: UserRole;
   specs: TenantSpecs;
-  realState: RealstateType[];
+  realEstate: RealEstateType[];
 }
 
 export interface BioData {
-  fname: string;
-  lname: string;
+  firstName: string;
+  lastName: string;
   age: number;
   gender: GenderType;
   education: string;
@@ -29,7 +29,7 @@ export interface TenantSpecs {
   smokeFriendly: boolean;
 }
 
-export interface RealstateType {
+export interface RealEstateType {
   key: string;
   name: string;
   address: string;
@@ -49,7 +49,7 @@ export interface Card {
   specs: TenantSpecs;
   role: UserRole;
   editMode: boolean;
-  realState: RealstateType[];
+  realEstate: RealEstateType[];
 }
 
 export enum UserRole {

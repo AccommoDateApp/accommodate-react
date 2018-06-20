@@ -8,15 +8,15 @@ const defaultState: ProfileProps = {
     age: 27,
     education: "Masters",
     email: "hello.world@tum.de",
-    fname: "Shoaib",
+    firstName: "Shoaib",
     gender: GenderType.Male,
     language: "English, German",
-    lname: "Khan",
+    lastName: "Khan",
     phoneNumber: "1232312134",
   },
   description: "hello I am searching for an accommodation",
   editMode: false,
-  realState: [
+  realEstate: [
     {
       UTMCords: [123213, 1231],
       address: "Friesenger Landstraße 47A Garching b. München 85748",

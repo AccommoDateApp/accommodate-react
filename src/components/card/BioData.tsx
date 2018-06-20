@@ -17,7 +17,7 @@ export function BioData(props: BioDataProps) : JSX.Element {
           <div className="heading">Personal Details:</div>
           <table>
             <tbody>
-              <tr><td>Name</td><td>{props.bio.lname}, {props.bio.fname}</td></tr>
+              <tr><td>Name</td><td>{props.bio.lastName}, {props.bio.firstName}</td></tr>
               <tr><td>Gender</td><td>{props.bio.gender === GenderType.Male ? "Male" : "Female"}</td></tr>
               <tr><td>Age</td><td>{props.bio.age} years</td></tr>
               <tr><td>Education</td><td>{props.bio.education}</td></tr>
