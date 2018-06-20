@@ -1,14 +1,24 @@
 import * as React from "react";
-import { Match, MatchProps } from "./Match";
+import { MatchState } from "../../state/match";
+import { Match } from "./Match";
 
 export interface MatchesListProps {
-  matches: MatchProps[];
+  matches: MatchState[];
 }
 
 export const MatchesList = (props: MatchesListProps) => {
 
-  const matches = props.matches.map(
-    (match, id) => <Match key={id} {...match} />,
+  const imagePlaceholder = "imagePlaceholder";
+
+  const matches = props.matches.map((match, id) => (
+      <Match
+        key={id}
+        chatStatusIcon={imagePlaceholder}
+        matchIsStarred={match.matchIsStarred}
+        matchName={match.firstName}
+        matchPicture={imagePlaceholder}
+      />
+    ),
   );
 
   return (

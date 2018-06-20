@@ -8,13 +8,13 @@ import { MatchesList } from "../../../src/components/matching/MatchesList";
 import { CandidatesStack } from "../../../src/components/matching/CandidatesStack";
 
 const props: MatchingCockpitProps  = {
-  matches: []
+  matchesList: { matches: []}
 };
 
 describe("The MatchingCockpit", () => {
   it("has a MatchesList", () => {
     const matchingCockpit = shallow(<MatchingCockpitComponent {...props}/>);
-    const expected = <MatchesList matches={props.matches}/>;
+    const expected = <MatchesList {...props.matchesList}/>;
     expect(matchingCockpit.contains(expected)).toBeTruthy();
   });
 

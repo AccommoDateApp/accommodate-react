@@ -1,9 +1,9 @@
-import { MatchProps } from "../components/matching/Match";
+import { MatchState } from "./match";
 import { Profile, UserMode } from "./profile";
 import { defaultUserState, User } from "./user";
 
 export interface AccommoDateState {
-  matches: MatchProps[];
+  matches: MatchState[];
   profile: Profile;
   user: User;
 }
