@@ -1,9 +1,8 @@
 export interface ProfileProps {
-  basicDetails: string;
   bio: BioData;
   description: string;
   editMode: boolean;
-  role: UserRole;
+  userRole: UserRole;
   specs: TenantSpecs;
   realEstate: RealEstateType[];
 }
@@ -49,7 +48,7 @@ export interface Card {
   bio: BioData;
   description: string;
   specs: TenantSpecs;
-  role: UserRole;
+  userRole: UserRole;
   editMode: boolean;
   realEstate: RealEstateType[];
 }

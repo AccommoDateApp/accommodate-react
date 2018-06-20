@@ -5,7 +5,6 @@ import { ApartmentType, GenderType, ProfileProps, UserRole } from "../../src/sta
 
 describe("profile reducer", () => {
   const inputState: ProfileProps = {
-    basicDetails: "",
     bio: {
       age: 27,
       education: "Masters",
@@ -35,7 +34,6 @@ describe("profile reducer", () => {
         type: ApartmentType.WG,
       },
     ],
-    role: UserRole.Tenant,
     specs: {
       budget: "100-500",
       leaseLength: 5,
@@ -45,6 +43,7 @@ describe("profile reducer", () => {
       searchingFor: ApartmentType.House,
       smokeFriendly: false,
     },
+    userRole: UserRole.Tenant,
   };
 
   it("sets the user's mode", () => {

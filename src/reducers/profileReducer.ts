@@ -3,7 +3,6 @@ import { ProfileActions } from "../actions/profileActions";
 import { ApartmentType, GenderType, ProfileProps, UserRole } from "../state/profile";
 
 const defaultState: ProfileProps = {
-  basicDetails: "",
   bio: {
     age: 27,
     education: "Masters",
@@ -33,7 +32,6 @@ const defaultState: ProfileProps = {
       type: ApartmentType.WG,
     },
   ],
-  role: UserRole.Landlord,
   specs: {
     budget: "100-500",
     leaseLength: 5,
@@ -43,6 +41,7 @@ const defaultState: ProfileProps = {
     searchingFor: ApartmentType.House,
     smokeFriendly: false,
   },
+  userRole: UserRole.Landlord,
 };
 
 export const profileReducer = (state = defaultState, action: Action<UserRole>) => {

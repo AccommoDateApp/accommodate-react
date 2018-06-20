@@ -1,10 +1,10 @@
 import { Col, Divider, Row } from "antd";
 import { Carousel } from "antd";
 import * as React from "react";
-import { Card, UserRole} from "../../state/profile";
-import {BioData} from "./BioData";
-import {PreferenceComponent} from "./PreferenceSec";
-import {RealEstateComponent} from "./RealEstateSec";
+import { Card, UserRole } from "../../state/profile";
+import { BioData } from "./BioData";
+import { PreferenceComponent } from "./PreferenceSec";
+import { RealEstateComponent } from "./RealEstateSec";
 
 import "./Card.scss";
 
@@ -48,8 +48,8 @@ export const CardComponent = (props: Card) => {
               </Row>
             </Col>
           </Row>
-          <Divider style={{margin: "20px 0"}} orientation="left">{props.role === UserRole.Tenant ? "Preferences" : "Real States"}</Divider>
-          {props.role === UserRole.Tenant ? <PreferenceComponent specs={props.specs} /> : <RealEstateComponent realEstate={props.realEstate} />}
+          <Divider style={{margin: "20px 0"}} orientation="left">{props.userRole === UserRole.Tenant ? "Preferences" : "Real States"}</Divider>
+          {props.userRole === UserRole.Tenant ? <PreferenceComponent specs={props.specs} /> : <RealEstateComponent realEstate={props.realEstate} />}
         </div>
       </Col>
     </Row>
