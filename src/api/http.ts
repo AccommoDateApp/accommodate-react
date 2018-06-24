@@ -2,7 +2,11 @@ type RequestMethod = "get" | "post" | "put" | "delete";
 
 export class HttpClient {
   protected get headers() : Headers {
-    return new Headers();
+    const headers = new Headers();
+
+    headers.set("Content-Type", "application/json");
+
+    return headers;
   }
 
   protected async get<T>(url: string) : Promise<T> {
@@ -23,7 +27,7 @@ export class HttpClient {
 
   private async request<T>(method: RequestMethod, url: string, body?: any) : Promise<T> {
     const response = await fetch(url, {
-      body,
+      body: JSON.stringify(body),
       headers: this.headers,
       method,
     });
