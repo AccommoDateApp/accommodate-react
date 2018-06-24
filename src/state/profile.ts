@@ -68,3 +68,12 @@ export enum GenderType {
   Male,
   Female,
 }
+
+export const defaultProfile: any = {
+  bio: {},
+  description: "",
+  editMode: false,
+  realEstate: [],
+  specs: {},
+  userRole: UserRole.Landlord,
+};

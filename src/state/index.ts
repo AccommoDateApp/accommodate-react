@@ -1,10 +1,10 @@
 import { MatchState } from "./match";
-import { Profile, UserMode } from "./profile";
+import { defaultProfile, ProfileProps } from "./profile";
 import { defaultSignupFormState, SignupForm } from "./signup";
 import { defaultUserState, User } from "./user";
 
 export interface AccommoDateState {
-  profile: Profile;
+  profile: ProfileProps;
   matches: MatchState[];
   user: User;
   signup: SignupForm;
@@ -12,10 +12,7 @@ export interface AccommoDateState {
 
 export const defaultState: AccommoDateState = {
   matches: [],
-  profile: {
-    basicDetails: "",
-    mode: UserMode.Landlord,
-  },
+  profile: defaultProfile,
   signup: defaultSignupFormState,
   user: defaultUserState,
 };
