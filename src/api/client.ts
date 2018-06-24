@@ -1,5 +1,5 @@
 import { apiBaseUrl } from "../config";
-import { Profile } from "../state/profile";
+import { BioData } from "../state/profile";
 import { HttpClient } from "./http";
 
 export class ApiClient extends HttpClient {
@@ -67,8 +67,8 @@ export class ApiClient extends HttpClient {
     }
   }
 
-  public async updateBio(bio: Profile) {
-    return await this.put<Profile>(`${this.baseUrl}/users/me`, bio);
+  public async updateBio(bio: BioData) {
+    return await this.put<BioData>(`${this.baseUrl}/users/me`, bio);
   }
 }
 

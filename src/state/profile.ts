@@ -1,9 +1,79 @@
-export interface Profile {
-  basicDetails: string;
-  mode: UserMode;
+export interface ProfileProps {
+  bio: BioData;
+  description: string;
+  editMode: boolean;
+  userRole: UserRole;
+  specs: TenantSpecs;
+  realEstate: RealEstateType[];
 }
 
-export enum UserMode {
+export interface BioData {
+  firstName: string;
+  lastName: string;
+  age: number;
+  gender: GenderType;
+  education: string;
+  language: string;
+  email: string;
+  phoneNumber: string;
+}
+
+export interface TenantSpecs {
+  searchingFor: ApartmentType;
+  budget: string;
+  leaseLength: number;
+  onsiteParking: boolean;
+  onsiteStorage: boolean;
+  petFriendly: boolean;
+  smokeFriendly: boolean;
+}
+
+export interface RealEstateType {
+  key: string;
+  name: string;
+  address: string;
+  area: number;
+  UTMCords: number[];
+  images: string[];
+  description: string;
+  distanceToUni: number;
+  onSiteParking: boolean;
+  onSiteStorage: boolean;
+  petFriendly: boolean;
+  type: ApartmentType;
+  cost: number;
+}
+
+export interface Card {
+  bio: BioData;
+  description: string;
+  specs: TenantSpecs;
+  userRole: UserRole;
+  editMode: boolean;
+  realEstate: RealEstateType[];
+}
+
+export enum UserRole {
   Tenant,
   Landlord,
 }
+
+export enum ApartmentType {
+  WG,
+  Apartment,
+  House,
+}
+
+export enum GenderType {
+  Male,
+  Female,
+}
+
+export const defaultProfile: any = {
+  bio: {},
+  description: "",
+  editMode: false,
+  realEstate: [],
+  specs: {},
+  userRole: UserRole.Landlord,
+};

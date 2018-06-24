@@ -1,13 +1,13 @@
 import { Action } from ".";
-import { UserMode } from "../state/profile";
+import { UserRole } from "../state/profile";
 
 export enum ProfileActions {
-    SET_USER_MODE = "set_user_mode",
+    SET_USER_ROLE = "set_user_role",
 }
 
-export function setUserMode(flag: UserMode) : Action<UserMode> {
+export function setUserMode(flag: UserRole) : Action<UserRole> {
     return {
-        type: ProfileActions.SET_USER_MODE,
+        type: ProfileActions.SET_USER_ROLE,
         value: flag,
     };
 }
