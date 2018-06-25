@@ -6,9 +6,9 @@ import { storeReducer } from "./storeReducer";
 import { userReducer } from "./userReducer";
 
 export const rootReducer = combineReducers({
-  matches : matchesReducer,
   profile : profileReducer,
   signup: signupReducer,
   store: storeReducer,
   user: userReducer,
+  userMatches: matchesReducer,
 });
