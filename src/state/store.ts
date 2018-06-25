@@ -11,7 +11,6 @@ export interface PowerUp {
   iconUrl: string;
   name: string;
   description: string;
-  quantity: number;
   price: number;
 }
 

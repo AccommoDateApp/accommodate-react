@@ -23,9 +23,8 @@ export const StoreItemComponent = (props: StoreItemProps) => {
     <p key={index}>{paragraph}</p>
   ));
 
-  const quantity = props.powerup.quantity === 1 ? "it" : props.powerup.quantity;
   const price = props.powerup.price === 0 ? "free" : `$ ${props.powerup.price}`;
-  const purchaseButtonText = `Get ${quantity} for ${price}`;
+  const purchaseButtonText = `Get it for ${price}`;
 
   return (
     <div className="purchase-item">
