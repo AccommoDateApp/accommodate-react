@@ -9,6 +9,8 @@
   background-color: white;
   box-shadow: 0px 0px 5px fade-out($color: black, $amount: 0.75);
 
+  z-index: 9000;
+
   .logo {
     display: inline-block;
     overflow-x: hidden;

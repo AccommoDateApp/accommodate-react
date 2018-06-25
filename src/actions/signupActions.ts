@@ -53,12 +53,12 @@ export const signup = (email: string, password: string, name: string) => {
         return;
       }
 
+      dispatch(finishSignup(true));
+      login(email, password)(dispatch);
+
       await api.updateBio({
         name,
       } as any);
-
-      dispatch(finishSignup(true));
-      login(email, password)(dispatch);
     } catch {
       dispatch(finishSignup(false));
     }
