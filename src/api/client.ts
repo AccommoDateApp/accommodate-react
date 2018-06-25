@@ -76,8 +76,12 @@ export class ApiClient extends HttpClient {
     return await this.get<PowerUp[]>(`${this.baseUrl}/powerups`);
   }
 
-  public async purchasePowerUp(purchase: Purchase) : Promise<void> {
-    return await this.post<void>(`${this.baseUrl}/powerups`, purchase);
+  public async purchasePowerUp(purchase: Purchase) : Promise<PowerUp[]> {
+    return await this.post<PowerUp[]>(`${this.baseUrl}/powerups`, purchase);
+  }
+
+  public async usePowerUp(id: string) : Promise<PowerUp[]> {
+    return await this.delete<PowerUp[]>(`${this.baseUrl}/powerups/${id}`);
   }
 }
 
