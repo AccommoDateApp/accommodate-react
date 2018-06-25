@@ -1,0 +1,68 @@
+import { Button, Form, Icon, Input } from "antd";
+import * as React from "react";
+
+const FormItem = Form.Item;
+
+function hasErrors(fieldsError: any) {
+    return Object.keys(fieldsError).some((field) => fieldsError[field]);
+}
+
+export class LoginForm extends React.Component<any, any> {
+
+    public componentDidMount() {
+        // To disabled submit button at the beginning.
+        this.props.form.validateFields();
+    }
+
+    public handleSubmit = (e: any) => {
+        e.preventDefault();
+        this.props.form.validateFields((err: any, values: any) => {
+            if (!err) {
+                console.log("Received values of form: ", values);
+            }
+        });
+    }
+    public render() {
+        const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+        // Only show error after a field is touched.
+        const userNameError = isFieldTouched("userName") && getFieldError("userName");
+        const passwordError = isFieldTouched("password") && getFieldError("password");
+        return (
+            <Form layout="inline" onSubmit={this.handleSubmit}>
+                <FormItem
+                    validateStatus={userNameError ? "error" : "error"}
+                    help={userNameError || ""}
+                >
+                    {/* tslint:disable-next-line:jsx-no-multiline-js */
+                        getFieldDecorator("userName", {
+                            rules: [{ required: true, message: "Please input your username!" }],
+                        })(
+                            <Input prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />} placeholder="Username" />,
+                        )}
+                </FormItem>
+                <FormItem
+                    validateStatus={passwordError ? "error" : "error"}
+                    help={passwordError || ""}
+                >
+                    {/* tslint:disable-next-line:jsx-no-multiline-js */
+                        getFieldDecorator("password", {
+                            rules: [{ required: true, message: "Please input your Password!" }],
+                        })(
+                            <Input prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />} type="password" placeholder="Password" />,
+                        )}
+                </FormItem>
+                <FormItem>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        disabled={hasErrors(getFieldsError())}
+                    >
+                        Log in
+                    </Button>
+                </FormItem>
+            </Form>
+        );
+    }
+}
+
+export const WrappedLoginForm = Form.create()(LoginForm);
