@@ -1,7 +1,7 @@
 import { Dispatch } from "react-redux";
 import { Action, EmptyAction } from ".";
 import { api } from "../api/client";
-import { PowerUp } from "../state/store";
+import { PowerUp, Purchase } from "../state/store";
 
 export enum StoreActions {
   StartFetching = "start_fetching_powerups",
@@ -34,9 +34,9 @@ export const fetchPowerUps = () => {
   };
 };
 
-const startPurchasePowerUp = (powerup: PowerUp) : Action<PowerUp> => ({
+const startPurchasePowerUp = (purchase: Purchase) : Action<Purchase> => ({
   type: StoreActions.StartPurchase,
-  value: powerup,
+  value: purchase,
 });
 
 const finishPurchasePowerUp = (success: boolean) : Action<boolean> => ({
@@ -44,15 +44,20 @@ const finishPurchasePowerUp = (success: boolean) : Action<boolean> => ({
   value: success,
 });
 
-export const purchasePowerUp = (powerup: PowerUp) => {
+export const purchasePowerUp = (id: string, quantity: number) => {
   return async (dispatch: Dispatch) => {
+    const purchase: Purchase = {
+      id,
+      quantity,
+    };
+
     dispatch(resetPurchase());
-    dispatch(startPurchasePowerUp(powerup));
+    dispatch(startPurchasePowerUp(purchase));
 
     let success = false;
 
     try {
-      await api.purchasePowerUp(powerup);
+      await api.purchasePowerUp(purchase);
 
       success = true;
     } finally {

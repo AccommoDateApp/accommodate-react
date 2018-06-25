@@ -2,7 +2,7 @@ export interface PowerUpStore {
   isFetchingPowerUps: boolean;
   powerups: PowerUp[];
 
-  activePowerUpPurchase?: PowerUp;
+  activePowerUpPurchase?: string;
   purchaseSuccess?: boolean;
 }
 
@@ -12,6 +12,12 @@ export interface PowerUp {
   name: string;
   description: string;
   price: number;
+  quantities: number[];
+}
+
+export interface Purchase {
+  id: string;
+  quantity: number;
 }
 
 export const defaultPowerUpStoreState: PowerUpStore = {

@@ -1,6 +1,6 @@
 import { apiBaseUrl } from "../config";
 import { BioData } from "../state/profile";
-import { PowerUp } from "../state/store";
+import { PowerUp, Purchase } from "../state/store";
 import { HttpClient } from "./http";
 
 export class ApiClient extends HttpClient {
@@ -76,8 +76,8 @@ export class ApiClient extends HttpClient {
     return await this.get<PowerUp[]>(`${this.baseUrl}/powerups`);
   }
 
-  public async purchasePowerUp(powerup: PowerUp) : Promise<void> {
-    return await this.post<void>(`${this.baseUrl}/powerups`, powerup);
+  public async purchasePowerUp(purchase: Purchase) : Promise<void> {
+    return await this.post<void>(`${this.baseUrl}/powerups`, purchase);
   }
 }
 

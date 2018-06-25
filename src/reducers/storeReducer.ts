@@ -1,8 +1,8 @@
 import { Action, EmptyAction } from "../actions";
 import { StoreActions } from "../actions/storeActions";
-import { defaultPowerUpStoreState, PowerUp, PowerUpStore } from "../state/store";
+import { defaultPowerUpStoreState, PowerUp, PowerUpStore, Purchase } from "../state/store";
 
-type ActionType = EmptyAction & Action<PowerUp[]> & Action<PowerUp> & Action<boolean>;
+type ActionType = EmptyAction & Action<PowerUp[]> & Action<Purchase> & Action<boolean>;
 
 export const storeReducer = (state: PowerUpStore = defaultPowerUpStoreState, action: ActionType) : PowerUpStore => {
   switch (action.type) {
@@ -28,7 +28,7 @@ export const storeReducer = (state: PowerUpStore = defaultPowerUpStoreState, act
     case StoreActions.StartPurchase:
       return {
         ...state,
-        activePowerUpPurchase: action.value,
+        activePowerUpPurchase: action.value.id,
       };
 
     case StoreActions.FinishPurchase:
