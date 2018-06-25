@@ -70,9 +70,13 @@ class StoreComponent extends React.PureComponent<PowerUpStoreProps> {
     ));
 
     return (
-      <Row gutter={56}>
-        {items}
-      </Row>
+      <>
+        <h1>Store</h1>
+
+        <Row gutter={56}>
+          {items}
+        </Row>
+      </>
     );
   }
 }
