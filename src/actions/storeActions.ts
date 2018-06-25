@@ -22,6 +22,7 @@ const finishFetchingPowerUps = (powerups: PowerUp[]) : Action<PowerUp[]> => ({
 
 export const fetchPowerUps = () => {
   return async (dispatch: Dispatch) => {
+    dispatch(resetPurchase());
     dispatch(startFetchingPowerUps());
 
     try {
