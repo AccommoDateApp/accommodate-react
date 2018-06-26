@@ -1,5 +1,6 @@
 import { Action } from "../actions";
-import { UserMatches } from "../state/match";
+import { MatchingActions } from "../actions/matchingActions";
+import { MatchState, UserMatches } from "../state/match";
 import {
   ApartmentType,
   GenderType,
@@ -7,11 +8,37 @@ import {
   UserRole,
 } from "../state/profile";
 
-export const matchesReducer = (state: UserMatches = defaultState, action: Action<any>) : UserMatches => {
+export const matchesReducer = (userMatches: UserMatches = userMatchesPlaceholder, action: Action<string>) : UserMatches => {
   switch (action.type) {
+    case MatchingActions.AcceptPotentialMatch:
+      return acceptFirstPotentialMatch(userMatches);
+    case MatchingActions.RejectPotentialMatch:
+      return rejectFirstPotentialMatch(userMatches);
     default:
-      return state;
+      return userMatches;
   }
+};
+
+const acceptFirstPotentialMatch = (userMatches: UserMatches) => {
+  const firstPotentialMatch = userMatches.potentialMatches[0];
+  const newMatch: MatchState = {
+    matchIsFavorite: false,
+    userProfile: firstPotentialMatch,
+  };
+  const newActualMatches = [...userMatches.actualMatches, newMatch];
+  const allPotentialMatchesExceptFirst = userMatches.potentialMatches.slice(1);
+  return {
+    actualMatches: newActualMatches,
+    potentialMatches: allPotentialMatchesExceptFirst,
+  };
+};
+
+const rejectFirstPotentialMatch = (userMatches: UserMatches) : UserMatches => {
+  const potentialMatchesExceptFirst = userMatches.potentialMatches.slice(1);
+  return {
+    actualMatches: userMatches.actualMatches,
+    potentialMatches: potentialMatchesExceptFirst,
+  };
 };
 
 const candidate: ProfileProps = {
@@ -55,7 +82,8 @@ const candidate: ProfileProps = {
   },
   userRole: UserRole.Landlord,
 };
-const defaultState: UserMatches = {
+
+export const userMatchesPlaceholder: UserMatches = {
   actualMatches: [],
   potentialMatches: Array(3).fill(candidate),
 };
