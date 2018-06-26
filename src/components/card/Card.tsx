@@ -40,7 +40,7 @@ export const CardComponent = (props: Card) => {
             <Col span={10} offset={2}>
               <Row>
                 <Col>
-                  <BioData bio={props.bio} editMode={props.editMode} />
+                  <BioData bio={props.bio} />
                 </Col>
               </Row>
             </Col>
