@@ -1,4 +1,5 @@
 export interface ProfileProps {
+  pictures: string[];
   bio: BioData;
   description: string;
   editMode: boolean;
@@ -51,6 +52,7 @@ export interface Card {
   userRole: UserRole;
   editMode: boolean;
   realEstate: RealEstateType[];
+  pictures: string[];
 }
 
 export enum UserRole {

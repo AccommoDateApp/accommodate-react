@@ -20,10 +20,7 @@ export const CardComponent = (props: Card) => {
                 {/* Image */}
                 <Col>
                   <Carousel dots={true}>
-                    <div><h3>1</h3></div>
-                    <div><h3>2</h3></div>
-                    <div><h3>3</h3></div>
-                    <div><h3>4</h3></div>
+                    {props.pictures.map((imgurl, index) => <div key={index}><img className="profile-image" src={imgurl} /></div>)}
                   </Carousel>
                 </Col>
               </Row>

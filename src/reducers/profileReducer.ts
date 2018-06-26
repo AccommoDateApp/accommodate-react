@@ -15,6 +15,7 @@ const defaultState: ProfileProps = {
   },
   description: "hello I am searching for an accommodation",
   editMode: false,
+  pictures: ["https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg", "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg"],
   realEstate: [
     {
       UTMCords: [123213, 1231],

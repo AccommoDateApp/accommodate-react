@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Col, Row, Switch } from "antd";
 import * as React from "react";
 import { connect, Dispatch } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
@@ -23,6 +23,14 @@ const ProfileComponent = (props: Props) => {
   return (
     <Row type="flex" justify="center" style={{marginLeft: "auto", marginRight: "auto"}}>
       <Col span={18}>
+      <Row type="flex" justify="end" gutter={32}>
+        <Col>
+          <h3>Edit Card</h3>
+        </Col>
+        <Col>
+          <Switch defaultChecked={false} />
+        </Col>
+      </Row>
         <CardComponent {...props.profile} />
       </Col>
     </Row>
