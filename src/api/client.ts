@@ -83,6 +83,20 @@ export class ApiClient extends HttpClient {
   public async usePowerUp(id: string) : Promise<PowerUp[]> {
     return await this.delete<PowerUp[]>(`${this.baseUrl}/powerups/${id}`);
   }
+
+  public async acceptPotentialMatch(email: string) : Promise<string> {
+    // TODO: Call API here
+    const message = "Potential Match Accepted: " + email;
+    console.log(message);
+    return message;
+  }
+
+  public async rejectPotentialMatch(email: string) : Promise<string> {
+    // TODO: Call API here
+    const message = "Potential Match Rejected: " + email;
+    console.log(message);
+    return message;
+  }
 }
 
 export const api = new ApiClient(apiBaseUrl);

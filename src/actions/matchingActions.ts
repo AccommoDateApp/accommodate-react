@@ -1,5 +1,5 @@
 import { Dispatch } from "react-redux";
-import { matchingApi } from "../api/matchingClient";
+import { api } from "../api/client";
 import { Action, EmptyAction } from "./index";
 
 export enum MatchingActions {
@@ -26,7 +26,7 @@ export const rejectMatchWithEmail = (emailAddress: string) : Action<string> => (
 export const acceptPotentialMatchWithEmail = (emailAddress: string) => {
   return async (dispatch: Dispatch) => {
     try {
-      await matchingApi.acceptPotentialMatch(emailAddress);
+      await api.acceptPotentialMatch(emailAddress);
       dispatch(acceptMatchWithEmail(emailAddress));
     } catch {
       dispatch(matchingFailure());
@@ -37,7 +37,7 @@ export const acceptPotentialMatchWithEmail = (emailAddress: string) => {
 export const rejectPotentialMatchWithEmail = (emailAddress: string) => {
   return async (dispatch: Dispatch) => {
     try {
-      await matchingApi.rejectPotentialMatch(emailAddress);
+      await api.rejectPotentialMatch(emailAddress);
       dispatch(rejectMatchWithEmail(emailAddress));
     } catch {
       dispatch(matchingFailure());
