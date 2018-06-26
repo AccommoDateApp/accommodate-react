@@ -69,7 +69,7 @@ export class ApiClient extends HttpClient {
   }
 
   public async updateBio(bio: BioData) {
-    return await this.put<BioData>(`${this.baseUrl}/users/me`, bio);
+    return await this.put<BioData>(`${this.baseUrl}/bio`, bio);
   }
 
   public async fetchPowerUps() : Promise<PowerUp[]> {
