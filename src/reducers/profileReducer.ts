@@ -45,12 +45,17 @@ const defaultState: ProfileProps = {
   userRole: UserRole.Landlord,
 };
 
-export const profileReducer = (state = defaultState, action: Action<UserRole>) => {
+export const profileReducer = (state = defaultState, action: Action<any>) => {
   switch (action.type) {
     case ProfileActions.SET_USER_ROLE:
     return {
       ...state,
       role: action.value,
+    };
+    case ProfileActions.SET_EDIT_MODE:
+    return {
+      ...state,
+      editMode: action.value,
     };
     default:
     return state;

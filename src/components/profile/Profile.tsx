@@ -4,7 +4,7 @@ import { connect, Dispatch } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { Action } from "../../actions";
-import { setUserMode } from "../../actions/profileActions";
+import { setEditMode, setUserMode } from "../../actions/profileActions";
 import { AccommoDateState } from "../../state";
 import { ProfileProps, UserRole } from "../../state/profile";
 import { CardComponent } from "../card/Card";
@@ -15,27 +15,35 @@ interface StateProps {
 
 interface DispatchProps {
   setUserMode: (userMode: UserRole) => Action<UserRole>;
+  setEditMode: (editMode: boolean) => Action<boolean>;
 }
 
 interface Props extends StateProps, DispatchProps, RouteComponentProps<any> {}
 
-const ProfileComponent = (props: Props) => {
-  return (
-    <Row type="flex" justify="center" style={{marginLeft: "auto", marginRight: "auto"}}>
-      <Col span={18}>
-      <Row type="flex" justify="end" gutter={32}>
-        <Col>
-          <h3>Edit Card</h3>
-        </Col>
-        <Col>
-          <Switch defaultChecked={false} />
+class ProfileComponent extends React.Component<Props> {
+
+  public render() {
+    return (
+      <Row type="flex" justify="center" style={{marginLeft: "auto", marginRight: "auto"}}>
+        <Col span={18}>
+        <Row type="flex" justify="end" gutter={32}>
+          <Col>
+            <h3>Edit Card</h3>
+          </Col>
+          <Col>
+            <Switch defaultChecked={false} onChange={this.onEditChange} />
+          </Col>
+        </Row>
+          <CardComponent {...this.props.profile} />
         </Col>
       </Row>
-        <CardComponent {...props.profile} />
-      </Col>
-    </Row>
-  );
-};
+    );
+  }
+
+  private onEditChange = (checked: boolean) => {
+    this.props.setEditMode(checked);
+  }
+}
 
 const mapStateToProps = (state: AccommoDateState) => {
   return {
@@ -45,6 +53,7 @@ const mapStateToProps = (state: AccommoDateState) => {
 
 function mapDispatchToProps(dispatch: Dispatch) {
   return bindActionCreators ({
+    setEditMode,
     setUserMode,
   }, dispatch);
 }
