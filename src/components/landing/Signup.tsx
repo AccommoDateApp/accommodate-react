@@ -1,10 +1,11 @@
-import { Alert, Button, Form, Icon, Input } from "antd";
+import { Alert, Button, Col, Form, Icon, Input, Row, Switch } from "antd";
 import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { changeEmail, changeName, changePassword, signup } from "../../actions/signupActions";
 import { AccommoDateState } from "../../state";
 import { SignupForm } from "../../state/signup";
+import "./Signup.scss";
 
 const userIcon = (
   <Icon type="user" />
@@ -56,7 +57,7 @@ const SignupComponent = (props: SignupProps) => {
 
       {error}
 
-      <Form layout="vertical" onSubmit={handleSubmit}>
+      <Form layout="vertical" className="signup-form" onSubmit={handleSubmit}>
         <Form.Item label="Name">
           <Input prefix={userIcon} onChange={handleNameChange} placeholder="Your name" />
         </Form.Item>
@@ -66,9 +67,19 @@ const SignupComponent = (props: SignupProps) => {
         <Form.Item label="Password">
           <Input type="password" prefix={passwordIcon} onChange={handlePasswordChange} placeholder="*******" />
         </Form.Item>
-        <Form.Item>
-          <Button htmlType="submit" type="primary">Create my account</Button>
-        </Form.Item>
+        <Row>
+          <Col span={14}>
+            <Form.Item>
+              <label className="inline-label">Account type</label>
+              <Switch unCheckedChildren="Tenant" checkedChildren="Landlord" defaultChecked={false} />
+            </Form.Item>
+          </Col>
+          <Col span={10}>
+            <Form.Item className="fluid">
+              <Button htmlType="submit" type="primary" className="fluid">Create my account</Button>
+            </Form.Item>
+          </Col>
+        </Row>
       </Form>
     </>
   );
