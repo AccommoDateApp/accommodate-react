@@ -2,11 +2,7 @@ type RequestMethod = "get" | "post" | "put" | "delete";
 
 export class HttpClient {
   protected get headers() : Headers {
-    const headers = new Headers();
-
-    headers.set("Content-Type", "application/json");
-
-    return headers;
+    return new Headers();
   }
 
   protected async get<T>(url: string) : Promise<T> {
@@ -26,9 +22,17 @@ export class HttpClient {
   }
 
   private async request<T>(method: RequestMethod, url: string, body?: any) : Promise<T> {
+    const headers = this.headers;
+    const bodyIsFormData = body instanceof FormData;
+
+    if (!bodyIsFormData) {
+      body = JSON.stringify(body);
+      headers.set("Content-Type", "application/json");
+    }
+
     const response = await fetch(url, {
-      body: JSON.stringify(body),
-      headers: this.headers,
+      body,
+      headers,
       method,
     });
 

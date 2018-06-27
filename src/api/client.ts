@@ -6,7 +6,7 @@ import { HttpClient } from "./http";
 export class ApiClient extends HttpClient {
   private readonly tokenLocalStorageKey = "api_token";
 
-  private get token() : string {
+  protected get token() : string {
     const token = localStorage.getItem(this.tokenLocalStorageKey);
 
     if (!token) {
@@ -16,7 +16,7 @@ export class ApiClient extends HttpClient {
     return token;
   }
 
-  private set token(value: string) {
+  protected set token(value: string) {
     localStorage.setItem(this.tokenLocalStorageKey, value);
   }
 
@@ -24,7 +24,7 @@ export class ApiClient extends HttpClient {
     return !!this.token;
   }
 
-  constructor(private readonly baseUrl: string) {
+  constructor(protected readonly baseUrl: string) {
     super();
   }
 
@@ -82,6 +82,20 @@ export class ApiClient extends HttpClient {
 
   public async usePowerUp(id: string) : Promise<PowerUp[]> {
     return await this.delete<PowerUp[]>(`${this.baseUrl}/powerups/${id}`);
+  }
+
+  public async acceptPotentialMatch(email: string) : Promise<string> {
+    // TODO: Call API here
+    const message = "Potential Match Accepted: " + email;
+    console.log(message);
+    return message;
+  }
+
+  public async rejectPotentialMatch(email: string) : Promise<string> {
+    // TODO: Call API here
+    const message = "Potential Match Rejected: " + email;
+    console.log(message);
+    return message;
   }
 }
 

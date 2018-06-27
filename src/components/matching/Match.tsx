@@ -6,7 +6,7 @@ import "./Match.scss";
 export const Match = (matchState: MatchState) => (
   <Row className="match">
     <Col span={6}>{getPortrait()}</Col>
-    <Col span={6}><h3>{matchState.firstName}</h3></Col>
+    <Col span={6}><h3>{matchState.userProfile.bio.firstName}</h3></Col>
     <Col span={6}>{getFavoriteIcon(matchState.matchIsFavorite)}</Col>
     <Col span={6}>{getChatIcon()}</Col>
   </Row>
