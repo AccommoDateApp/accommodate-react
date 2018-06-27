@@ -4,29 +4,10 @@ import { api } from "../api/client";
 import { login } from "./loginActions";
 
 export enum SignupActions {
-  ChangeEmail = "change_email",
-  ChangePassword = "change_password",
-  ChangeName = "change_name",
-
   ResetSignup = "reset_signup",
   StartSignup = "start_signup",
   FinishSignup = "finish_signup",
 }
-
-export const changeEmail = (value: string) : Action<string> => ({
-  type: SignupActions.ChangeEmail,
-  value,
-});
-
-export const changePassword = (value: string) : Action<string> => ({
-  type: SignupActions.ChangePassword,
-  value,
-});
-
-export const changeName = (value: string) : Action<string> => ({
-  type: SignupActions.ChangeName,
-  value,
-});
 
 export const resetSignup = () : EmptyAction => ({
   type: SignupActions.ResetSignup,
@@ -41,12 +22,12 @@ const finishSignup = (success: boolean) : Action<boolean> => ({
   value: success,
 });
 
-export const signup = (email: string, password: string, name: string) => {
+export const signup = (email: string, password: string, name: string, mode: any) => {
   return async (dispatch: Dispatch) => {
     dispatch(startSignup());
 
     try {
-      const signupSuccess = await api.signup(email, password);
+      const signupSuccess = await api.signup(email, password, mode);
 
       if (!signupSuccess) {
         dispatch(finishSignup(false));
@@ -54,7 +35,7 @@ export const signup = (email: string, password: string, name: string) => {
       }
 
       dispatch(finishSignup(true));
-      login(email, password)(dispatch);
+      await login(email, password)(dispatch);
 
       await api.updateBio({
         name,

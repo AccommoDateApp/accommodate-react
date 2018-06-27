@@ -1,5 +1,5 @@
 import { apiBaseUrl } from "../config";
-import { BioData } from "../state/profile";
+import { Bio, UserMode } from "../state/bio";
 import { PowerUp, Purchase } from "../state/store";
 import { HttpClient } from "./http";
 
@@ -57,19 +57,16 @@ export class ApiClient extends HttpClient {
     this.token = "";
   }
 
-  public async signup(email: string, password: string) : Promise<boolean> {
-    try {
-      return await this.post<boolean>(`${this.baseUrl}/users/signup`, {
-        email,
-        password,
-      });
-    } catch (error) {
-      throw error;
-    }
+  public async signup(email: string, password: string, mode: UserMode) : Promise<boolean> {
+    return await this.post<boolean>(`${this.baseUrl}/users/signup`, {
+      email,
+      mode,
+      password,
+    });
   }
 
-  public async updateBio(bio: BioData) {
-    return await this.put<BioData>(`${this.baseUrl}/bio`, bio);
+  public async updateBio(bio: Bio) {
+    return await this.put<Bio>(`${this.baseUrl}/bio`, bio);
   }
 
   public async fetchPowerUps() : Promise<PowerUp[]> {

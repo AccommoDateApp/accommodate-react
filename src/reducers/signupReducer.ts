@@ -2,26 +2,8 @@ import { Action, EmptyAction } from "../actions";
 import { SignupActions } from "../actions/signupActions";
 import { defaultSignupFormState, SignupForm } from "../state/signup";
 
-export const signupReducer = (state: SignupForm = defaultSignupFormState, action: EmptyAction & Action<boolean> & Action<string>) : SignupForm => {
+export const signupReducer = (state: SignupForm = defaultSignupFormState, action: EmptyAction & Action<boolean>) : SignupForm => {
   switch (action.type) {
-    case SignupActions.ChangeEmail:
-      return {
-        ...state,
-        email: action.value,
-      };
-
-    case SignupActions.ChangePassword:
-      return {
-        ...state,
-        password: action.value,
-      };
-
-    case SignupActions.ChangeName:
-      return {
-        ...state,
-        name: action.value,
-      };
-
     case SignupActions.ResetSignup:
       return {
         ...state,
