@@ -8,6 +8,7 @@ import { setEditMode, setUserMode } from "../../actions/profileActions";
 import { AccommoDateState } from "../../state";
 import { ProfileProps, UserRole } from "../../state/profile";
 import { CardComponent } from "../card/Card";
+import { WrappedEditCardComponent } from "../editCard/EditCard";
 
 interface StateProps {
   profile: ProfileProps;
@@ -34,7 +35,7 @@ class ProfileComponent extends React.Component<Props> {
             <Switch defaultChecked={false} onChange={this.onEditChange} />
           </Col>
         </Row>
-          <CardComponent {...this.props.profile} />
+          {this.props.profile.editMode ? <WrappedEditCardComponent {...this.props.profile} /> : <CardComponent {...this.props.profile} />}
         </Col>
       </Row>
     );
