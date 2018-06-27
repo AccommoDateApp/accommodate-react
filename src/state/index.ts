@@ -1,21 +1,33 @@
+import { api } from "../api/client";
+import { Biography } from "./biography";
 import { defaultUserMatches, UserMatches } from "./match";
-import { defaultProfile, ProfileProps } from "./profile";
-import { defaultSignupFormState, SignupForm } from "./signup";
 import { defaultPowerUpStoreState, PowerUpStore } from "./store";
-import { defaultUserState, User } from "./user";
+
+export interface Fetchable<T = any> {
+  isFetching: boolean;
+  error?: string;
+  value?: T;
+}
+
+export const defaultFetchableState: Fetchable = {
+  isFetching: false,
+};
 
 export interface AccommoDateState {
-  profile: ProfileProps;
-  signup: SignupForm;
+  signup: Fetchable<boolean>;
   store: PowerUpStore;
-  user: User;
+  login: Fetchable<boolean>;
+  biography: Fetchable<Biography>;
   userMatches: UserMatches;
 }
 
 export const defaultState: AccommoDateState = {
-  profile: defaultProfile,
-  signup: defaultSignupFormState,
+  biography: defaultFetchableState,
+  login: {
+    ...defaultFetchableState,
+    value: api.isLoggedIn || false,
+  },
+  signup: defaultFetchableState,
   store: defaultPowerUpStoreState,
-  user: defaultUserState,
   userMatches: defaultUserMatches,
 };

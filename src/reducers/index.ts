@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
+import { biographyReducer } from "./biographyReducer";
+import { loginReducer } from "./loginReducer";
 import { matchesReducer } from "./matchesReducer";
-import { profileReducer } from "./profileReducer";
 import { signupReducer } from "./signupReducer";
 import { storeReducer } from "./storeReducer";
-import { userReducer } from "./userReducer";
 
 export const rootReducer = combineReducers({
-  profile : profileReducer,
+  biography: biographyReducer,
+  login: loginReducer,
   signup: signupReducer,
   store: storeReducer,
-  user: userReducer,
   userMatches: matchesReducer,
 });

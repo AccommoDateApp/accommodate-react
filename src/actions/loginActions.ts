@@ -7,6 +7,7 @@ export enum LoginActions {
   ResetLogin = "reset_login",
   StartLogin = "start_login",
   FinishLogin = "finish_login",
+  FailLogin = "fail_login",
   Logout = "logout",
 }
 
@@ -18,9 +19,13 @@ const startLogin = () : EmptyAction => ({
   type: LoginActions.StartLogin,
 });
 
-const finishLogin = (success: boolean) : Action<boolean> => ({
+const finishLogin = () : EmptyAction => ({
   type: LoginActions.FinishLogin,
-  value: success,
+});
+
+const failLogin = (error: string) : Action<string> => ({
+  type: LoginActions.FailLogin,
+  value: error,
 });
 
 export const login = (email: string, password: string) => {
@@ -29,11 +34,11 @@ export const login = (email: string, password: string) => {
     dispatch(startLogin());
 
     try {
-      const success = await api.login(email, password);
+      await api.login(email, password);
 
-      dispatch(finishLogin(success));
-    } catch {
-      dispatch(finishLogin(false));
+      dispatch(finishLogin());
+    } catch (error) {
+      dispatch(failLogin(error.message));
     }
   };
 };

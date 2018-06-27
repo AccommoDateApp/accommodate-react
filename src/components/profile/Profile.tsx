@@ -30,8 +30,10 @@ const ProfileComponent = (props: Props) => {
 };
 
 const mapStateToProps = (state: AccommoDateState) => {
+  state = state;
+
   return {
-    profile: state.profile,
+    profile: {} as any,
   };
 };
 

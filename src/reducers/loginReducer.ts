@@ -1,12 +1,12 @@
 import { Action, EmptyAction } from "../actions";
-import { SignupActions } from "../actions/signupActions";
+import { LoginActions } from "../actions/loginActions";
 import { defaultState, Fetchable } from "../state";
 
-type ActionType = EmptyAction & Action<string>;
+type ActionType = EmptyAction & Action<boolean> & Action<string>;
 
-export const signupReducer = (state: Fetchable<boolean> = defaultState.signup, action: ActionType) : Fetchable<boolean> => {
+export const loginReducer = (state: Fetchable<boolean> = defaultState.login, action: ActionType) : Fetchable<boolean> => {
   switch (action.type) {
-    case SignupActions.ResetSignup:
+    case LoginActions.ResetLogin:
       return {
         ...state,
         error: undefined,
@@ -14,26 +14,25 @@ export const signupReducer = (state: Fetchable<boolean> = defaultState.signup, a
         value: undefined,
       };
 
-    case SignupActions.StartSignup:
+    case LoginActions.StartLogin:
       return {
         ...state,
         isFetching: true,
       };
 
-    case SignupActions.FinishSignup:
+    case LoginActions.FinishLogin:
       return {
         ...state,
-        error: undefined,
         isFetching: false,
         value: true,
       };
 
-    case SignupActions.FailSignup:
+    case LoginActions.FailLogin:
       return {
         ...state,
         error: action.value,
         isFetching: false,
-        value: undefined,
+        value: false,
       };
 
     default:

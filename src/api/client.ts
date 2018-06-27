@@ -1,5 +1,5 @@
 import { apiBaseUrl } from "../config";
-import { BioData } from "../state/profile";
+import { Biography, UserMode } from "../state/biography";
 import { PowerUp, Purchase } from "../state/store";
 import { HttpClient } from "./http";
 
@@ -38,38 +38,35 @@ export class ApiClient extends HttpClient {
     return headers;
   }
 
-  public async login(email: string, password: string) : Promise<boolean> {
-    try {
-      this.token = await this.post<string>(`${this.baseUrl}/users/login`, {
-        email,
-        password,
-      });
-
-      return true;
-    } catch {
-      // ignore the login error
-    }
-
-    return false;
+  public async login(email: string, password: string) : Promise<void> {
+    this.token = await this.post<string>(`${this.baseUrl}/users/login`, {
+      email,
+      password,
+    });
   }
 
   public async logout() : Promise<void> {
     this.token = "";
   }
 
-  public async signup(email: string, password: string) : Promise<boolean> {
-    try {
-      return await this.post<boolean>(`${this.baseUrl}/users/signup`, {
-        email,
-        password,
-      });
-    } catch (error) {
-      throw error;
-    }
+  public async signup(email: string, password: string, mode: UserMode) : Promise<boolean> {
+    return await this.post<boolean>(`${this.baseUrl}/users/signup`, {
+      email,
+      mode,
+      password,
+    });
   }
 
-  public async updateBio(bio: BioData) {
-    return await this.put<BioData>(`${this.baseUrl}/users/me`, bio);
+  public async fetchBio(id?: string) {
+    if (id) {
+      return await this.get<Biography>(`${this.baseUrl}/bio/${id}`);
+    }
+
+    return await this.get<Biography>(`${this.baseUrl}/bio`);
+  }
+
+  public async updateBio(bio: Partial<Biography>) {
+    return await this.put<Biography>(`${this.baseUrl}/bio`, bio);
   }
 
   public async fetchPowerUps() : Promise<PowerUp[]> {
