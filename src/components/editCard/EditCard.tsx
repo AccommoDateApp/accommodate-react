@@ -39,7 +39,7 @@ const EditCardComponent = (props: FormProps) => {
                     </div>
                     <div>
                     <FormItem>
-                      {getFieldDecorator("description")(<TextArea placeholder="Description" />)}
+                      {getFieldDecorator("description", {initialValue: props.description})(<TextArea placeholder="Description" />)}
                     </FormItem>
                     </div>
                   </Col>
