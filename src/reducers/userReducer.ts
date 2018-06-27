@@ -24,6 +24,14 @@ export const userReducer = (state: User = defaultUserState, action: EmptyAction 
         loginSuccess: action.value,
       };
 
+    case LoginActions.Logout:
+      return {
+        ...state,
+        isLoggedIn: false,
+        isLoggingIn: false,
+        loginSuccess: undefined,
+      };
+
     default:
       return state;
   }

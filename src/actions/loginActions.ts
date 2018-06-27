@@ -1,3 +1,4 @@
+import { History } from "history";
 import { Dispatch } from "redux";
 import { Action, EmptyAction } from ".";
 import { api } from "../api/client";
@@ -6,6 +7,7 @@ export enum LoginActions {
   ResetLogin = "reset_login",
   StartLogin = "start_login",
   FinishLogin = "finish_login",
+  Logout = "logout",
 }
 
 export const resetLogin = () : EmptyAction => ({
@@ -33,5 +35,18 @@ export const login = (email: string, password: string) => {
     } catch {
       dispatch(finishLogin(false));
     }
+  };
+};
+
+const finishLogout = () : EmptyAction => ({
+  type: LoginActions.Logout,
+});
+
+export const logout = (history: History) => {
+  return async (dispatch: Dispatch) => {
+    await api.logout();
+
+    dispatch(finishLogout());
+    history.push("/");
   };
 };
