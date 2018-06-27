@@ -65,6 +65,14 @@ export class ApiClient extends HttpClient {
     });
   }
 
+  public async fetchBio(id?: string) {
+    if (id) {
+      return await this.get<Bio>(`${this.baseUrl}/bio/${id}`);
+    }
+
+    return await this.get<Bio>(`${this.baseUrl}/bio`);
+  }
+
   public async updateBio(bio: Bio) {
     return await this.put<Bio>(`${this.baseUrl}/bio`, bio);
   }
