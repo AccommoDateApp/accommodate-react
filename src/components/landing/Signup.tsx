@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { signup } from "../../actions/signupActions";
 import { AccommoDateState, Fetchable } from "../../state";
-import { UserMode } from "../../state/bio";
+import { UserMode } from "../../state/biography";
 import "./Signup.scss";
 
 const userIcon = (

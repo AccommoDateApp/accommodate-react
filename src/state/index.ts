@@ -1,5 +1,5 @@
 import { api } from "../api/client";
-import { Biography } from "./bio";
+import { Biography } from "./biography";
 import { defaultUserMatches, UserMatches } from "./match";
 import { defaultPowerUpStoreState, PowerUpStore } from "./store";
 

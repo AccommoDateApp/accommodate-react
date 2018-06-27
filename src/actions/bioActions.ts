@@ -1,7 +1,7 @@
 import { Dispatch } from "react-redux";
 import { Action, EmptyAction } from ".";
 import { api } from "../api/client";
-import { Biography } from "../state/bio";
+import { Biography } from "../state/biography";
 
 export enum BioActions {
   StartFetchingBio = "start_fetching_bio",

@@ -1,5 +1,5 @@
 import { apiBaseUrl } from "../config";
-import { Biography, UserMode } from "../state/bio";
+import { Biography, UserMode } from "../state/biography";
 import { PowerUp, Purchase } from "../state/store";
 import { HttpClient } from "./http";
 

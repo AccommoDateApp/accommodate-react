@@ -1,7 +1,7 @@
 import { Action, EmptyAction } from "../actions";
 import { BioActions } from "../actions/bioActions";
 import { defaultState, Fetchable } from "../state";
-import { Biography } from "../state/bio";
+import { Biography } from "../state/biography";
 
 type ActionType = EmptyAction & Action<Biography> & Action<string>;
 
