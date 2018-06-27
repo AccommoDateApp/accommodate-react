@@ -1,5 +1,5 @@
 import { Action, EmptyAction } from "../actions";
-import { BioActions } from "../actions/bioActions";
+import { BioActions } from "../actions/biographyActions";
 import { defaultState, Fetchable } from "../state";
 import { Biography } from "../state/biography";
 
