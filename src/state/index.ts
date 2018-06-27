@@ -1,3 +1,4 @@
+import { api } from "../api/client";
 import { Bio } from "./bio";
 import { defaultUserMatches, UserMatches } from "./match";
 import { defaultSignupFormState, SignupForm } from "./signup";
@@ -23,7 +24,10 @@ export interface AccommoDateState {
 
 export const defaultState: AccommoDateState = {
   bio: defaultFetchableState,
-  login: defaultFetchableState,
+  login: {
+    ...defaultFetchableState,
+    value: api.isLoggedIn || false,
+  },
   signup: defaultSignupFormState,
   store: defaultPowerUpStoreState,
   userMatches: defaultUserMatches,

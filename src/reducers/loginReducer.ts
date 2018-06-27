@@ -1,10 +1,10 @@
 import { Action, EmptyAction } from "../actions";
 import { LoginActions } from "../actions/loginActions";
-import { defaultFetchableState, Fetchable } from "../state";
+import { defaultState, Fetchable } from "../state";
 
 type ActionType = EmptyAction & Action<boolean> & Action<string>;
 
-export const loginReducer = (state: Fetchable<boolean> = defaultFetchableState, action: ActionType) : Fetchable<boolean> => {
+export const loginReducer = (state: Fetchable<boolean> = defaultState.login, action: ActionType) : Fetchable<boolean> => {
   switch (action.type) {
     case LoginActions.ResetLogin:
       return {
