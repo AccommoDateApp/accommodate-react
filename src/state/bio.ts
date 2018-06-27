@@ -13,7 +13,7 @@ export interface Preference<T = any> {
   value: T;
 }
 
-export interface Bio {
+export interface Biography {
   name: string;
   phoneNumber: string;
   mode: UserMode;
@@ -21,7 +21,7 @@ export interface Bio {
   description: string;
 }
 
-export interface TenantBio extends Bio {
+export interface TenantBio extends Biography {
   mode: UserMode.Tenant;
   age: number;
   images: string[];
@@ -53,9 +53,9 @@ export interface RealEstate {
   preferences: Preference[];
 }
 
-export interface LandlordBio extends Bio {
+export interface LandlordBio extends Biography {
   mode: UserMode.Landlord;
   realEstates: RealEstate[];
 }
 
-export const defaultBioState: Bio = {} as any;
+export const defaultBioState: Biography = {} as any;

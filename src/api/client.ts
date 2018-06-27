@@ -1,5 +1,5 @@
 import { apiBaseUrl } from "../config";
-import { Bio, UserMode } from "../state/bio";
+import { Biography, UserMode } from "../state/bio";
 import { PowerUp, Purchase } from "../state/store";
 import { HttpClient } from "./http";
 
@@ -59,14 +59,14 @@ export class ApiClient extends HttpClient {
 
   public async fetchBio(id?: string) {
     if (id) {
-      return await this.get<Bio>(`${this.baseUrl}/bio/${id}`);
+      return await this.get<Biography>(`${this.baseUrl}/bio/${id}`);
     }
 
-    return await this.get<Bio>(`${this.baseUrl}/bio`);
+    return await this.get<Biography>(`${this.baseUrl}/bio`);
   }
 
-  public async updateBio(bio: Partial<Bio>) {
-    return await this.put<Bio>(`${this.baseUrl}/bio`, bio);
+  public async updateBio(bio: Partial<Biography>) {
+    return await this.put<Biography>(`${this.baseUrl}/bio`, bio);
   }
 
   public async fetchPowerUps() : Promise<PowerUp[]> {

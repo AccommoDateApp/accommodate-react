@@ -1,5 +1,5 @@
 import { api } from "../api/client";
-import { Bio } from "./bio";
+import { Biography } from "./bio";
 import { defaultUserMatches, UserMatches } from "./match";
 import { defaultPowerUpStoreState, PowerUpStore } from "./store";
 
@@ -17,7 +17,7 @@ export interface AccommoDateState {
   signup: Fetchable<boolean>;
   store: PowerUpStore;
   login: Fetchable<boolean>;
-  bio: Fetchable<Bio>;
+  bio: Fetchable<Biography>;
   userMatches: UserMatches;
 }
 

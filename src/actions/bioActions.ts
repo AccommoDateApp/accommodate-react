@@ -1,7 +1,7 @@
 import { Dispatch } from "react-redux";
 import { Action, EmptyAction } from ".";
 import { api } from "../api/client";
-import { Bio } from "../state/bio";
+import { Biography } from "../state/bio";
 
 export enum BioActions {
   StartFetchingBio = "start_fetching_bio",
@@ -17,7 +17,7 @@ const startFetchingBio = () : EmptyAction => ({
   type: BioActions.StartFetchingBio,
 });
 
-const finishFetchingBio = (bio: Bio) : Action<Bio> => ({
+const finishFetchingBio = (bio: Biography) : Action<Biography> => ({
   type: BioActions.FinishFetchingBio,
   value: bio,
 });
@@ -44,7 +44,7 @@ const startUpdatingBio = () : EmptyAction => ({
   type: BioActions.StartUpdatingBio,
 });
 
-const finishUpdatingBio = (bio: Bio) : Action<Bio> => ({
+const finishUpdatingBio = (bio: Biography) : Action<Biography> => ({
   type: BioActions.FinishUpdatingBio,
   value: bio,
 });
@@ -54,7 +54,7 @@ const failUpdatingBio = (error: string) : Action<string> => ({
   value: error,
 });
 
-export const updateBio = (bio: Bio) => {
+export const updateBio = (bio: Biography) => {
   return async (dispatch: Dispatch) => {
     dispatch(startUpdatingBio());
 
