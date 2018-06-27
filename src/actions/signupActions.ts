@@ -7,6 +7,7 @@ export enum SignupActions {
   ResetSignup = "reset_signup",
   StartSignup = "start_signup",
   FinishSignup = "finish_signup",
+  FailSignup = "fail_signup",
 }
 
 export const resetSignup = () : EmptyAction => ({
@@ -17,9 +18,13 @@ const startSignup = () : EmptyAction => ({
   type: SignupActions.StartSignup,
 });
 
-const finishSignup = (success: boolean) : Action<boolean> => ({
+const finishSignup = () : EmptyAction => ({
   type: SignupActions.FinishSignup,
-  value: success,
+});
+
+const failSignup = (error: string) : Action<string> => ({
+  type: SignupActions.FailSignup,
+  value: error,
 });
 
 export const signup = (email: string, password: string, name: string, mode: any) => {
@@ -27,21 +32,14 @@ export const signup = (email: string, password: string, name: string, mode: any)
     dispatch(startSignup());
 
     try {
-      const signupSuccess = await api.signup(email, password, mode);
-
-      if (!signupSuccess) {
-        dispatch(finishSignup(false));
-        return;
-      }
-
-      dispatch(finishSignup(true));
+      await api.signup(email, password, mode);
+      dispatch(finishSignup());
       await login(email, password)(dispatch);
-
       await api.updateBio({
         name,
-      } as any);
-    } catch {
-      dispatch(finishSignup(false));
+      });
+    } catch (error) {
+      dispatch(failSignup(error.message));
     }
   };
 };

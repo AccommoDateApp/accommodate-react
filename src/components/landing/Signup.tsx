@@ -4,9 +4,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { signup } from "../../actions/signupActions";
-import { AccommoDateState } from "../../state";
+import { AccommoDateState, Fetchable } from "../../state";
 import { UserMode } from "../../state/bio";
-import { SignupForm } from "../../state/signup";
 import "./Signup.scss";
 
 const userIcon = (
@@ -17,7 +16,7 @@ const passwordIcon = (
 );
 
 interface SignupProps {
-  form: SignupForm;
+  form: Fetchable<boolean>;
 
   signup: typeof signup;
 }
@@ -86,7 +85,14 @@ class SignupComponent extends React.Component<SignupProps, SignupState> {
             </Col>
             <Col span={10}>
               <Form.Item className="fluid">
-                <Button htmlType="submit" type="primary" className="fluid">Create my account</Button>
+                <Button
+                  htmlType="submit"
+                  type="primary"
+                  className="fluid"
+                  loading={this.props.form.isFetching}
+                >
+                  Create my account
+                </Button>
               </Form.Item>
             </Col>
           </Row>
@@ -96,10 +102,12 @@ class SignupComponent extends React.Component<SignupProps, SignupState> {
   }
 
   private renderErrorMessage() {
-    if (this.props.form.success === false) {
+    if (this.props.form.error) {
+      const message = `Error signing you up: ${this.props.form.error}`;
+
       return (
         <>
-          <Alert type="error" showIcon={true} message="Error signing you up." />
+          <Alert type="error" showIcon={true} message={message} />
           <br />
         </>
       );

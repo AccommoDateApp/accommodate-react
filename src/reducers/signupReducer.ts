@@ -1,26 +1,39 @@
 import { Action, EmptyAction } from "../actions";
 import { SignupActions } from "../actions/signupActions";
-import { defaultSignupFormState, SignupForm } from "../state/signup";
+import { defaultState, Fetchable } from "../state";
 
-export const signupReducer = (state: SignupForm = defaultSignupFormState, action: EmptyAction & Action<boolean>) : SignupForm => {
+type ActionType = EmptyAction & Action<string>;
+
+export const signupReducer = (state: Fetchable<boolean> = defaultState.signup, action: ActionType) : Fetchable<boolean> => {
   switch (action.type) {
     case SignupActions.ResetSignup:
       return {
         ...state,
-        success: undefined,
+        error: undefined,
+        isFetching: false,
+        value: undefined,
       };
 
     case SignupActions.StartSignup:
       return {
         ...state,
-        isSigningUp: true,
+        isFetching: true,
       };
 
     case SignupActions.FinishSignup:
       return {
         ...state,
-        isSigningUp: false,
-        success: action.value,
+        error: undefined,
+        isFetching: false,
+        value: true,
+      };
+
+    case SignupActions.FailSignup:
+      return {
+        ...state,
+        error: action.value,
+        isFetching: false,
+        value: undefined,
       };
 
     default:

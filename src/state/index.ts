@@ -1,7 +1,6 @@
 import { api } from "../api/client";
 import { Bio } from "./bio";
 import { defaultUserMatches, UserMatches } from "./match";
-import { defaultSignupFormState, SignupForm } from "./signup";
 import { defaultPowerUpStoreState, PowerUpStore } from "./store";
 
 export interface Fetchable<T = any> {
@@ -15,7 +14,7 @@ export const defaultFetchableState: Fetchable = {
 };
 
 export interface AccommoDateState {
-  signup: SignupForm;
+  signup: Fetchable<boolean>;
   store: PowerUpStore;
   login: Fetchable<boolean>;
   bio: Fetchable<Bio>;
@@ -28,7 +27,7 @@ export const defaultState: AccommoDateState = {
     ...defaultFetchableState,
     value: api.isLoggedIn || false,
   },
-  signup: defaultSignupFormState,
+  signup: defaultFetchableState,
   store: defaultPowerUpStoreState,
   userMatches: defaultUserMatches,
 };
