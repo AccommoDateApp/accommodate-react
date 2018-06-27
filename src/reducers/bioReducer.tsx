@@ -8,6 +8,7 @@ type ActionType = EmptyAction & Action<Bio> & Action<string>;
 export const bioReducer = (state: Fetchable<Bio> = defaultState.bio, action: ActionType) : Fetchable<Bio> => {
   switch (action.type) {
     case BioActions.StartFetchingBio:
+    case BioActions.StartUpdatingBio:
       return {
         ...state,
         error: undefined,
@@ -16,6 +17,7 @@ export const bioReducer = (state: Fetchable<Bio> = defaultState.bio, action: Act
       };
 
     case BioActions.FinishFetchingBio:
+    case BioActions.FinishUpdatingBio:
       return {
         ...state,
         error: undefined,
@@ -24,6 +26,7 @@ export const bioReducer = (state: Fetchable<Bio> = defaultState.bio, action: Act
       };
 
     case BioActions.FailFetchingBio:
+    case BioActions.FailUpdatingBio:
       return {
         ...state,
         error: action.value,
