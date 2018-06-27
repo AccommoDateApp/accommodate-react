@@ -1,5 +1,5 @@
 import { Action, EmptyAction } from "../actions";
-import { BioActions } from "../actions/biographyActions";
+import { BiographyActions } from "../actions/biographyActions";
 import { defaultState, Fetchable } from "../state";
 import { Biography } from "../state/biography";
 
@@ -7,8 +7,8 @@ type ActionType = EmptyAction & Action<Biography> & Action<string>;
 
 export const biographyReducer = (state: Fetchable<Biography> = defaultState.biography, action: ActionType) : Fetchable<Biography> => {
   switch (action.type) {
-    case BioActions.StartFetchingBio:
-    case BioActions.StartUpdatingBio:
+    case BiographyActions.StartFetchingBio:
+    case BiographyActions.StartUpdatingBio:
       return {
         ...state,
         error: undefined,
@@ -16,8 +16,8 @@ export const biographyReducer = (state: Fetchable<Biography> = defaultState.biog
         value: undefined,
       };
 
-    case BioActions.FinishFetchingBio:
-    case BioActions.FinishUpdatingBio:
+    case BiographyActions.FinishFetchingBio:
+    case BiographyActions.FinishUpdatingBio:
       return {
         ...state,
         error: undefined,
@@ -25,8 +25,8 @@ export const biographyReducer = (state: Fetchable<Biography> = defaultState.biog
         value: action.value,
       };
 
-    case BioActions.FailFetchingBio:
-    case BioActions.FailUpdatingBio:
+    case BiographyActions.FailFetchingBio:
+    case BiographyActions.FailUpdatingBio:
       return {
         ...state,
         error: action.value,

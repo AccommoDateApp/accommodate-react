@@ -3,7 +3,7 @@ import { Action, EmptyAction } from ".";
 import { api } from "../api/client";
 import { Biography } from "../state/biography";
 
-export enum BioActions {
+export enum BiographyActions {
   StartFetchingBio = "start_fetching_bio",
   FinishFetchingBio = "finish_fetching_bio",
   FailFetchingBio = "fail_fetching_bio",
@@ -13,56 +13,56 @@ export enum BioActions {
   FailUpdatingBio = "fail_updating_bio",
 }
 
-const startFetchingBio = () : EmptyAction => ({
-  type: BioActions.StartFetchingBio,
+const startFetchingBiography = () : EmptyAction => ({
+  type: BiographyActions.StartFetchingBio,
 });
 
-const finishFetchingBio = (bio: Biography) : Action<Biography> => ({
-  type: BioActions.FinishFetchingBio,
+const finishFetchingBiography = (bio: Biography) : Action<Biography> => ({
+  type: BiographyActions.FinishFetchingBio,
   value: bio,
 });
 
-const failFetchingBio = (error: string) : Action<string> => ({
-  type: BioActions.FailFetchingBio,
+const failFetchingBiography = (error: string) : Action<string> => ({
+  type: BiographyActions.FailFetchingBio,
   value: error,
 });
 
-export const fetchBio = () => {
+export const fetchBiography = () => {
   return async (dispatch: Dispatch) => {
-    dispatch(startFetchingBio());
+    dispatch(startFetchingBiography());
 
     try {
       const bio = await api.fetchBio();
-      dispatch(finishFetchingBio(bio));
+      dispatch(finishFetchingBiography(bio));
     } catch (error) {
-      dispatch(failFetchingBio(error.message));
+      dispatch(failFetchingBiography(error.message));
     }
   };
 };
 
-const startUpdatingBio = () : EmptyAction => ({
-  type: BioActions.StartUpdatingBio,
+const startUpdatingBiography = () : EmptyAction => ({
+  type: BiographyActions.StartUpdatingBio,
 });
 
-const finishUpdatingBio = (bio: Biography) : Action<Biography> => ({
-  type: BioActions.FinishUpdatingBio,
+const finishUpdatingBiography = (bio: Biography) : Action<Biography> => ({
+  type: BiographyActions.FinishUpdatingBio,
   value: bio,
 });
 
-const failUpdatingBio = (error: string) : Action<string> => ({
-  type: BioActions.FailUpdatingBio,
+const failUpdatingBiography = (error: string) : Action<string> => ({
+  type: BiographyActions.FailUpdatingBio,
   value: error,
 });
 
-export const updateBio = (bio: Biography) => {
+export const updateBiography = (bio: Biography) => {
   return async (dispatch: Dispatch) => {
-    dispatch(startUpdatingBio());
+    dispatch(startUpdatingBiography());
 
     try {
       const updatedBio = await api.updateBio(bio);
-      dispatch(finishUpdatingBio(updatedBio));
+      dispatch(finishUpdatingBiography(updatedBio));
     } catch (error) {
-      dispatch(failUpdatingBio(error.message));
+      dispatch(failUpdatingBiography(error.message));
     }
   };
 };
