@@ -5,7 +5,7 @@ import { Biography } from "../state/bio";
 
 type ActionType = EmptyAction & Action<Biography> & Action<string>;
 
-export const bioReducer = (state: Fetchable<Biography> = defaultState.bio, action: ActionType) : Fetchable<Biography> => {
+export const biographyReducer = (state: Fetchable<Biography> = defaultState.bio, action: ActionType) : Fetchable<Biography> => {
   switch (action.type) {
     case BioActions.StartFetchingBio:
     case BioActions.StartUpdatingBio:

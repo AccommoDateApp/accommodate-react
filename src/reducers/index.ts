@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
-import { bioReducer } from "./bioReducer";
+import { biographyReducer } from "./biographyReducer";
 import { loginReducer } from "./loginReducer";
 import { matchesReducer } from "./matchesReducer";
 import { signupReducer } from "./signupReducer";
 import { storeReducer } from "./storeReducer";
 
 export const rootReducer = combineReducers({
-  bio: bioReducer,
+  bio: biographyReducer,
   login: loginReducer,
   signup: signupReducer,
   store: storeReducer,
