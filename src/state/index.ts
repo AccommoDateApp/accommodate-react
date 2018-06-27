@@ -17,12 +17,12 @@ export interface AccommoDateState {
   signup: Fetchable<boolean>;
   store: PowerUpStore;
   login: Fetchable<boolean>;
-  bio: Fetchable<Biography>;
+  biography: Fetchable<Biography>;
   userMatches: UserMatches;
 }
 
 export const defaultState: AccommoDateState = {
-  bio: defaultFetchableState,
+  biography: defaultFetchableState,
   login: {
     ...defaultFetchableState,
     value: api.isLoggedIn || false,

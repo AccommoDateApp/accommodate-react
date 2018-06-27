@@ -6,7 +6,7 @@ import { signupReducer } from "./signupReducer";
 import { storeReducer } from "./storeReducer";
 
 export const rootReducer = combineReducers({
-  bio: biographyReducer,
+  biography: biographyReducer,
   login: loginReducer,
   signup: signupReducer,
   store: storeReducer,
