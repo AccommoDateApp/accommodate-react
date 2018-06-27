@@ -38,19 +38,11 @@ export class ApiClient extends HttpClient {
     return headers;
   }
 
-  public async login(email: string, password: string) : Promise<boolean> {
-    try {
-      this.token = await this.post<string>(`${this.baseUrl}/users/login`, {
-        email,
-        password,
-      });
-
-      return true;
-    } catch {
-      // ignore the login error
-    }
-
-    return false;
+  public async login(email: string, password: string) : Promise<void> {
+    this.token = await this.post<string>(`${this.baseUrl}/users/login`, {
+      email,
+      password,
+    });
   }
 
   public async logout() : Promise<void> {

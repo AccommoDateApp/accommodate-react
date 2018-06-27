@@ -1,17 +1,16 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router";
-import { AccommoDateState } from "../state";
-import { User } from "../state/user";
+import { AccommoDateState, Fetchable } from "../state";
 import { Dashboard } from "./Dashboard";
 import { Landing } from "./landing/Landing";
 
 interface AppProps extends RouteComponentProps<any> {
-  user: User;
+  login: Fetchable<boolean>;
 }
 
 export const AppComponent = (props: AppProps) => {
-  if (props.user.isLoggedIn) {
+  if (props.login.value) {
     return (
       <Dashboard />
     );
@@ -23,7 +22,7 @@ export const AppComponent = (props: AppProps) => {
 };
 
 const mapStateToProps = (state: AccommoDateState) => ({
-  user: state.user,
+  login: state.login,
 });
 
 export const App = withRouter(connect(mapStateToProps)(AppComponent));

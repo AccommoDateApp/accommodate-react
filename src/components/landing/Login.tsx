@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { login, resetLogin } from "../../actions/loginActions";
 import { AccommoDateState } from "../../state";
+import "./Login.scss";
 
 interface LoginProps {
   login: typeof login;
   resetLogin: typeof resetLogin;
 
   isLoggingIn: boolean;
-  loginSuccess?: boolean;
+  loginError?: string;
 }
 
 const userIcon = (
@@ -22,10 +23,19 @@ const passwordIcon = (
 );
 
 const LoginComponent = (props: LoginProps) => {
-  if (props.loginSuccess !== undefined) {
+  if (props.loginError !== undefined) {
+    const message = `Error logging you in: ${props.loginError}.`;
+
     return (
       <>
-        <Alert type="error" showIcon={true} message="Error logging you in.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" closable={true} onClose={() => props.resetLogin()} />
+        <Alert
+          className="login-alert"
+          type="error"
+          showIcon={true}
+          message={message}
+          closable={true}
+          onClose={() => props.resetLogin()}
+        />
       </>
     );
   } else {
@@ -61,8 +71,8 @@ const LoginComponent = (props: LoginProps) => {
 };
 
 const mapStateToProps = (state: AccommoDateState) => ({
-  isLoggingIn: state.user.isLoggingIn,
-  loginSuccess: state.user.loginSuccess,
+  isLoggingIn: state.login.isFetching,
+  loginError: state.login.error,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
