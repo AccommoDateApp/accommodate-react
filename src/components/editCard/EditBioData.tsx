@@ -2,13 +2,13 @@ import { Col, Row } from "antd";
 import * as React from "react";
 import {BioData as BioDataState, GenderType} from "../../state/profile";
 
-import "./BioData.scss";
+import "./EditBioData.scss";
 
 interface BioDataProps {
   bio: BioDataState;
 }
 
-export function BioData(props: BioDataProps) : JSX.Element {
+export function EditBioData(props: BioDataProps) : JSX.Element {
   return (
     <Row className="bio-data">
       <Col>
