@@ -9,6 +9,7 @@ import { MatchingCockpit } from "./matching/MatchingCockpit";
 import { LinkItem } from "./navigation/LinkItem";
 import { Navbar } from "./navigation/Navbar";
 import { RoutedMenu } from "./navigation/RoutedMenu";
+import { EditProfile } from "./profile/EditProfile";
 import { Store } from "./store/Store";
 
 const profileMenuTitle = (
@@ -52,6 +53,7 @@ export const DashboardComponent = (props: DashboardComponentProps) => {
         <Switch>
           <Route exact={true} path="/" component={MatchingCockpit} />
           <Route exact={true} path="/powerups" component={Store} />
+          <Route exact={true} path="/profile" component={EditProfile} />
         </Switch>
       </Container>
     </div>
