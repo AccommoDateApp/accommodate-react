@@ -35,6 +35,12 @@ export const loginReducer = (state: Fetchable<boolean> = defaultState.login, act
         value: false,
       };
 
+    case LoginActions.Logout:
+      return {
+        ...state,
+        value: false,
+      };
+
     default:
       return state;
   }
