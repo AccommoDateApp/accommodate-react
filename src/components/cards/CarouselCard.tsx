@@ -1,10 +1,10 @@
-import { Card, Carousel, Col, Row } from "antd";
+import { Card, Col, Row } from "antd";
 import * as React from "react";
 import "./CarouselCard.scss";
 
 interface ImagesCardProps extends React.Props<any> {
   heading: string | JSX.Element;
-  items: JSX.Element | JSX.Element[];
+  carousel: JSX.Element;
 }
 
 export const CarouselCard = (props: ImagesCardProps) => {
@@ -12,9 +12,7 @@ export const CarouselCard = (props: ImagesCardProps) => {
     <Card className="carousel-card">
       <Row type="flex">
         <Col span={12}>
-          <Carousel dots={true}>
-            {props.items}
-          </Carousel>
+          {props.carousel}
         </Col>
 
         <Col span={12}>
