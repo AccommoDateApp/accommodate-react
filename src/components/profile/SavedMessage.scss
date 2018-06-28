@@ -1,0 +1,21 @@
+.saved-message {
+  margin-top: 5px;
+
+  position: relative;
+  left: -10px;
+
+  opacity: 0;
+
+  transition-property: left, opacity;
+  transition-duration: 0.2s;
+
+  &.show {
+    left: 0px;
+    opacity: 1;
+  }
+
+  .icon {
+    color: rgb(72, 189, 72);
+    margin-right: 5px;
+  }
+}
