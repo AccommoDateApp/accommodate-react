@@ -1,5 +1,6 @@
 const { EnvironmentPlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -56,6 +57,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
+    new FaviconsWebpackPlugin("./src/images/favicon.png"),
   ],
 
   devServer: {
