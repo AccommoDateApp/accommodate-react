@@ -1,0 +1,10 @@
+.biography:not(.editing) {
+  h4,
+  p {
+    display: inline-block;
+  }
+
+  h4 {
+    padding-right: 5px;
+  }
+}
