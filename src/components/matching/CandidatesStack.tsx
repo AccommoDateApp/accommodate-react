@@ -8,7 +8,6 @@ import {
 } from "../../actions/matchingActions";
 import { AccommoDateState } from "../../state";
 import { UserMatches } from "../../state/match";
-import { CardComponent } from "../card/Card";
 
 import { ProfileProps } from "../../state/profile";
 
@@ -77,7 +76,7 @@ const renderPotentialMatch = (potentialMatches: ProfileProps[]) : JSX.Element =>
   if (noMatchesLeft) {
     return <h3>No one else around you</h3>;
   } else {
-    return <CardComponent {...potentialMatches[0]} />;
+    return <div />;
   }
 };
 

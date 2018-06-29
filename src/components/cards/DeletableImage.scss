@@ -1,0 +1,18 @@
+.deletable-image {
+  position: relative;
+
+  display: block;
+  width: 300px;
+  height: 300px;
+
+  background: #eee;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .controls {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+}

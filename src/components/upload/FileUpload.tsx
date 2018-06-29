@@ -2,6 +2,7 @@ import { Button, Icon, Upload } from "antd";
 import * as React from "react";
 
 interface FileUploadProps {
+  disabled: boolean;
   onChange: (file: File) => void;
 }
 
@@ -18,7 +19,7 @@ export const FileUpload = (props: FileUploadProps) => {
   };
 
   return (
-    <Upload {...uploadProps}>
+    <Upload {...uploadProps} disabled={props.disabled}>
       <Button>
         <Icon type="upload" /> Select File
       </Button>
