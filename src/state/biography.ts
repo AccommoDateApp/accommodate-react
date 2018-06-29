@@ -45,6 +45,7 @@ export interface RealEstateLocation {
 }
 
 export interface RealEstate {
+  id: string;
   name: string;
   description: string;
   type: RealEstateType;
