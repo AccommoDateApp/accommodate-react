@@ -98,6 +98,10 @@ export class ApiClient extends HttpClient {
     return await this.post<any>(`${this.baseUrl}/images/accommodation`, form);
   }
 
+  public async createAccommodation() : Promise<Biography> {
+    return await this.post<Biography>(`${this.baseUrl}/bio/accommodation`);
+  }
+
   public async acceptPotentialMatch(email: string) : Promise<string> {
     // TODO: Call API here
     const message = "Potential Match Accepted: " + email;

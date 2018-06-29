@@ -1,9 +1,10 @@
 import { Col, Row } from "antd";
 import autobind from "autobind-decorator";
 import * as React from "react";
-import { Preference, RealEstateType } from "../../state/biography";
+import { Preference } from "../../state/biography";
 import { Choice, EditableChoice } from "./EditableChoice";
 import { EditableText } from "./EditableText";
+import { realEstateChoices } from "./RealEstateCard";
 
 interface EditablePreferenceCollectionProps {
   elementsPerLine?: number;
@@ -17,27 +18,12 @@ interface EditablePreferenceCollectionState {
 
 const booleanChoices: Array<Choice<boolean>> = [
   {
-    text: "Important",
+    text: "Yes",
     value: true,
   },
   {
-    text: "I don't care",
+    text: "No",
     value: false,
-  },
-];
-
-const accommodationChoices: Array<Choice<RealEstateType>> = [
-  {
-    text: "WG",
-    value: RealEstateType.WG,
-  },
-  {
-    text: "Apartment",
-    value: RealEstateType.Apartment,
-  },
-  {
-    text: "House",
-    value: RealEstateType.House,
   },
 ];
 
@@ -52,8 +38,10 @@ export class EditablePreferenceCollection extends React.Component<EditablePrefer
 
   public render() {
     const rows = this.paginatePreferences().map((line, rowIndex) => {
+      const columnSize = Math.floor(24 / line.length);
+
       const columns = line.map((preference, columnIndex) => (
-        <Col span={6} key={columnIndex}>
+        <Col span={columnSize} key={columnIndex}>
           <h4>{preference.name}</h4>
           {this.renderPreference(preference)}
         </Col>
@@ -100,7 +88,7 @@ export class EditablePreferenceCollection extends React.Component<EditablePrefer
           <EditableChoice
             editable={true}
             choice={preference.value}
-            choices={accommodationChoices}
+            choices={realEstateChoices}
             onChange={onChangeEvent}
           />
         );

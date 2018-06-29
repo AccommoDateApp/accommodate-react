@@ -4,9 +4,10 @@ import { connect, Dispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchBiography } from "../../actions/biographyActions";
 import { AccommoDateState, Fetchable } from "../../state";
-import { Biography, TenantBio, UserMode } from "../../state/biography";
+import { Biography, LandlordBio, TenantBio, UserMode } from "../../state/biography";
 import { Editor } from "../../state/editor";
 import { Spinner } from "../loading/Spinner";
+import { EditLandlordProfile } from "./EditLandlordProfile";
 import { EditTenantProfile } from "./EditTenantProfile";
 
 interface EditProfileProps {
@@ -37,14 +38,20 @@ class EditProfileComponent extends React.PureComponent<EditProfileProps> {
       );
     }
 
-    if (biography.value && biography.value.mode === UserMode.Tenant) {
+    if (!biography.value) {
+      return (
+        <div />
+      );
+    }
+
+    if (biography.value.mode === UserMode.Tenant) {
       return (
         <EditTenantProfile biography={biography.value as TenantBio} />
       );
     }
 
     return (
-      <div />
+      <EditLandlordProfile biography={biography.value as LandlordBio} />
     );
   }
 }
