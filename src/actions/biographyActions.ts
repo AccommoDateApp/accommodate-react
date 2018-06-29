@@ -71,3 +71,20 @@ export const updateBiography = (bio: Partial<Biography>) => {
     }
   };
 };
+
+export const addRealEstate = () => {
+  return async (dispatch: Dispatch) => {
+    dispatch(startUpdatingBiography());
+    dispatch(startSaving());
+
+    try {
+      const updatedBio = await api.createAccommodation();
+
+      dispatch(finishUpdatingBiography(updatedBio));
+      await finishSaving()(dispatch);
+    } catch (error) {
+      dispatch(failUpdatingBiography(error.message));
+      dispatch(failSaving(error.message));
+    }
+  };
+};
