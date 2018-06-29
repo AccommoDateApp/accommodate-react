@@ -7,6 +7,7 @@ import { updateBiography } from "../../actions/biographyActions";
 import { finishEditing, startEditing } from "../../actions/editorActions";
 import { AccommoDateState } from "../../state";
 import { TenantBio } from "../../state/biography";
+import { EditablePreferenceCollection } from "../cards/EditablePreferenceCollection";
 import { BiographyUpdatedEvent, TenantBiographyCard } from "../cards/TenantBiographyCard";
 import { SavedMessage } from "./SavedMessage";
 
@@ -52,6 +53,16 @@ class EditTenantProfileComponent extends React.PureComponent<EditTenantProfilePr
             <TenantBiographyCard biography={this.props.biography} editable={this.props.editing} onChange={this.updateBiography} />
           </Col>
         </Row>
+
+        <br />
+
+        <h2>Your preferences</h2>
+        <EditablePreferenceCollection
+          elementsPerLine={4}
+          preferences={this.props.biography.preferences}
+          onChange={(preferences) => this.updateBiography({ preferences })}
+        />
+        <br />
       </>
     );
   }
