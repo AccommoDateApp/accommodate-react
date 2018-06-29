@@ -13,6 +13,21 @@ export interface BiographyUpdatedEvent extends Partial<TenantBio> {
   [field: string]: any;
 }
 
+export const genderChoices: Array<Choice<Gender>> = [
+  {
+    text: "Female",
+    value: Gender.Female,
+  },
+  {
+    text: "Male",
+    value: Gender.Male,
+  },
+  {
+    text: "Other",
+    value: Gender.NoAnswer,
+  },
+];
+
 interface TenantBiographyCardProps {
   biography: TenantBio;
   editable?: boolean;
@@ -53,21 +68,6 @@ const TenantBiographyCardComponent = (props: TenantBiographyCardProps) => {
       onChange={createOnChangeEvent("name")}
     />
   );
-
-  const genderChoices: Array<Choice<Gender>> = [
-    {
-      text: "Female",
-      value: Gender.Female,
-    },
-    {
-      text: "Male",
-      value: Gender.Male,
-    },
-    {
-      text: "Other",
-      value: Gender.NoAnswer,
-    },
-  ];
 
   return (
     <CarouselCard carousel={images} heading={editableName}>
