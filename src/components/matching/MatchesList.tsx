@@ -12,7 +12,7 @@ const MatchesListComponent = (props: UserMatches) => {
 
   return (
     <div>
-      <h1>Matches</h1>
+      <h1 style={{textAlign: "center"}}>Matches</h1>
       {matches}
     </div>
   );

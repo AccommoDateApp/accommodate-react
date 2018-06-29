@@ -3,17 +3,22 @@ import * as React from "react";
 import { connect, Dispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-  acceptPotentialMatchWithEmail,
-  rejectPotentialMatchWithEmail,
+  createMatch,
+  rejectMatch,
 } from "../../actions/matchingActions";
+import { api } from "../../api/client";
 import { AccommoDateState } from "../../state";
-import { UserMatches } from "../../state/match";
-
-import { ProfileProps } from "../../state/profile";
+import {
+  LandlordBio,
+  RealEstate,
+  TenantBiography,
+  UserMode,
+} from "../../state/biography";
+import { Matchable, MatchedPair, UserMatches } from "../../state/match";
 
 interface CandidatesStackProps extends UserMatches {
-  acceptPotentialMatchWithEmail: typeof acceptPotentialMatchWithEmail;
-  rejectPotentialMatchWithEmail: typeof rejectPotentialMatchWithEmail;
+  createMatch: typeof createMatch;
+  rejectMatch: typeof rejectMatch;
 }
 
 const CandidatesStackComponent = (props: CandidatesStackProps) => {
@@ -47,10 +52,32 @@ const renderMatchingButtons = (props: CandidatesStackProps) : JSX.Element => {
   );
 };
 
+const getMatchedPair = async (props: CandidatesStackProps) : Promise<MatchedPair> => {
+  const loggedUserBiography = await api.fetchBio();
+  const potentialMatch = props.potentialMatches[0];
+  const userIsATenant = loggedUserBiography.mode === UserMode.Tenant;
+
+  let matchedPair: MatchedPair;
+  if (userIsATenant) {
+    matchedPair = {
+      realEstate: (potentialMatch as RealEstate),
+      tenant: (loggedUserBiography as TenantBiography),
+    };
+  } else {
+    matchedPair = {
+      // TODO: not always does the landlord swipe using his first realEstate
+      realEstate: (loggedUserBiography as LandlordBio).realEstates[0],
+      tenant: (potentialMatch as TenantBiography),
+    };
+  }
+  console.log(`matchedPair. tenant: ${matchedPair.tenant.id}, realEstate: ${matchedPair.realEstate.id}`);
+  console.log(`userIsAtenanst: ${userIsATenant}`);
+  return matchedPair;
+};
+
 const renderAcceptMatchButton = (props: CandidatesStackProps) : JSX.Element => {
-  const matchEmailAddress = props.potentialMatches[0].bio.email;
-  const handleMatchAccepted = () => (
-    props.acceptPotentialMatchWithEmail(matchEmailAddress)
+  const handleMatchAccepted = async () => (
+    props.createMatch(await getMatchedPair(props))
   );
   return (
     <Button size="large" type="primary" onClick={handleMatchAccepted}>
@@ -60,9 +87,8 @@ const renderAcceptMatchButton = (props: CandidatesStackProps) : JSX.Element => {
 };
 
 const renderRejectMatchButton = (props: CandidatesStackProps) : JSX.Element => {
-  const matchEmailAddress = props.potentialMatches[0].bio.email;
-  const handleMatchRejected = () => (
-    props.rejectPotentialMatchWithEmail(matchEmailAddress)
+  const handleMatchRejected = async () => (
+    props.rejectMatch(await getMatchedPair(props))
   );
   return (
     <Button size="large" type="danger" onClick={handleMatchRejected}>
@@ -71,7 +97,7 @@ const renderRejectMatchButton = (props: CandidatesStackProps) : JSX.Element => {
   );
 };
 
-const renderPotentialMatch = (potentialMatches: ProfileProps[]) : JSX.Element => {
+const renderPotentialMatch = (potentialMatches: Matchable[]) : JSX.Element => {
   const noMatchesLeft = potentialMatches.length <= 0;
   if (noMatchesLeft) {
     return <h3>No one else around you</h3>;
@@ -80,12 +106,12 @@ const renderPotentialMatch = (potentialMatches: ProfileProps[]) : JSX.Element =>
   }
 };
 
-const mapStateToProps = (state: AccommoDateState) : UserMatches => state.userMatches;
+const mapStateToProps = (state: AccommoDateState) : UserMatches => (state.userMatches);
 
 const mapDispatchToProps = (dispatch: Dispatch) => (
   bindActionCreators({
-    acceptPotentialMatchWithEmail,
-    rejectPotentialMatchWithEmail,
+    createMatch,
+    rejectMatch,
   }, dispatch)
 );
 
