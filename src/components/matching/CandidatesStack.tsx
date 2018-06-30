@@ -36,7 +36,7 @@ const CandidatesStackComponent = (props: CandidatesStackProps) => {
         <MatchingButtons
           potentialMatch={match}
           loggedUserBiography={loggedUserBiography}
-        />;
+        />
       </Col>
     </Row>
   );
@@ -59,7 +59,7 @@ const renderPotentialMatch = (potentialMatch: Matchable,
 
 const mapStateToProps = (state: AccommoDateState) : CandidatesStackProps => ({
   biography: (state.biography.value as Biography),
-  userMatches: state.userMatches,
+  userMatches: state.matchingState.userMatches,
 });
 
 export const CandidatesStack = connect(mapStateToProps)(CandidatesStackComponent);
