@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { uploadRealEstateImage } from "../../actions/imagesAction";
-import { LandlordBio, RealEstate, RealEstateType } from "../../state/biography";
+import { LandlordBiography, RealEstate, RealEstateType } from "../../state/biography";
 import { CarouselCard } from "./CarouselCard";
 import { Choice, EditableChoice } from "./EditableChoice";
 import { EditableImageCollection } from "./EditableImageCollection";
@@ -26,7 +26,7 @@ export const realEstateChoices: Array<Choice<RealEstateType>> = [
 
 interface RealEstateCardProps {
   realEstate: RealEstate;
-  landlord: LandlordBio;
+  landlord: LandlordBiography;
 
   editable?: boolean;
   onChange?: (updatedRealEstate: any) => void;

@@ -13,10 +13,10 @@ export const tenantBiographyPlaceholder: TenantBiography = {
   id: "5b364c924c450e31b03152b8",
   images: [],
   language: "English, German",
-  mode: UserMode.Tenant,
   name: "Shoaib Khan",
   phoneNumber: "1232312134",
   preferences: [],
+  userMode: UserMode.Tenant,
 };
 
 export const realEstatePlaceholder: RealEstate = {

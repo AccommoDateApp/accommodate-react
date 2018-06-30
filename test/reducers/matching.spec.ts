@@ -7,8 +7,8 @@ import {
   realEstatePlaceholder,
   tenantBiographyPlaceholder
 } from "../statePlaceholders/biography";
-import {MatchedPair} from "../../src/state/match";
-import {userMatchesPlaceholder} from "../statePlaceholders/match";
+import { MatchedPair } from "../../src/state/match";
+import { userMatchesPlaceholder } from "../statePlaceholders/match";
 
 const MATCHED_PAIR : MatchedPair = {
   realEstate: realEstatePlaceholder,

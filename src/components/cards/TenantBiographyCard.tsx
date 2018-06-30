@@ -2,14 +2,14 @@ import * as React from "react";
 import { connect, Dispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { uploadProfileImage } from "../../actions/imagesAction";
-import { Gender, TenantBio } from "../../state/biography";
+import { Gender, TenantBiography } from "../../state/biography";
 import { CarouselCard } from "./CarouselCard";
 import { Choice, EditableChoice } from "./EditableChoice";
 import { EditableImageCollection } from "./EditableImageCollection";
 import { EditableText } from "./EditableText";
 import "./TenantBiographyCard.scss";
 
-export interface BiographyUpdatedEvent extends Partial<TenantBio> {
+export interface BiographyUpdatedEvent extends Partial<TenantBiography> {
   [field: string]: any;
 }
 
@@ -29,7 +29,7 @@ export const genderChoices: Array<Choice<Gender>> = [
 ];
 
 interface TenantBiographyCardProps {
-  biography: TenantBio;
+  biography: TenantBiography;
   editable?: boolean;
   onChange?: (event: BiographyUpdatedEvent) => void;
 

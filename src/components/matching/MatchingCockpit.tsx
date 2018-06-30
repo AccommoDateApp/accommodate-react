@@ -8,7 +8,7 @@ export const MatchingCockpit = () => (
     <Col span={8}>
       <MatchesList />
     </Col>
-    <Col span={16}>
+    <Col span={12} push={4}>
       <CandidatesStack />
     </Col>
   </Row>

@@ -16,15 +16,16 @@ export interface Preference<T = any> {
   value: T;
 }
 
-export interface Biography extends Matchable {
+export interface Biography {
+  name: string;
   phoneNumber: string;
-  mode: UserMode;
+  userMode: UserMode;
   gender: Gender;
   description: string;
 }
 
-export interface TenantBiography extends Biography {
-  mode: UserMode.Tenant;
+export interface TenantBiography extends Biography, Matchable {
+  userMode: UserMode.Tenant;
   age: number;
   images: string[];
   language: string;
@@ -54,8 +55,8 @@ export interface RealEstate extends Matchable {
   preferences: Preference[];
 }
 
-export interface LandlordBio extends Biography {
-  mode: UserMode.Landlord;
+export interface LandlordBiography extends Biography {
+  userMode: UserMode.Landlord;
   realEstates: RealEstate[];
 }
 
