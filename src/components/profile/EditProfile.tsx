@@ -4,7 +4,7 @@ import { connect, Dispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchBiography } from "../../actions/biographyActions";
 import { AccommoDateState, Fetchable } from "../../state";
-import { Biography, LandlordBio, TenantBio, UserMode } from "../../state/biography";
+import { Biography, LandlordBiography, TenantBiography, UserMode } from "../../state/biography";
 import { Editor } from "../../state/editor";
 import { Spinner } from "../loading/Spinner";
 import { EditLandlordProfile } from "./EditLandlordProfile";
@@ -46,14 +46,14 @@ class EditProfileComponent extends React.PureComponent<EditProfileProps> {
       );
     }
 
-    if (biography.value.mode === UserMode.Tenant) {
+    if (biography.value.userMode === UserMode.Tenant) {
       return (
-        <EditTenantProfile biography={biography.value as TenantBio} />
+        <EditTenantProfile biography={biography.value as TenantBiography} />
       );
     }
 
     return (
-      <EditLandlordProfile biography={biography.value as LandlordBio} />
+      <EditLandlordProfile biography={biography.value as LandlordBiography} />
     );
   }
 }

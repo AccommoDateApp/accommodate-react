@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { addRealEstate, updateBiography } from "../../actions/biographyActions";
 import { startEditing } from "../../actions/editorActions";
 import { AccommoDateState } from "../../state";
-import { LandlordBio, RealEstate } from "../../state/biography";
+import { LandlordBiography, RealEstate } from "../../state/biography";
 import { EditableChoice } from "../cards/EditableChoice";
 import { EditablePreferenceCollection } from "../cards/EditablePreferenceCollection";
 import { EditableText } from "../cards/EditableText";
@@ -14,7 +14,7 @@ import { genderChoices } from "../cards/TenantBiographyCard";
 import { SavedMessage } from "./SavedMessage";
 
 interface EditLandlordProfileProps {
-  biography: LandlordBio;
+  biography: LandlordBiography;
 
   saved: boolean;
   saving: boolean;
@@ -102,23 +102,23 @@ class EditLandlordProfileComponent extends React.PureComponent<EditLandlordProfi
       } as any);
     };
 
-    const realEstates = this.props.biography.realEstates.map((accommoation, index) => (
-      <Tabs.TabPane tab={accommoation.name} key={index}>
+    const realEstates = this.props.biography.realEstates.map((realEstate, index) => (
+      <Tabs.TabPane tab={realEstate.name} key={index}>
         <Row>
           <Col span={16} push={1}>
             <RealEstateCard
               editable={true}
-              realEstate={accommoation}
+              realEstate={realEstate}
               landlord={this.props.biography}
-              onChange={(changeset) => updateRealEstate(accommoation, changeset)}
+              onChange={(changeset) => updateRealEstate(realEstate, changeset)}
             />
           </Col>
           <Col span={4} push={3}>
             <h3>Preferences</h3>
             <EditablePreferenceCollection
               elementsPerLine={1}
-              preferences={accommoation.preferences}
-              onChange={(preferences) => updateRealEstate(accommoation, { preferences })}
+              preferences={realEstate.preferences}
+              onChange={(preferences) => updateRealEstate(realEstate, { preferences })}
             />
           </Col>
         </Row>

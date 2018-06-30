@@ -1,5 +1,6 @@
 import { Dispatch } from "react-redux";
 import { api } from "../api/client";
+import { MatchedPair } from "../state/match";
 import { Action, EmptyAction } from "./index";
 
 export enum MatchingActions {
@@ -13,32 +14,32 @@ const matchingFailure = () : EmptyAction => ({
   type: MatchingActions.MatchingFailure,
 });
 
-export const acceptMatchWithEmail = (emailAddress: string) : Action<string> => ({
+export const createMatchBetween = (matchedPair: MatchedPair) : Action<MatchedPair> => ({
   type: MatchingActions.AcceptPotentialMatch,
-  value: emailAddress,
+  value: matchedPair,
 });
 
-export const rejectMatchWithEmail = (emailAddress: string) : Action<string> => ({
+export const rejectMatchBetween = (matchedPair: MatchedPair) : Action<MatchedPair> => ({
   type: MatchingActions.RejectPotentialMatch,
-  value: emailAddress,
+  value: matchedPair,
 });
 
-export const acceptPotentialMatchWithEmail = (emailAddress: string) => {
+export const createMatch = (matchedPair: MatchedPair) => {
   return async (dispatch: Dispatch) => {
     try {
-      await api.acceptPotentialMatch(emailAddress);
-      dispatch(acceptMatchWithEmail(emailAddress));
+      await api.createMatch(matchedPair);
+      dispatch(createMatchBetween(matchedPair));
     } catch {
       dispatch(matchingFailure());
     }
   };
 };
 
-export const rejectPotentialMatchWithEmail = (emailAddress: string) => {
+export const rejectMatch = (matchedPair: MatchedPair) => {
   return async (dispatch: Dispatch) => {
     try {
-      await api.rejectPotentialMatch(emailAddress);
-      dispatch(rejectMatchWithEmail(emailAddress));
+      await api.rejectMatch(matchedPair);
+      dispatch(rejectMatchBetween(matchedPair));
     } catch {
       dispatch(matchingFailure());
     }

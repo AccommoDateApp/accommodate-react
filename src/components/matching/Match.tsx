@@ -1,13 +1,13 @@
 import { Col, Row } from "antd";
 import * as React from "react";
-import { MatchState } from "../../state/match";
+import { ActualMatch } from "../../state/match";
 import "./Match.scss";
 
-export const Match = (matchState: MatchState) => (
+export const Match = (actualMatch: ActualMatch) => (
   <Row className="match">
     <Col span={6}>{getPortrait()}</Col>
-    <Col span={6}><h3>{matchState.userProfile.bio.firstName}</h3></Col>
-    <Col span={6}>{getFavoriteIcon(matchState.matchIsFavorite)}</Col>
+    <Col span={6}><h3>{actualMatch.name}</h3></Col>
+    <Col span={6}>{getFavoriteIcon(actualMatch.matchIsFavorite)}</Col>
     <Col span={6}>{getChatIcon()}</Col>
   </Row>
 );

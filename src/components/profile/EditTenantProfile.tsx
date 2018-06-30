@@ -6,13 +6,13 @@ import { bindActionCreators } from "redux";
 import { updateBiography } from "../../actions/biographyActions";
 import { finishEditing, startEditing } from "../../actions/editorActions";
 import { AccommoDateState } from "../../state";
-import { TenantBio } from "../../state/biography";
+import { TenantBiography } from "../../state/biography";
 import { EditablePreferenceCollection } from "../cards/EditablePreferenceCollection";
 import { BiographyUpdatedEvent, TenantBiographyCard } from "../cards/TenantBiographyCard";
 import { SavedMessage } from "./SavedMessage";
 
 interface EditTenantProfileProps {
-  biography: TenantBio;
+  biography: TenantBiography;
   updateBiography: typeof updateBiography;
 
   editing: boolean;

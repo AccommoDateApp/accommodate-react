@@ -1,37 +1,42 @@
 import {
-  acceptMatchWithEmail,
-  rejectMatchWithEmail
+  createMatchBetween,
+  rejectMatchBetween
 } from "../../src/actions/matchingActions";
+import { matchesReducer } from "../../src/reducers/matchesReducer";
 import {
-  matchesReducer,
-  userMatchesPlaceholder
-} from "../../src/reducers/matchesReducer";
+  realEstatePlaceholder,
+  tenantBiographyPlaceholder
+} from "../statePlaceholders/biography";
+import { MatchedPair } from "../../src/state/match";
+import { userMatchesPlaceholder } from "../statePlaceholders/match";
 
-const matchEmailAddress = "hello.world@tum.de";
+const MATCHED_PAIR : MatchedPair = {
+  realEstate: realEstatePlaceholder,
+  tenant: tenantBiographyPlaceholder,
+};
 
 describe("The MatchingReducer", () => {
   it("adds an accepted match to the actual matches.", () => {
-    const action = acceptMatchWithEmail(matchEmailAddress);
+    const initialNumOfMatches = userMatchesPlaceholder.actualMatches.length;
+    const action = createMatchBetween(MATCHED_PAIR);
     const { actualMatches } = matchesReducer(userMatchesPlaceholder, action);
-    const expected = actualMatches
-      .find(match => match.userProfile.bio.email === matchEmailAddress);
 
-    expect(expected).not.toBeUndefined();
+    expect(actualMatches.length).toBe(initialNumOfMatches + 1);
   });
 
   it("removes an accepted match from the potential matches.", () => {
-    const action = acceptMatchWithEmail(matchEmailAddress);
+    const initialNumOfPotentialMatches = userMatchesPlaceholder.potentialMatches.length;
+    const action = createMatchBetween(MATCHED_PAIR);
     const { potentialMatches } = matchesReducer(userMatchesPlaceholder, action);
-    const expectedNum = userMatchesPlaceholder.potentialMatches.length - 1;
 
-    expect(potentialMatches.length).toBe(expectedNum);
+    expect(potentialMatches.length).toBe(initialNumOfPotentialMatches - 1);
   });
 
   it("removes a rejected match from the potential matches.", () => {
-    const action = rejectMatchWithEmail(matchEmailAddress);
+    const initialNumOfPotentialMatches = userMatchesPlaceholder.potentialMatches.length;
+    const action = rejectMatchBetween(MATCHED_PAIR);
     const { potentialMatches } = matchesReducer(userMatchesPlaceholder, action);
-    const expectedNum = userMatchesPlaceholder.potentialMatches.length - 1;
 
-    expect(potentialMatches.length).toBe(expectedNum);
+    expect(potentialMatches.length).toBe(initialNumOfPotentialMatches - 1);
   })
 });

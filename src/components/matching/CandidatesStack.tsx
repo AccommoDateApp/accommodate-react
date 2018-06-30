@@ -1,92 +1,65 @@
-import { Button, Col, Row } from "antd";
+import { Col, Row } from "antd";
 import * as React from "react";
-import { connect, Dispatch } from "react-redux";
-import { bindActionCreators } from "redux";
-import {
-  acceptPotentialMatchWithEmail,
-  rejectPotentialMatchWithEmail,
-} from "../../actions/matchingActions";
+import { connect } from "react-redux";
 import { AccommoDateState } from "../../state";
-import { UserMatches } from "../../state/match";
+import {
+  Biography,
+  LandlordBiography,
+  RealEstate,
+  TenantBiography,
+} from "../../state/biography";
+import { Matchable, UserMatches } from "../../state/match";
+import { RealEstateCard } from "../cards/RealEstateCard";
+import { TenantBiographyCard } from "../cards/TenantBiographyCard";
+import { MatchingButtons } from "./MatchingButtons";
 
-import { ProfileProps } from "../../state/profile";
-
-interface CandidatesStackProps extends UserMatches {
-  acceptPotentialMatchWithEmail: typeof acceptPotentialMatchWithEmail;
-  rejectPotentialMatchWithEmail: typeof rejectPotentialMatchWithEmail;
+interface CandidatesStackProps {
+  userMatches: UserMatches;
+  biography: Biography;
 }
 
 const CandidatesStackComponent = (props: CandidatesStackProps) => {
+  const noPotentialMatchesLeft = props.userMatches.potentialMatches.length <= 0;
+  if (noPotentialMatchesLeft || !props.biography) {
+    return <h3>No one else around you...</h3>;
+  }
 
-  const matchingButtons = renderMatchingButtons(props);
-  const potentialMatch = renderPotentialMatch(props.potentialMatches);
+  const match = props.userMatches.potentialMatches[0];
+  const loggedUserBiography = props.biography;
+  const potentialMatch = renderPotentialMatch(match, loggedUserBiography);
 
   return (
     <Row>
       <Col>
         <h1>Potential Matches</h1>
         {potentialMatch}
-        {matchingButtons}
+        <MatchingButtons
+          potentialMatch={match}
+          loggedUserBiography={loggedUserBiography}
+        />;
       </Col>
     </Row>
   );
 };
 
-const renderMatchingButtons = (props: CandidatesStackProps) : JSX.Element => {
-  const noMatchesLeft = props.potentialMatches.length <= 0;
-  if (noMatchesLeft) {
-    return <div />;
-  }
-  const acceptMatchButton = renderAcceptMatchButton(props);
-  const rejectMatchButton = renderRejectMatchButton(props);
-  return (
-    <Row type="flex" justify="center">
-      <Col>{acceptMatchButton}</Col>
-      <Col>{rejectMatchButton}</Col>
-    </Row>
-  );
-};
-
-const renderAcceptMatchButton = (props: CandidatesStackProps) : JSX.Element => {
-  const matchEmailAddress = props.potentialMatches[0].bio.email;
-  const handleMatchAccepted = () => (
-    props.acceptPotentialMatchWithEmail(matchEmailAddress)
-  );
-  return (
-    <Button size="large" type="primary" onClick={handleMatchAccepted}>
-      Yes!
-    </Button>
-  );
-};
-
-const renderRejectMatchButton = (props: CandidatesStackProps) : JSX.Element => {
-  const matchEmailAddress = props.potentialMatches[0].bio.email;
-  const handleMatchRejected = () => (
-    props.rejectPotentialMatchWithEmail(matchEmailAddress)
-  );
-  return (
-    <Button size="large" type="danger" onClick={handleMatchRejected}>
-      Nay!
-    </Button>
-  );
-};
-
-const renderPotentialMatch = (potentialMatches: ProfileProps[]) : JSX.Element => {
-  const noMatchesLeft = potentialMatches.length <= 0;
-  if (noMatchesLeft) {
-    return <h3>No one else around you</h3>;
+const renderPotentialMatch = (potentialMatch: Matchable,
+                              loggedUserBiography: Biography) : JSX.Element => {
+  const matchIsATenant = "userMode" in potentialMatch;
+  if (matchIsATenant) {
+    return <TenantBiographyCard biography={potentialMatch as TenantBiography} />;
   } else {
-    return <div />;
+    return (
+      <RealEstateCard
+        realEstate={potentialMatch as RealEstate}
+        landlord={loggedUserBiography as LandlordBiography}
+      />
+    );
   }
 };
 
-const mapStateToProps = (state: AccommoDateState) : UserMatches => state.userMatches;
+const mapStateToProps = (state: AccommoDateState) : CandidatesStackProps => ({
+  biography: (state.biography.value as Biography),
+  userMatches: state.userMatches,
+});
 
-const mapDispatchToProps = (dispatch: Dispatch) => (
-  bindActionCreators({
-    acceptPotentialMatchWithEmail,
-    rejectPotentialMatchWithEmail,
-  }, dispatch)
-);
-
-export const CandidatesStack = connect(mapStateToProps, mapDispatchToProps)(CandidatesStackComponent);
+export const CandidatesStack = connect(mapStateToProps)(CandidatesStackComponent);

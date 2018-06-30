@@ -1,5 +1,6 @@
 import { apiBaseUrl } from "../config";
 import { Biography, UserMode } from "../state/biography";
+import { MatchedPair } from "../state/match";
 import { PowerUp, Purchase } from "../state/store";
 import { HttpClient } from "./http";
 
@@ -102,16 +103,16 @@ export class ApiClient extends HttpClient {
     return await this.post<Biography>(`${this.baseUrl}/bio/realestate`);
   }
 
-  public async acceptPotentialMatch(email: string) : Promise<string> {
+  public async createMatch(matchedPair: MatchedPair) : Promise<string> {
     // TODO: Call API here
-    const message = "Potential Match Accepted: " + email;
+    const message = "Potential Match Accepted: " + matchedPair.tenant.id + matchedPair.realEstate.id;
     console.log(message);
     return message;
   }
 
-  public async rejectPotentialMatch(email: string) : Promise<string> {
+  public async rejectMatch(matchedPair: MatchedPair) : Promise<string> {
     // TODO: Call API here
-    const message = "Potential Match Rejected: " + email;
+    const message = "Potential Match Rejected: " + matchedPair;
     console.log(message);
     return message;
   }

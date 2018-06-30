@@ -1,3 +1,5 @@
+import { Matchable } from "./match";
+
 export enum UserMode {
   Tenant = 0,
   Landlord = 1,
@@ -17,13 +19,13 @@ export interface Preference<T = any> {
 export interface Biography {
   name: string;
   phoneNumber: string;
-  mode: UserMode;
+  userMode: UserMode;
   gender: Gender;
   description: string;
 }
 
-export interface TenantBio extends Biography {
-  mode: UserMode.Tenant;
+export interface TenantBiography extends Biography, Matchable {
+  userMode: UserMode.Tenant;
   age: number;
   images: string[];
   language: string;
@@ -44,9 +46,7 @@ export interface RealEstateLocation {
   longitude: number;
 }
 
-export interface RealEstate {
-  id: string;
-  name: string;
+export interface RealEstate extends Matchable {
   description: string;
   type: RealEstateType;
   location: RealEstateLocation;
@@ -55,8 +55,8 @@ export interface RealEstate {
   preferences: Preference[];
 }
 
-export interface LandlordBio extends Biography {
-  mode: UserMode.Landlord;
+export interface LandlordBiography extends Biography {
+  userMode: UserMode.Landlord;
   realEstates: RealEstate[];
 }
 
