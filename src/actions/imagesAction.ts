@@ -13,10 +13,10 @@ export const uploadProfileImage = (image: File) => {
   };
 };
 
-export const uploadAccommodationImage = (accommodationId: string, image: File) => {
+export const uploadRealEstateImage = (realEstateId: string, image: File) => {
   return async (dispatch: Dispatch) => {
     dispatch(startSaving());
-    await api.uploadAccommodationImage(accommodationId, image);
+    await api.uploadRealEstateImage(realEstateId, image);
 
     await fetchBiography()(dispatch);
     await finishSaving()(dispatch);

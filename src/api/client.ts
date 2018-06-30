@@ -89,17 +89,17 @@ export class ApiClient extends HttpClient {
     return await this.post<any>(`${this.baseUrl}/images/profile`, form);
   }
 
-  public async uploadAccommodationImage(accommodationId: string, image: File) : Promise<any> {
+  public async uploadRealEstateImage(realEstateId: string, image: File) : Promise<any> {
     const form = new FormData();
 
-    form.set("id", accommodationId);
+    form.set("id", realEstateId);
     form.set("image", image);
 
-    return await this.post<any>(`${this.baseUrl}/images/accommodation`, form);
+    return await this.post<any>(`${this.baseUrl}/images/realestate`, form);
   }
 
-  public async createAccommodation() : Promise<Biography> {
-    return await this.post<Biography>(`${this.baseUrl}/bio/accommodation`);
+  public async createRealEstate() : Promise<Biography> {
+    return await this.post<Biography>(`${this.baseUrl}/bio/realestate`);
   }
 
   public async acceptPotentialMatch(email: string) : Promise<string> {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
-import { uploadAccommodationImage } from "../../actions/imagesAction";
+import { uploadRealEstateImage } from "../../actions/imagesAction";
 import { LandlordBio, RealEstate, RealEstateType } from "../../state/biography";
 import { CarouselCard } from "./CarouselCard";
 import { Choice, EditableChoice } from "./EditableChoice";
@@ -30,7 +30,7 @@ interface RealEstateCardProps {
 
   editable?: boolean;
   onChange?: (updatedRealEstate: any) => void;
-  uploadAccommodationImage: typeof uploadAccommodationImage;
+  uploadRealEstateImage: typeof uploadRealEstateImage;
 }
 
 const RealEstateCardComponent = (props: RealEstateCardProps) => {
@@ -54,7 +54,7 @@ const RealEstateCardComponent = (props: RealEstateCardProps) => {
       editable={editable}
       images={realEstate.images}
       onChange={createOnChangeEvent("images")}
-      onUpload={(image: File) => props.uploadAccommodationImage(realEstate.id, image)}
+      onUpload={(image: File) => props.uploadRealEstateImage(realEstate.id, image)}
     />
   );
 
@@ -105,7 +105,7 @@ const RealEstateCardComponent = (props: RealEstateCardProps) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators({
-    uploadAccommodationImage,
+    uploadRealEstateImage,
   }, dispatch);
 };
 

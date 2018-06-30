@@ -78,7 +78,7 @@ export const addRealEstate = () => {
     dispatch(startSaving());
 
     try {
-      const updatedBio = await api.createAccommodation();
+      const updatedBio = await api.createRealEstate();
 
       dispatch(finishUpdatingBiography(updatedBio));
       await finishSaving()(dispatch);
