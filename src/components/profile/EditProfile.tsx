@@ -46,7 +46,7 @@ class EditProfileComponent extends React.PureComponent<EditProfileProps> {
       );
     }
 
-    if (biography.value.userMode === UserMode.Tenant) {
+    if (biography.value.mode === UserMode.Tenant) {
       return (
         <EditTenantProfile biography={biography.value as TenantBiography} />
       );
