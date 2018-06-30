@@ -20,7 +20,7 @@ export const FileUpload = (props: FileUploadProps) => {
 
   return (
     <Upload {...uploadProps} disabled={props.disabled}>
-      <Button>
+      <Button disabled={props.disabled}>
         <Icon type="upload" /> Select File
       </Button>
     </Upload>

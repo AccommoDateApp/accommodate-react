@@ -13,7 +13,6 @@ export const biographyReducer = (state: Fetchable<Biography> = defaultState.biog
         ...state,
         error: undefined,
         isFetching: true,
-        value: undefined,
       };
 
     case BiographyActions.FinishFetchingBio:

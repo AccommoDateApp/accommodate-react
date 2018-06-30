@@ -2,6 +2,7 @@ import { Dispatch } from "react-redux";
 import { Action, EmptyAction } from ".";
 import { api } from "../api/client";
 import { Biography } from "../state/biography";
+import { failSaving, finishSaving, startSaving } from "./editorActions";
 
 export enum BiographyActions {
   StartFetchingBio = "start_fetching_bio",
@@ -54,15 +55,36 @@ const failUpdatingBiography = (error: string) : Action<string> => ({
   value: error,
 });
 
-export const updateBiography = (bio: Biography) => {
+export const updateBiography = (bio: Partial<Biography>) => {
   return async (dispatch: Dispatch) => {
     dispatch(startUpdatingBiography());
+    dispatch(startSaving());
 
     try {
       const updatedBio = await api.updateBio(bio);
+
       dispatch(finishUpdatingBiography(updatedBio));
+      await finishSaving()(dispatch);
     } catch (error) {
       dispatch(failUpdatingBiography(error.message));
+      dispatch(failSaving(error.message));
+    }
+  };
+};
+
+export const addRealEstate = () => {
+  return async (dispatch: Dispatch) => {
+    dispatch(startUpdatingBiography());
+    dispatch(startSaving());
+
+    try {
+      const updatedBio = await api.createRealEstate();
+
+      dispatch(finishUpdatingBiography(updatedBio));
+      await finishSaving()(dispatch);
+    } catch (error) {
+      dispatch(failUpdatingBiography(error.message));
+      dispatch(failSaving(error.message));
     }
   };
 };

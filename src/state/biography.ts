@@ -6,6 +6,7 @@ export enum UserMode {
 export enum Gender {
   Male = 0,
   Female = 1,
+  NoAnswer = 2,
 }
 
 export interface Preference<T = any> {
@@ -44,6 +45,7 @@ export interface RealEstateLocation {
 }
 
 export interface RealEstate {
+  id: string;
   name: string;
   description: string;
   type: RealEstateType;

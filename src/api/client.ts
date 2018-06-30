@@ -81,6 +81,27 @@ export class ApiClient extends HttpClient {
     return await this.delete<PowerUp[]>(`${this.baseUrl}/powerups/${id}`);
   }
 
+  public async uploadProfileImage(image: File) : Promise<any> {
+    const form = new FormData();
+
+    form.set("image", image);
+
+    return await this.post<any>(`${this.baseUrl}/images/profile`, form);
+  }
+
+  public async uploadRealEstateImage(realEstateId: string, image: File) : Promise<any> {
+    const form = new FormData();
+
+    form.set("id", realEstateId);
+    form.set("image", image);
+
+    return await this.post<any>(`${this.baseUrl}/images/realestate`, form);
+  }
+
+  public async createRealEstate() : Promise<Biography> {
+    return await this.post<Biography>(`${this.baseUrl}/bio/realestate`);
+  }
+
   public async acceptPotentialMatch(email: string) : Promise<string> {
     // TODO: Call API here
     const message = "Potential Match Accepted: " + email;

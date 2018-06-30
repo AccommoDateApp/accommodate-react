@@ -33,8 +33,11 @@ export const EditableChoice = (props: EditableChoiceProps) => {
   const handleChange = (event: any) => props.onChange(event.target.value);
 
   return (
-    <Radio.Group onChange={handleChange} value={props.choice}>
-      {choices}
-    </Radio.Group>
+    <>
+      <Radio.Group onChange={handleChange} value={props.choice}>
+        {choices}
+      </Radio.Group>
+      <br />
+    </>
   );
 };
