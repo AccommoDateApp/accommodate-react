@@ -2,6 +2,7 @@ import { History } from "history";
 import { Dispatch } from "redux";
 import { Action, EmptyAction } from ".";
 import { api } from "../api/client";
+import { fetchBiography } from "./biographyActions";
 
 export enum LoginActions {
   ResetLogin = "reset_login",
@@ -36,6 +37,7 @@ export const login = (email: string, password: string) => {
     try {
       await api.login(email, password);
 
+      await fetchBiography()(dispatch);
       dispatch(finishLogin());
     } catch (error) {
       dispatch(failLogin(error.message));
