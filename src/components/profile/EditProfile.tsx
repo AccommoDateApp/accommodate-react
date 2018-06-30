@@ -18,7 +18,9 @@ interface EditProfileProps {
 
 class EditProfileComponent extends React.PureComponent<EditProfileProps> {
   public componentWillMount() {
-    this.props.fetchBiography();
+    if (!this.props.biography.value) {
+      this.props.fetchBiography();
+    }
   }
 
   public render() {
