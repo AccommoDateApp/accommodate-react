@@ -1,17 +1,44 @@
-import { userMatchesPlaceholder } from "../../test/statePlaceholders/match";
 import { Action } from "../actions";
 import { MatchingActions } from "../actions/matchingActions";
-import { ActualMatch, MatchedPair, UserMatches } from "../state/match";
+import {
+  ActualMatch,
+  defaultMatchingState,
+  MatchedPair,
+  MatchingState,
+  UserMatches,
+} from "../state/match";
 
-export const matchesReducer = (userMatches: UserMatches = userMatchesPlaceholder,
-                               action: Action<MatchedPair>) : UserMatches => {
+export const matchingReducer = (
+    matchingState: MatchingState = defaultMatchingState,
+    action: (Action<MatchedPair> & Action<UserMatches>),
+  ) : MatchingState => {
   switch (action.type) {
     case MatchingActions.AcceptPotentialMatch:
-      return acceptFirstPotentialMatch(userMatches);
+      return {
+        ...matchingState,
+        userMatches: acceptFirstPotentialMatch(matchingState.userMatches),
+      };
+
     case MatchingActions.RejectPotentialMatch:
-      return rejectFirstPotentialMatch(userMatches);
+      return {
+        ...matchingState,
+        userMatches: rejectFirstPotentialMatch(matchingState.userMatches),
+      };
+
+    case MatchingActions.StartFetching:
+      return {
+        ...matchingState,
+        isFetchingUserMatches: true,
+      };
+
+    case MatchingActions.FinishFetching:
+      return {
+        isFetchingUserMatches: false,
+        userMatches: action.value as UserMatches,
+      };
+
     default:
-      return userMatches;
+      return matchingState;
   }
 };
 

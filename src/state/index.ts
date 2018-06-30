@@ -1,7 +1,10 @@
 import { api } from "../api/client";
 import { Biography } from "./biography";
 import { defaultEditorState, Editor } from "./editor";
-import { defaultUserMatches, UserMatches } from "./match";
+import {
+  defaultMatchingState,
+  MatchingState,
+} from "./match";
 import { defaultPowerUpStoreState, PowerUpStore } from "./store";
 
 export interface Fetchable<T = any> {
@@ -20,7 +23,7 @@ export interface AccommoDateState {
   login: Fetchable<boolean>;
   biography: Fetchable<Biography>;
   editor: Editor;
-  userMatches: UserMatches;
+  matchingState: MatchingState;
 }
 
 export const defaultState: AccommoDateState = {
@@ -30,7 +33,7 @@ export const defaultState: AccommoDateState = {
     ...defaultFetchableState,
     value: api.isLoggedIn || false,
   },
+  matchingState: defaultMatchingState,
   signup: defaultFetchableState,
   store: defaultPowerUpStoreState,
-  userMatches: defaultUserMatches,
 };

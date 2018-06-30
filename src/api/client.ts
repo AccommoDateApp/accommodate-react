@@ -1,6 +1,6 @@
 import { apiBaseUrl } from "../config";
 import { Biography, UserMode } from "../state/biography";
-import { MatchedPair } from "../state/match";
+import { MatchedPair, UserMatches } from "../state/match";
 import { PowerUp, Purchase } from "../state/store";
 import { HttpClient } from "./http";
 
@@ -103,18 +103,32 @@ export class ApiClient extends HttpClient {
     return await this.post<Biography>(`${this.baseUrl}/bio/realestate`);
   }
 
-  public async createMatch(matchedPair: MatchedPair) : Promise<string> {
-    // TODO: Call API here
-    const message = "Potential Match Accepted: " + matchedPair.tenant.id + matchedPair.realEstate.id;
-    console.log(message);
-    return message;
+  public async createMatch(matchedPair: MatchedPair) : Promise<boolean> {
+    const url = `${this.baseUrl}/match/create`;
+    const payload = {
+      realEstateID: matchedPair.realEstate.id.toString(),
+      tenantUserID: matchedPair.tenant.id.toString(),
+    };
+    await this.post<boolean>(url, payload);
+    return true;
   }
 
-  public async rejectMatch(matchedPair: MatchedPair) : Promise<string> {
-    // TODO: Call API here
-    const message = "Potential Match Rejected: " + matchedPair;
-    console.log(message);
-    return message;
+  public async rejectMatch(matchedPair: MatchedPair) : Promise<boolean> {
+    const url = `${this.baseUrl}/match/reject`;
+    const payload = {
+      realEstateID: matchedPair.realEstate.id.toString(),
+      tenantUserID: matchedPair.tenant.id.toString(),
+    };
+    await this.post<boolean>(url, payload);
+    return true;
+  }
+
+  public async fetchUserMatches() : Promise<UserMatches> {
+    /*return await this.get<UserMatches>(`${this.baseUrl}/match/`);*/
+    return {
+      actualMatches: [],
+      potentialMatches: [],
+    };
   }
 }
 

@@ -18,6 +18,8 @@ const MatchesListComponent = (props: UserMatches) => {
   );
 };
 
-const mapStateToProps = (state: AccommoDateState) : UserMatches => (state.userMatches);
+const mapStateToProps = (state: AccommoDateState) : UserMatches => (
+  state.matchingState.userMatches
+);
 
 export const MatchesList = connect(mapStateToProps)(MatchesListComponent);

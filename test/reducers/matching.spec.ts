@@ -2,13 +2,13 @@ import {
   createMatchBetween,
   rejectMatchBetween
 } from "../../src/actions/matchingActions";
-import { matchesReducer } from "../../src/reducers/matchesReducer";
 import {
   realEstatePlaceholder,
   tenantBiographyPlaceholder
 } from "../statePlaceholders/biography";
 import { MatchedPair } from "../../src/state/match";
-import { userMatchesPlaceholder } from "../statePlaceholders/match";
+import { matchingReducer } from "../../src/reducers/matchingReducer";
+import { matchingStateFixture } from "../statePlaceholders/match";
 
 const MATCHED_PAIR : MatchedPair = {
   realEstate: realEstatePlaceholder,
@@ -17,26 +17,29 @@ const MATCHED_PAIR : MatchedPair = {
 
 describe("The MatchingReducer", () => {
   it("adds an accepted match to the actual matches.", () => {
-    const initialNumOfMatches = userMatchesPlaceholder.actualMatches.length;
+    const initialNumOfMatches = matchingStateFixture.userMatches.actualMatches.length;
     const action = createMatchBetween(MATCHED_PAIR);
-    const { actualMatches } = matchesReducer(userMatchesPlaceholder, action);
+    const newMatchingState = matchingReducer(matchingStateFixture, action);
+    const newNumOfMatches = newMatchingState.userMatches.actualMatches.length;
 
-    expect(actualMatches.length).toBe(initialNumOfMatches + 1);
+    expect(newNumOfMatches).toBe(initialNumOfMatches + 1);
   });
 
   it("removes an accepted match from the potential matches.", () => {
-    const initialNumOfPotentialMatches = userMatchesPlaceholder.potentialMatches.length;
+    const initialNumOfPotentialMatches = matchingStateFixture.userMatches.potentialMatches.length;
     const action = createMatchBetween(MATCHED_PAIR);
-    const { potentialMatches } = matchesReducer(userMatchesPlaceholder, action);
+    const newMatchingState = matchingReducer(matchingStateFixture, action);
+    const newNumOfPotentialMatches = newMatchingState.userMatches.potentialMatches.length;
 
-    expect(potentialMatches.length).toBe(initialNumOfPotentialMatches - 1);
+    expect(newNumOfPotentialMatches).toBe(initialNumOfPotentialMatches - 1);
   });
 
   it("removes a rejected match from the potential matches.", () => {
-    const initialNumOfPotentialMatches = userMatchesPlaceholder.potentialMatches.length;
+    const initialNumOfPotentialMatches = matchingStateFixture.userMatches.potentialMatches.length;
     const action = rejectMatchBetween(MATCHED_PAIR);
-    const { potentialMatches } = matchesReducer(userMatchesPlaceholder, action);
+    const newMatchingState = matchingReducer(matchingStateFixture, action);
+    const newNumOfPotentialMatches = newMatchingState.userMatches.potentialMatches.length;
 
-    expect(potentialMatches.length).toBe(initialNumOfPotentialMatches - 1);
+    expect(newNumOfPotentialMatches).toBe(initialNumOfPotentialMatches - 1);
   })
 });
