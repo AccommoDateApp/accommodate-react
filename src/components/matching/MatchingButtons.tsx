@@ -46,7 +46,7 @@ const MatchingButtonsComponent = (props: MatchingButtonsProps) : JSX.Element => 
 
 const createMatchedPair = (potentialMatch: Matchable,
                            loggedUserBiography: Biography) : MatchedPair => {
-  const userIsATenant = loggedUserBiography.userMode === UserMode.Tenant;
+  const userIsATenant = loggedUserBiography.mode === UserMode.Tenant;
   let matchedPair: MatchedPair;
   if (userIsATenant) {
     matchedPair = {

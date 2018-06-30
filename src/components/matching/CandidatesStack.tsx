@@ -44,7 +44,7 @@ const CandidatesStackComponent = (props: CandidatesStackProps) => {
 
 const renderPotentialMatch = (potentialMatch: Matchable,
                               loggedUserBiography: Biography) : JSX.Element => {
-  const matchIsATenant = "userMode" in potentialMatch;
+  const matchIsATenant = "mode" in potentialMatch;
   if (matchIsATenant) {
     return <TenantBiographyCard biography={potentialMatch as TenantBiography} />;
   } else {
