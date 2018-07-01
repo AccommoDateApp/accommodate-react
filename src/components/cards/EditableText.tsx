@@ -22,6 +22,12 @@ export class EditableText extends React.Component<EditableTextProps, EditableTex
     };
   }
 
+  public componentWillReceiveProps(props: EditableTextProps) {
+    this.setState({
+      value: props.value,
+    });
+  }
+
   public render() {
     if (!this.props.editable) {
       return this.state
