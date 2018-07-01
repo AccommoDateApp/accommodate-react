@@ -2,6 +2,7 @@ import { Dispatch } from "react-redux";
 import { Action, EmptyAction } from ".";
 import { api } from "../api/client";
 import { PowerUp, Purchase } from "../state/store";
+import { fetchPurchasedPowerUps } from "./powerupsActions";
 
 export enum StoreActions {
   StartFetching = "start_fetching_powerups",
@@ -59,6 +60,7 @@ export const purchasePowerUp = (id: string, quantity: number) => {
 
     try {
       await api.purchasePowerUp(purchase);
+      await fetchPurchasedPowerUps()(dispatch);
 
       success = true;
     } finally {
