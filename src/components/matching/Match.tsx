@@ -5,10 +5,10 @@ import "./Match.scss";
 
 export const Match = (actualMatch: ActualMatch) => (
   <Row className="match" style={{ height: "75px" }}>
-    <Col className="col" span={6}>{getPortrait(actualMatch)}</Col>
-    <Col className="col name" span={8}><h3>{actualMatch.name}</h3></Col>
-    <Col className="col" span={5}>{getFavoriteIcon(actualMatch.matchIsFavorite)}</Col>
-    <Col className="col" span={5}>{getChatIcon()}</Col>
+    <Col className="col" span={5}>{getPortrait(actualMatch)}</Col>
+    <Col className="col name" span={7}><h3>{actualMatch.name}</h3></Col>
+    <Col className="col" span={6}>{getFavoriteIcon(actualMatch.matchIsFavorite)}</Col>
+    <Col className="col" span={6}>{getChatIcon()}</Col>
   </Row>
 );
 
