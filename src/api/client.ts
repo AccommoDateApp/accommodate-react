@@ -71,11 +71,15 @@ export class ApiClient extends HttpClient {
   }
 
   public async fetchPowerUps() : Promise<PowerUp[]> {
-    return await this.get<PowerUp[]>(`${this.baseUrl}/powerups`);
+    return await this.get<PowerUp[]>(`${this.baseUrl}/powerups/store`);
   }
 
   public async purchasePowerUp(purchase: Purchase) : Promise<PowerUp[]> {
-    return await this.post<PowerUp[]>(`${this.baseUrl}/powerups`, purchase);
+    return await this.post<PowerUp[]>(`${this.baseUrl}/powerups/store`, purchase);
+  }
+
+  public async fetchUserPowerups() : Promise<PowerUp[]> {
+    return await this.get<PowerUp[]>(`${this.baseUrl}/powerups`);
   }
 
   public async usePowerUp(id: string) : Promise<PowerUp[]> {

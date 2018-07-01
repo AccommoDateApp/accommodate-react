@@ -5,7 +5,7 @@ import {
   defaultMatchingState,
   MatchingState,
 } from "./match";
-import { defaultPowerUpStoreState, PowerUpStore } from "./store";
+import { defaultPowerUpStoreState, PowerUp, PowerUpStore } from "./store";
 
 export interface Fetchable<T = any> {
   isFetching: boolean;
@@ -24,6 +24,7 @@ export interface AccommoDateState {
   biography: Fetchable<Biography>;
   editor: Editor;
   matchingState: MatchingState;
+  powerups: Fetchable<PowerUp[]>;
 }
 
 export const defaultState: AccommoDateState = {
@@ -34,6 +35,7 @@ export const defaultState: AccommoDateState = {
     value: api.isLoggedIn || false,
   },
   matchingState: defaultMatchingState,
+  powerups: defaultFetchableState,
   signup: defaultFetchableState,
   store: defaultPowerUpStoreState,
 };
