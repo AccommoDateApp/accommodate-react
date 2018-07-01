@@ -4,8 +4,9 @@ import { connect, Dispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addRealEstate, updateBiography } from "../../actions/biographyActions";
 import { startEditing } from "../../actions/editorActions";
-import { AccommoDateState } from "../../state";
+import { AccommoDateState, Fetchable } from "../../state";
 import { LandlordBiography, RealEstate } from "../../state/biography";
+import { PowerUp } from "../../state/store";
 import { EditableChoice } from "../cards/EditableChoice";
 import { EditablePreferenceCollection } from "../cards/EditablePreferenceCollection";
 import { EditableText } from "../cards/EditableText";
@@ -15,6 +16,7 @@ import { SavedMessage } from "./SavedMessage";
 
 interface EditLandlordProfileProps {
   biography: LandlordBiography;
+  powerups: Fetchable<PowerUp[]>;
 
   saved: boolean;
   saving: boolean;
@@ -132,12 +134,21 @@ class EditLandlordProfileComponent extends React.PureComponent<EditLandlordProfi
   }
 
   private renderAddRealEstateButton() {
+    let canAddRealEstate = false;
+
+    if (this.props.powerups.value) {
+      const extraEstatePowerUps = this.props.powerups.value.filter((powerup) => powerup.name === "Extra Estate");
+
+      canAddRealEstate = (extraEstatePowerUps.length + 1) > this.props.biography.realEstates.length;
+    }
+
     return (
       <Button
         icon="plus"
         type="primary"
         loading={this.props.saving}
         onClick={this.props.addRealEstate}
+        disabled={!canAddRealEstate}
       >
         New
       </Button>
@@ -146,6 +157,7 @@ class EditLandlordProfileComponent extends React.PureComponent<EditLandlordProfi
 }
 
 const mapStateToProps = (state: AccommoDateState) => ({
+  powerups: state.powerups,
   saved: state.editor.value,
   saving: !!state.editor.isFetching,
 });
