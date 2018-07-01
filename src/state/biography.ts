@@ -27,7 +27,6 @@ export interface Biography {
 export interface TenantBiography extends Biography, Matchable {
   mode: UserMode.Tenant;
   age: number;
-  images: string[];
   language: string;
   education: string;
   preferences: Preference[];
@@ -50,7 +49,6 @@ export interface RealEstate extends Matchable {
   description: string;
   type: RealEstateType;
   location: RealEstateLocation;
-  images: string[];
   rent: number;
   preferences: Preference[];
 }

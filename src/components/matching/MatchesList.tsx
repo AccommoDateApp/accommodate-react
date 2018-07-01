@@ -1,3 +1,4 @@
+import {Col, Row} from "antd";
 import * as React from "react";
 import { connect } from "react-redux";
 import { AccommoDateState } from "../../state";
@@ -7,7 +8,11 @@ import { Match } from "./Match";
 const MatchesListComponent = (props: UserMatches) => {
 
   const matches = props.actualMatches.map(
-    (match, id) => <Match key={id} {...match} />,
+    (match, id) => (
+      <Row key={id}>
+        <Col><Match {...match} /></Col>
+      </Row>
+    ),
   );
 
   return (
