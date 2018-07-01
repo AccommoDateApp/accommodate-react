@@ -26,6 +26,7 @@ export const defaultMatchingState: MatchingState = {
 
 export interface Matchable {
   id: string;
+  images: string[];
   name: string;
 }
 

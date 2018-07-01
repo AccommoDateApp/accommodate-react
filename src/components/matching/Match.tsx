@@ -4,11 +4,11 @@ import { ActualMatch } from "../../state/match";
 import "./Match.scss";
 
 export const Match = (actualMatch: ActualMatch) => (
-  <Row className="match">
-    <Col span={6}>{getPortrait()}</Col>
-    <Col span={6}><h3>{actualMatch.name}</h3></Col>
-    <Col span={6}>{getFavoriteIcon(actualMatch.matchIsFavorite)}</Col>
-    <Col span={6}>{getChatIcon()}</Col>
+  <Row className="match" style={{ height: "75px" }}>
+    <Col className="col" span={6}>{getPortrait(actualMatch)}</Col>
+    <Col className="col name" span={8}><h3>{actualMatch.name}</h3></Col>
+    <Col className="col" span={5}>{getFavoriteIcon(actualMatch.matchIsFavorite)}</Col>
+    <Col className="col" span={5}>{getChatIcon()}</Col>
   </Row>
 );
 
@@ -28,13 +28,16 @@ const getFavoriteIcon = (isFavorite: boolean) => {
   );
 };
 
-const getPortrait = () => (
-  <img
-    className="icon"
-    src={require("../../images/portrait.png")}
-    alt="Match Portrait"
-  />
-);
+const getPortrait = (actualMatch: ActualMatch) => {
+  const matchImage = actualMatch.images[0];
+  return (
+    <img
+      className="portrait"
+      src={`${matchImage}`}
+      alt="Match Portrait"
+    />
+  );
+};
 
 const getChatIcon = () => (
   <div>
