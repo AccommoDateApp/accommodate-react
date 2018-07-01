@@ -109,7 +109,6 @@ class EditLandlordProfileComponent extends React.PureComponent<EditLandlordProfi
             <RealEstateCard
               editable={true}
               realEstate={realEstate}
-              landlord={this.props.biography}
               onChange={(changeset) => updateRealEstate(realEstate, changeset)}
             />
           </Col>

@@ -124,11 +124,7 @@ export class ApiClient extends HttpClient {
   }
 
   public async fetchUserMatches() : Promise<UserMatches> {
-    /*return await this.get<UserMatches>(`${this.baseUrl}/match/`);*/
-    return {
-      actualMatches: [],
-      potentialMatches: [],
-    };
+    return await this.get<UserMatches>(`${this.baseUrl}/match/`);
   }
 }
 

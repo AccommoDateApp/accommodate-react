@@ -2,12 +2,11 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { uploadRealEstateImage } from "../../actions/imagesAction";
-import { LandlordBiography, RealEstate, RealEstateType } from "../../state/biography";
+import { RealEstate, RealEstateType } from "../../state/biography";
 import { CarouselCard } from "./CarouselCard";
 import { Choice, EditableChoice } from "./EditableChoice";
 import { EditableImageCollection } from "./EditableImageCollection";
 import { EditableText } from "./EditableText";
-import { genderChoices } from "./TenantBiographyCard";
 
 export const realEstateChoices: Array<Choice<RealEstateType>> = [
   {
@@ -26,7 +25,6 @@ export const realEstateChoices: Array<Choice<RealEstateType>> = [
 
 interface RealEstateCardProps {
   realEstate: RealEstate;
-  landlord: LandlordBiography;
 
   editable?: boolean;
   onChange?: (updatedRealEstate: any) => void;
@@ -35,7 +33,7 @@ interface RealEstateCardProps {
 
 const RealEstateCardComponent = (props: RealEstateCardProps) => {
   const editable = !!props.editable;
-  const { realEstate, landlord } = props;
+  const { realEstate } = props;
 
   const createOnChangeEvent = (field: string) => {
     return (value: any) => {
@@ -66,9 +64,6 @@ const RealEstateCardComponent = (props: RealEstateCardProps) => {
     />
   );
 
-  const landlordGender = genderChoices.find((choice) => choice.value === landlord.gender);
-  const landlordGenderText = (landlordGender as Choice<any>).text;
-
   return (
     <CarouselCard carousel={images} heading={name}>
       <EditableText
@@ -93,12 +88,6 @@ const RealEstateCardComponent = (props: RealEstateCardProps) => {
         choices={realEstateChoices}
         onChange={createOnChangeEvent("type")}
       />
-
-      <br />
-      <h4>Landlord</h4>
-      <p>
-        {landlord.name} ({landlordGenderText}), {landlord.realEstates.length} real estates
-      </p>
     </CarouselCard>
   );
 };

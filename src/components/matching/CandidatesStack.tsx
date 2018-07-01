@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { AccommoDateState } from "../../state";
 import {
   Biography,
-  LandlordBiography,
   RealEstate,
   TenantBiography,
 } from "../../state/biography";
@@ -26,7 +25,7 @@ const CandidatesStackComponent = (props: CandidatesStackProps) => {
 
   const match = props.userMatches.potentialMatches[0];
   const loggedUserBiography = props.biography;
-  const potentialMatch = renderPotentialMatch(match, loggedUserBiography);
+  const potentialMatch = renderPotentialMatch(match);
 
   return (
     <Row>
@@ -42,16 +41,14 @@ const CandidatesStackComponent = (props: CandidatesStackProps) => {
   );
 };
 
-const renderPotentialMatch = (potentialMatch: Matchable,
-                              loggedUserBiography: Biography) : JSX.Element => {
-  const matchIsATenant = "mode" in potentialMatch;
-  if (matchIsATenant) {
+const renderPotentialMatch = (potentialMatch: Matchable) : JSX.Element => {
+  const potentialMatchIsATenant = "mode" in potentialMatch;
+  if (potentialMatchIsATenant) {
     return <TenantBiographyCard biography={potentialMatch as TenantBiography} />;
   } else {
     return (
       <RealEstateCard
         realEstate={potentialMatch as RealEstate}
-        landlord={loggedUserBiography as LandlordBiography}
       />
     );
   }
