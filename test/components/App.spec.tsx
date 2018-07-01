@@ -15,9 +15,11 @@ describe("AppComponent", () => {
   };
 
   let fetchBiography;
+  let fetchPurchasedPowerups;
 
   beforeEach(() => {
     fetchBiography = spy();
+    fetchPurchasedPowerups = spy();
   });
 
   it("displays the landing page if the user is not logged in", () => {
@@ -26,7 +28,14 @@ describe("AppComponent", () => {
       value: false,
     };
 
-    const rendered = shallow(<AppComponent {...routeProps} login={login} fetchBiography={fetchBiography} />);
+    const rendered = shallow(
+      <AppComponent
+        {...routeProps}
+        login={login}
+        fetchBiography={fetchBiography}
+        fetchPurchasedPowerUps={fetchPurchasedPowerups}
+      />,
+    );
 
     expect(rendered.contains(<Landing />)).toBeTruthy();
   });
@@ -37,18 +46,34 @@ describe("AppComponent", () => {
       value: true,
     };
 
-    const rendered = shallow(<AppComponent {...routeProps} login={login} fetchBiography={fetchBiography} />);
+    const rendered = shallow(
+      <AppComponent
+        {...routeProps}
+        login={login}
+        fetchBiography={fetchBiography}
+        fetchPurchasedPowerUps={fetchPurchasedPowerups}
+      />,
+    );
 
     expect(rendered.contains(<Dashboard />)).toBeTruthy();
   });
 
-  it("fetches the biography on startup", () => {
+  it("fetches biography and powerups on startup", () => {
     const login: Fetchable<boolean> = {
       ...defaultFetchableState,
       value: true,
     };
 
-    shallow(<AppComponent {...routeProps} login={login} fetchBiography={fetchBiography} />);
+    shallow(
+      <AppComponent
+        {...routeProps}
+        login={login}
+        fetchBiography={fetchBiography}
+        fetchPurchasedPowerUps={fetchPurchasedPowerups}
+      />,
+    );
+
     expect(fetchBiography.calledOnce).toBeTruthy();
+    expect(fetchPurchasedPowerups.calledOnce).toBeTruthy();
   });
 });
