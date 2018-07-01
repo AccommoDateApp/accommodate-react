@@ -134,12 +134,18 @@ class EditLandlordProfileComponent extends React.PureComponent<EditLandlordProfi
   }
 
   private renderAddRealEstateButton() {
-    let canAddRealEstate = false;
+    let addPowerUpOnClick: any = () => null;
+    let disableAddButton = true;
 
     if (this.props.powerups.value) {
       const extraEstatePowerUps = this.props.powerups.value.filter((powerup) => powerup.name === "Extra Estate");
 
-      canAddRealEstate = (extraEstatePowerUps.length + 1) > this.props.biography.realEstates.length;
+      if (extraEstatePowerUps.length > 0) {
+        const powerupToUse = extraEstatePowerUps[0];
+
+        disableAddButton = false;
+        addPowerUpOnClick = () => this.props.addRealEstate(powerupToUse);
+      }
     }
 
     return (
@@ -147,8 +153,8 @@ class EditLandlordProfileComponent extends React.PureComponent<EditLandlordProfi
         icon="plus"
         type="primary"
         loading={this.props.saving}
-        onClick={this.props.addRealEstate}
-        disabled={!canAddRealEstate}
+        onClick={addPowerUpOnClick}
+        disabled={disableAddButton}
       >
         New
       </Button>

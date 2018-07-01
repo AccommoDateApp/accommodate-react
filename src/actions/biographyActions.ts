@@ -2,7 +2,9 @@ import { Dispatch } from "react-redux";
 import { Action, EmptyAction } from ".";
 import { api } from "../api/client";
 import { Biography } from "../state/biography";
+import { PowerUp } from "../state/store";
 import { failSaving, finishSaving, startSaving } from "./editorActions";
+import { usePowerUp } from "./powerupsActions";
 
 export enum BiographyActions {
   StartFetchingBio = "start_fetching_bio",
@@ -72,12 +74,14 @@ export const updateBiography = (bio: Partial<Biography>) => {
   };
 };
 
-export const addRealEstate = () => {
+export const addRealEstate = (powerup: PowerUp) => {
   return async (dispatch: Dispatch) => {
     dispatch(startUpdatingBiography());
     dispatch(startSaving());
 
     try {
+      await usePowerUp(powerup)(dispatch);
+
       const updatedBio = await api.createRealEstate();
 
       dispatch(finishUpdatingBiography(updatedBio));
