@@ -30,3 +30,17 @@ export const fetchPurchasedPowerUps = () => {
     }
   };
 };
+
+export const usePowerUp = (powerup: PowerUp) => {
+  return async (dispatch: Dispatch) => {
+    dispatch(startFetchingPurchasedPowerUps());
+
+    try {
+      const powerups = await api.usePowerUp(powerup.id);
+
+      dispatch(finishFetchingPurchasedPowerUps(powerups));
+    } catch {
+      dispatch(finishFetchingPurchasedPowerUps([]));
+    }
+  };
+};
